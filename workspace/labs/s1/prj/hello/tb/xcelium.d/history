@@ -1,0 +1,8 @@
+//
+// File created by:  xrun
+// Do not modify this file
+
+s1::(24Mar2026:11:15:51):( xrun tb_top.sv )
+s2::(24Mar2026:11:23:51):( xrun /rtl/dut.sv /tb/top_tb.sv )
+s3::(24Mar2026:11:31:12):( xrun /rtl/dut.sv /tb/top_tbas.sv )
+s4::(24Mar2026:11:31:23):( xrun /rtl/dut.sv /tb/top_tb_2.sv )

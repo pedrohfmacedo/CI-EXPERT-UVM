@@ -1,0 +1,45 @@
+xrun(64): 23.09-s003: (c) Copyright 1995-2023 Cadence Design Systems, Inc.
+TOOL:	xrun(64)	23.09-s003: Started on Mar 24, 2026 at 11:33:19 -03
+xrun
+	rtl/dut.sv
+	tb/tb_top_2.sv
+file: rtl/dut.sv
+	module worklib.dut:sv
+		errors: 0, warnings: 0
+file: tb/tb_top_2.sv
+	module worklib.tb_top:sv
+		errors: 0, warnings: 0
+		Caching library 'worklib' ....... Done
+	Elaborating the design hierarchy:
+	Top level design units:
+		tb_top
+	Building instance overlay tables: .................... Done
+	Generating native compiled code:
+		worklib.dut:sv <0x6f2906f7>
+			streams:   1, words:   169
+		worklib.tb_top:sv <0x1ed52c21>
+			streams:   4, words:  7041
+	Building instance specific data structures.
+	Loading native compiled code:     .................... Done
+	Design hierarchy summary:
+		             Instances  Unique
+		Modules:             2       2
+		Registers:           4       4
+		Scalar wires:        5       -
+		Initial blocks:      1       1
+		Cont. assignments:   1       1
+		Pseudo assignments:  3       -
+	Writing initial simulation snapshot: worklib.tb_top:sv
+Loading snapshot worklib.tb_top:sv .................... Done
+xcelium> source /Tools/cadence/XCELIUM2309/tools/xcelium/files/xmsimrc
+xcelium> run
+a b | c
+-----
+0 0 | 0
+0 1 | 0
+1 0 | 0
+1 1 | 1
+Simulation complete via $finish(1) at time 4 NS + 0
+./tb/tb_top_2.sv:21 $finish;
+xcelium> exit
+TOOL:	xrun(64)	23.09-s003: Exiting on Mar 24, 2026 at 11:33:21 -03  (total: 00:00:02)

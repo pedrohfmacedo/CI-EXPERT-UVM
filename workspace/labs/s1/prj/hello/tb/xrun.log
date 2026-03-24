@@ -1,0 +1,8 @@
+xrun(64): 23.09-s003: (c) Copyright 1995-2023 Cadence Design Systems, Inc.
+TOOL:	xrun(64)	23.09-s003: Started on Mar 24, 2026 at 11:31:22 -03
+xrun
+	/rtl/dut.sv
+	/tb/top_tb_2.sv
+xrun: *E,FILEMIS: Cannot find the provided file /rtl/dut.sv.
+xrun: *E,FILEMIS: Cannot find the provided file /tb/top_tb_2.sv.
+TOOL:	xrun(64)	23.09-s003: Exiting on Mar 24, 2026 at 11:31:23 -03  (total: 00:00:01)
