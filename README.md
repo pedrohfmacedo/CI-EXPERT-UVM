@@ -1,7 +1,7 @@
 # CI-Expert
 Este repositório contém as atividades implementadas durante o programa CI-EXPERT; Trilha: Verificação; Instrutor: Eng. M.Sc Gabriel Villanova.
 
-# Exercicio 0 - "shel-script"
+# Exercicio 0 - "shell-script"
 ## Descrição
 
 Este repositório contém a implementação do primeiro commit, branch e outros atividades de git.
