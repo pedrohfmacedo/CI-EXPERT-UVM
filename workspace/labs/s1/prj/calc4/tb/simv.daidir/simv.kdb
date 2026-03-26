@@ -1,0 +1,21 @@
+rc file Version 1.0
+
+[Design]
+COMPILE_PATH=/home/pedro.macedo/CI-EXPERT-UVM/workspace/labs/s1/prj/calc4/rtl
+VCS_HOME=/Tools/synopsys/vcs/X-2025.06-SP2
+VERDI_HOME=/Tools/synopsys/verdi/X-2025.06-SP2
+SystemC=FALSE
+UUM=FALSE
+KDB=FALSE
+USE_NOVAS_HOME=FALSE
+COSIM=FALSE
+TOP=calc4_tb 
+OPTION=-ssv -ssy 
+ELAB_OPTION=-ssv -ssy 
+
+[Value]
+WREALX=ffff534e50535f58
+WREALZ=ffff534e50535f5a
+
+[CompInfo]
+FLOW_OPTS=-ssv -ssy 

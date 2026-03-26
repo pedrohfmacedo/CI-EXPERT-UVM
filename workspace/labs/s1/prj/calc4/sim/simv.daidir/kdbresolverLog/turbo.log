@@ -1,0 +1,3 @@
+Command Line: /Tools/synopsys/vcs/X-2025.06-SP2/linux64/bin/elabcom -simflow -KDBRESOLVER -simvdaidir /home/pedro.macedo/CI-EXPERT-UVM/workspace/labs/s1/prj/calc4/sim/simv.daidir -saveLevel -enable_vfsXCmp -enable_smXCmp -ssv -ssy -q -logdir /home/pedro.macedo/CI-EXPERT-UVM/workspace/labs/s1/prj/calc4/sim/simv.daidir/kdbresolverLog -elabcom_partial_load
+uname(Linux microeletronica 4.18.0-477.27.1.el8_8.x86_64 #1 SMP Thu Aug 31 10:29:22 EDT 2023 x86_64)
+au time 0.201069 0.005992 0.013430 delta 95940608 95940608 total 377372672 377372672

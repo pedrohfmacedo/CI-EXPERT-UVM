@@ -1,0 +1,413 @@
+#######################################################################################
+# log primitive debug message of FSDB dumping                                         #
+# This is for R&D to analyze when there are issues happening when FSDB dump           #
+#######################################################################################
+ANF: vcsd_get_serial_mode_status('/home/pedro.macedo/CI-EXPERT-UVM/workspace/labs/s1/prj/calc4/sim/simv: undefined symbol: vcsd_get_serial_mode_status')
+ANF: vcsd_enable_sva_success_callback('/home/pedro.macedo/CI-EXPERT-UVM/workspace/labs/s1/prj/calc4/sim/simv: undefined symbol: vcsd_enable_sva_success_callback')
+ANF: vcsd_disable_sva_success_callback('/home/pedro.macedo/CI-EXPERT-UVM/workspace/labs/s1/prj/calc4/sim/simv: undefined symbol: vcsd_disable_sva_success_callback')
+ANF: vcsd_get_power_scope_name('/home/pedro.macedo/CI-EXPERT-UVM/workspace/labs/s1/prj/calc4/sim/simv: undefined symbol: vcsd_get_power_scope_name')
+ANF: vcsd_dump_var_vpdg('/home/pedro.macedo/CI-EXPERT-UVM/workspace/labs/s1/prj/calc4/sim/simv: undefined symbol: vcsd_dump_var_vpdg')
+ANF: vcsd_begin_no_value_var_info('/home/pedro.macedo/CI-EXPERT-UVM/workspace/labs/s1/prj/calc4/sim/simv: undefined symbol: vcsd_begin_no_value_var_info')
+ANF: vcsd_end_no_value_var_info('/home/pedro.macedo/CI-EXPERT-UVM/workspace/labs/s1/prj/calc4/sim/simv: undefined symbol: vcsd_end_no_value_var_info')
+ANF: vcsd_remove_xprop_merge_mode_callback('/home/pedro.macedo/CI-EXPERT-UVM/workspace/labs/s1/prj/calc4/sim/simv: undefined symbol: vcsd_remove_xprop_merge_mode_callback')
+ANF: vhpi_get_cb_info('/home/pedro.macedo/CI-EXPERT-UVM/workspace/labs/s1/prj/calc4/sim/simv: undefined symbol: vhpi_get_cb_info')
+ANF: vhpi_free_handle('/home/pedro.macedo/CI-EXPERT-UVM/workspace/labs/s1/prj/calc4/sim/simv: undefined symbol: vhpi_free_handle')
+ANF: vhpi_fetch_vcsd_handle('/home/pedro.macedo/CI-EXPERT-UVM/workspace/labs/s1/prj/calc4/sim/simv: undefined symbol: vhpi_fetch_vcsd_handle')
+ANF: vhpi_fetch_vpi_handle('/home/pedro.macedo/CI-EXPERT-UVM/workspace/labs/s1/prj/calc4/sim/simv: undefined symbol: vhpi_fetch_vpi_handle')
+ANF: vhpi_has_verilog_parent('/home/pedro.macedo/CI-EXPERT-UVM/workspace/labs/s1/prj/calc4/sim/simv: undefined symbol: vhpi_has_verilog_parent')
+ANF: vhpi_is_verilog_scope('/home/pedro.macedo/CI-EXPERT-UVM/workspace/labs/s1/prj/calc4/sim/simv: undefined symbol: vhpi_is_verilog_scope')
+ANF: scsd_xprop_is_enabled('/home/pedro.macedo/CI-EXPERT-UVM/workspace/labs/s1/prj/calc4/sim/simv: undefined symbol: scsd_xprop_is_enabled')
+ANF: scsd_xprop_sig_is_promoted('/home/pedro.macedo/CI-EXPERT-UVM/workspace/labs/s1/prj/calc4/sim/simv: undefined symbol: scsd_xprop_sig_is_promoted')
+ANF: scsd_xprop_int_xvalue('/home/pedro.macedo/CI-EXPERT-UVM/workspace/labs/s1/prj/calc4/sim/simv: undefined symbol: scsd_xprop_int_xvalue')
+ANF: scsd_xprop_bool_xvalue('/home/pedro.macedo/CI-EXPERT-UVM/workspace/labs/s1/prj/calc4/sim/simv: undefined symbol: scsd_xprop_bool_xvalue')
+ANF: scsd_xprop_enum_xvalue('/home/pedro.macedo/CI-EXPERT-UVM/workspace/labs/s1/prj/calc4/sim/simv: undefined symbol: scsd_xprop_enum_xvalue')
+ANF: scsd_xprop_register_merge_mode_cb('/home/pedro.macedo/CI-EXPERT-UVM/workspace/labs/s1/prj/calc4/sim/simv: undefined symbol: scsd_xprop_register_merge_mode_cb')
+ANF: scsd_xprop_delete_merge_mode_cb('/home/pedro.macedo/CI-EXPERT-UVM/workspace/labs/s1/prj/calc4/sim/simv: undefined symbol: scsd_xprop_delete_merge_mode_cb')
+ANF: scsd_xprop_get_merge_mode('/home/pedro.macedo/CI-EXPERT-UVM/workspace/labs/s1/prj/calc4/sim/simv: undefined symbol: scsd_xprop_get_merge_mode')
+ANF: scsd_thread_get_info('/home/pedro.macedo/CI-EXPERT-UVM/workspace/labs/s1/prj/calc4/sim/simv: undefined symbol: scsd_thread_get_info')
+ANF: scsd_thread_vc_init('/home/pedro.macedo/CI-EXPERT-UVM/workspace/labs/s1/prj/calc4/sim/simv: undefined symbol: scsd_thread_vc_init')
+ANF: scsd_master_set_delta_sync_cbk('/home/pedro.macedo/CI-EXPERT-UVM/workspace/labs/s1/prj/calc4/sim/simv: undefined symbol: scsd_master_set_delta_sync_cbk')
+ANF: scsd_fgp_get_fsdb_cores('/home/pedro.macedo/CI-EXPERT-UVM/workspace/labs/s1/prj/calc4/sim/simv: undefined symbol: scsd_fgp_get_fsdb_cores')
+ANF: scsd_fgp_get_is_cpu_affinity_disabled('/home/pedro.macedo/CI-EXPERT-UVM/workspace/labs/s1/prj/calc4/sim/simv: undefined symbol: scsd_fgp_get_is_cpu_affinity_disabled')
+ANF: vdi_dbg_set_client_control('/home/pedro.macedo/CI-EXPERT-UVM/workspace/labs/s1/prj/calc4/sim/simv: undefined symbol: vdi_dbg_set_client_control')
+ANF: vhdi_dt_get_type('/home/pedro.macedo/CI-EXPERT-UVM/workspace/labs/s1/prj/calc4/sim/simv: undefined symbol: vhdi_dt_get_type')
+ANF: vhdi_dt_get_key('/home/pedro.macedo/CI-EXPERT-UVM/workspace/labs/s1/prj/calc4/sim/simv: undefined symbol: vhdi_dt_get_key')
+ANF: vhdi_dt_get_vhdl_enum_info('/home/pedro.macedo/CI-EXPERT-UVM/workspace/labs/s1/prj/calc4/sim/simv: undefined symbol: vhdi_dt_get_vhdl_enum_info')
+ANF: vhdi_dt_get_vhdl_physical_info('/home/pedro.macedo/CI-EXPERT-UVM/workspace/labs/s1/prj/calc4/sim/simv: undefined symbol: vhdi_dt_get_vhdl_physical_info')
+ANF: vhdi_dt_get_vhdl_array_info('/home/pedro.macedo/CI-EXPERT-UVM/workspace/labs/s1/prj/calc4/sim/simv: undefined symbol: vhdi_dt_get_vhdl_array_info')
+ANF: vhdi_dt_get_vhdl_record_info('/home/pedro.macedo/CI-EXPERT-UVM/workspace/labs/s1/prj/calc4/sim/simv: undefined symbol: vhdi_dt_get_vhdl_record_info')
+ANF: vhdi_dt_get_vhdl_integer_range_info('/home/pedro.macedo/CI-EXPERT-UVM/workspace/labs/s1/prj/calc4/sim/simv: undefined symbol: vhdi_dt_get_vhdl_integer_range_info')
+ANF: vhdi_def_traverse_module('/home/pedro.macedo/CI-EXPERT-UVM/workspace/labs/s1/prj/calc4/sim/simv: undefined symbol: vhdi_def_traverse_module')
+ANF: vhdi_def_traverse_scope('/home/pedro.macedo/CI-EXPERT-UVM/workspace/labs/s1/prj/calc4/sim/simv: undefined symbol: vhdi_def_traverse_scope')
+ANF: vhdi_def_traverse_variable('/home/pedro.macedo/CI-EXPERT-UVM/workspace/labs/s1/prj/calc4/sim/simv: undefined symbol: vhdi_def_traverse_variable')
+ANF: vhdi_def_get_module_id_by_vhpi('/home/pedro.macedo/CI-EXPERT-UVM/workspace/labs/s1/prj/calc4/sim/simv: undefined symbol: vhdi_def_get_module_id_by_vhpi')
+ANF: vhdi_def_get_handle_by_module_id('/home/pedro.macedo/CI-EXPERT-UVM/workspace/labs/s1/prj/calc4/sim/simv: undefined symbol: vhdi_def_get_handle_by_module_id')
+ANF: vhdi_def_get_variable_info_by_vhpi('/home/pedro.macedo/CI-EXPERT-UVM/workspace/labs/s1/prj/calc4/sim/simv: undefined symbol: vhdi_def_get_variable_info_by_vhpi')
+ANF: vhdi_def_free('/home/pedro.macedo/CI-EXPERT-UVM/workspace/labs/s1/prj/calc4/sim/simv: undefined symbol: vhdi_def_free')
+ANF: vhdi_ist_traverse_scope('/home/pedro.macedo/CI-EXPERT-UVM/workspace/labs/s1/prj/calc4/sim/simv: undefined symbol: vhdi_ist_traverse_scope')
+ANF: vhdi_ist_traverse_variable('/home/pedro.macedo/CI-EXPERT-UVM/workspace/labs/s1/prj/calc4/sim/simv: undefined symbol: vhdi_ist_traverse_variable')
+ANF: vhdi_ist_convert_by_vhpi('/home/pedro.macedo/CI-EXPERT-UVM/workspace/labs/s1/prj/calc4/sim/simv: undefined symbol: vhdi_ist_convert_by_vhpi')
+ANF: vhdi_ist_clone('/home/pedro.macedo/CI-EXPERT-UVM/workspace/labs/s1/prj/calc4/sim/simv: undefined symbol: vhdi_ist_clone')
+ANF: vhdi_ist_free('/home/pedro.macedo/CI-EXPERT-UVM/workspace/labs/s1/prj/calc4/sim/simv: undefined symbol: vhdi_ist_free')
+ANF: vhdi_ist_hash_key('/home/pedro.macedo/CI-EXPERT-UVM/workspace/labs/s1/prj/calc4/sim/simv: undefined symbol: vhdi_ist_hash_key')
+ANF: vhdi_ist_compare('/home/pedro.macedo/CI-EXPERT-UVM/workspace/labs/s1/prj/calc4/sim/simv: undefined symbol: vhdi_ist_compare')
+ANF: vhdi_ist_get_value_addr('/home/pedro.macedo/CI-EXPERT-UVM/workspace/labs/s1/prj/calc4/sim/simv: undefined symbol: vhdi_ist_get_value_addr')
+ANF: vhdi_set_scsd_callback('/home/pedro.macedo/CI-EXPERT-UVM/workspace/labs/s1/prj/calc4/sim/simv: undefined symbol: vhdi_set_scsd_callback')
+ANF: vhdi_cbk_set_force_callback('/home/pedro.macedo/CI-EXPERT-UVM/workspace/labs/s1/prj/calc4/sim/simv: undefined symbol: vhdi_cbk_set_force_callback')
+ANF: vhdi_trigger_init_force('/home/pedro.macedo/CI-EXPERT-UVM/workspace/labs/s1/prj/calc4/sim/simv: undefined symbol: vhdi_trigger_init_force')
+ANF: vhdi_ist_check_scsd_callback('/home/pedro.macedo/CI-EXPERT-UVM/workspace/labs/s1/prj/calc4/sim/simv: undefined symbol: vhdi_ist_check_scsd_callback')
+ANF: vhdi_ist_add_scsd_callback('/home/pedro.macedo/CI-EXPERT-UVM/workspace/labs/s1/prj/calc4/sim/simv: undefined symbol: vhdi_ist_add_scsd_callback')
+ANF: vhdi_ist_remove_scsd_callback('/home/pedro.macedo/CI-EXPERT-UVM/workspace/labs/s1/prj/calc4/sim/simv: undefined symbol: vhdi_ist_remove_scsd_callback')
+ANF: vhdi_ist_get_scsd_user_data('/home/pedro.macedo/CI-EXPERT-UVM/workspace/labs/s1/prj/calc4/sim/simv: undefined symbol: vhdi_ist_get_scsd_user_data')
+ANF: vhdi_add_time_change_callback('/home/pedro.macedo/CI-EXPERT-UVM/workspace/labs/s1/prj/calc4/sim/simv: undefined symbol: vhdi_add_time_change_callback')
+ANF: vhdi_get_real_value_by_value_addr('/home/pedro.macedo/CI-EXPERT-UVM/workspace/labs/s1/prj/calc4/sim/simv: undefined symbol: vhdi_get_real_value_by_value_addr')
+ANF: vhdi_get_64_value_by_value_addr('/home/pedro.macedo/CI-EXPERT-UVM/workspace/labs/s1/prj/calc4/sim/simv: undefined symbol: vhdi_get_64_value_by_value_addr')
+ANF: vhdi_xprop_inst_is_promoted('/home/pedro.macedo/CI-EXPERT-UVM/workspace/labs/s1/prj/calc4/sim/simv: undefined symbol: vhdi_xprop_inst_is_promoted')
+ANF: vdi_ist_convert_by_vhdi('/home/pedro.macedo/CI-EXPERT-UVM/workspace/labs/s1/prj/calc4/sim/simv: undefined symbol: vdi_ist_convert_by_vhdi')
+ANF: vhdi_ist_get_module_id('/home/pedro.macedo/CI-EXPERT-UVM/workspace/labs/s1/prj/calc4/sim/simv: undefined symbol: vhdi_ist_get_module_id')
+ANF: vhdi_refine_foreign_scope_type('/home/pedro.macedo/CI-EXPERT-UVM/workspace/labs/s1/prj/calc4/sim/simv: undefined symbol: vhdi_refine_foreign_scope_type')
+ANF: vhdi_flush_callback('/home/pedro.macedo/CI-EXPERT-UVM/workspace/labs/s1/prj/calc4/sim/simv: undefined symbol: vhdi_flush_callback')
+ANF: vhdi_set_orig_name('/home/pedro.macedo/CI-EXPERT-UVM/workspace/labs/s1/prj/calc4/sim/simv: undefined symbol: vhdi_set_orig_name')
+ANF: vhdi_set_dump_pt('/home/pedro.macedo/CI-EXPERT-UVM/workspace/labs/s1/prj/calc4/sim/simv: undefined symbol: vhdi_set_dump_pt')
+ANF: vhdi_set_int_subtype('/home/pedro.macedo/CI-EXPERT-UVM/workspace/labs/s1/prj/calc4/sim/simv: undefined symbol: vhdi_set_int_subtype')
+ANF: vhdi_set_fixed_point('/home/pedro.macedo/CI-EXPERT-UVM/workspace/labs/s1/prj/calc4/sim/simv: undefined symbol: vhdi_set_fixed_point')
+ANF: vhdi_get_fsdb_option('/home/pedro.macedo/CI-EXPERT-UVM/workspace/labs/s1/prj/calc4/sim/simv: undefined symbol: vhdi_get_fsdb_option')
+ANF: vhdi_fgp_get_mode('/home/pedro.macedo/CI-EXPERT-UVM/workspace/labs/s1/prj/calc4/sim/simv: undefined symbol: vhdi_fgp_get_mode')
+ANF: vhdi_node_register_composite_var('/home/pedro.macedo/CI-EXPERT-UVM/workspace/labs/s1/prj/calc4/sim/simv: undefined symbol: vhdi_node_register_composite_var')
+ANF: vhdi_node_analysis('/home/pedro.macedo/CI-EXPERT-UVM/workspace/labs/s1/prj/calc4/sim/simv: undefined symbol: vhdi_node_analysis')
+ANF: vhdi_node_id('/home/pedro.macedo/CI-EXPERT-UVM/workspace/labs/s1/prj/calc4/sim/simv: undefined symbol: vhdi_node_id')
+ANF: vhdi_node_ist_check_scsd_callback('/home/pedro.macedo/CI-EXPERT-UVM/workspace/labs/s1/prj/calc4/sim/simv: undefined symbol: vhdi_node_ist_check_scsd_callback')
+ANF: vhdi_node_ist_add_scsd_callback('/home/pedro.macedo/CI-EXPERT-UVM/workspace/labs/s1/prj/calc4/sim/simv: undefined symbol: vhdi_node_ist_add_scsd_callback')
+ANF: vhdi_node_ist_get_value_addr('/home/pedro.macedo/CI-EXPERT-UVM/workspace/labs/s1/prj/calc4/sim/simv: undefined symbol: vhdi_node_ist_get_value_addr')
+ANF: vhdi_enc_def_traverse_module('/home/pedro.macedo/CI-EXPERT-UVM/workspace/labs/s1/prj/calc4/sim/simv: undefined symbol: vhdi_enc_def_traverse_module')
+ANF: vhdi_enc_def_traverse_scope('/home/pedro.macedo/CI-EXPERT-UVM/workspace/labs/s1/prj/calc4/sim/simv: undefined symbol: vhdi_enc_def_traverse_scope')
+ANF: vhdi_enc_def_traverse_variable('/home/pedro.macedo/CI-EXPERT-UVM/workspace/labs/s1/prj/calc4/sim/simv: undefined symbol: vhdi_enc_def_traverse_variable')
+ANF: vhdi_enc_ist_traverse_scope('/home/pedro.macedo/CI-EXPERT-UVM/workspace/labs/s1/prj/calc4/sim/simv: undefined symbol: vhdi_enc_ist_traverse_scope')
+ANF: vhdi_enc_ist_traverse_variable('/home/pedro.macedo/CI-EXPERT-UVM/workspace/labs/s1/prj/calc4/sim/simv: undefined symbol: vhdi_enc_ist_traverse_variable')
+ANF: vhdi_enc_ist_get_module_id('/home/pedro.macedo/CI-EXPERT-UVM/workspace/labs/s1/prj/calc4/sim/simv: undefined symbol: vhdi_enc_ist_get_module_id')
+ANF: vhdi_enc_def_get_handle_by_module_id('/home/pedro.macedo/CI-EXPERT-UVM/workspace/labs/s1/prj/calc4/sim/simv: undefined symbol: vhdi_enc_def_get_handle_by_module_id')
+VCS compile option:
+ option[0]: /home/pedro.macedo/CI-EXPERT-UVM/workspace/labs/s1/prj/calc4/sim/simv
+ option[1]: -sml=verdi
+ option[2]: +UVM_VERDI_TRACE=UVM_AWARE
+ option[3]: +fsdb+gate=off
+ option[4]: -ucli2Proc
+ option[5]: -ucli
+ option[6]: -l
+ option[7]: /home/pedro.macedo/CI-EXPERT-UVM/workspace/labs/s1/prj/calc4/sim/verdiLog/sim.log
+ option[8]: /Tools/synopsys/vcs/X-2025.06-SP2/linux64/bin/vcs1fe
+ option[9]: -Mcc=gcc
+ option[10]: -Mcplusplus=g++
+ option[11]: -Masflags=
+ option[12]: -Mcfl= -pipe -fPIC -O -I/Tools/synopsys/vcs/X-2025.06-SP2/include 
+ option[13]: -Mxllcflags=
+ option[14]: -Mxcflags= -pipe -fPIC -I/Tools/synopsys/vcs/X-2025.06-SP2/include
+ option[15]: -Mldflags= -rdynamic 
+ option[16]: -Mout=simv
+ option[17]: -Mamsrun=
+ option[18]: -Mvcsaceobjs=
+ option[19]: -Mobjects= /Tools/synopsys/vcs/X-2025.06-SP2/linux64/lib/libvirsim.so /Tools/synopsys/vcs/X-2025.06-SP2/linux64/lib/liberrorinf.so /Tools/synopsys/vcs/X-2025.06-SP2/linux64/lib/libsnpsmalloc.so /Tools/synopsys/vcs/X-2025.06-SP2/linux64/lib/libvfs.so 
+ option[20]: -Mexternalobj=
+ option[21]: -Msaverestoreobj=/Tools/synopsys/vcs/X-2025.06-SP2/linux64/lib/vcs_save_restore_new.o
+ option[22]: -Mcrt0=
+ option[23]: -Mcrtn=
+ option[24]: -Mcsrc=
+ option[25]: -Msyslibs=/Tools/synopsys/verdi/X-2025.06-SP2/share/PLI/VCS/LINUX64/pli.a -ldl 
+ option[26]: -full64
+ option[27]: -debug_access+all
+ option[28]: +vpi
+ option[29]: +vcsd1
+ option[30]: +itf+/Tools/synopsys/vcs/X-2025.06-SP2/linux64/lib/vcsdp_lite.tab
+ option[31]: -kdb
+ option[32]: -Xufe=2steps
+ option[33]: -o
+ option[34]: simv
+ option[35]: -Xhdlxmropt
+ option[36]: -picarchive
+ option[37]: -P
+ option[38]: /Tools/synopsys/verdi/X-2025.06-SP2/share/PLI/VCS/LINUX64/verdi.tab
+ option[39]: -fsdb
+ option[40]: -sverilog
+ option[41]: -gen_obj
+ option[42]: ../rtl/calc4.sv
+ option[43]: -load
+ option[44]: /Tools/synopsys/verdi/X-2025.06-SP2/share/PLI/VCS/LINUX64/libnovas.so:FSDBDumpCmd
+ option[45]: nusym_mode
+Chronologic Simulation VCS Release X-2025.06-SP2_Full64
+Linux 4.18.0-477.27.1.el8_8.x86_64 #1 SMP Thu Aug 31 10:29:22 EDT 2023 x86_64
+CPU cores: 32
+Limit information:
+======================================
+cputime		unlimited
+filesize		unlimited
+datasize		unlimited
+stacksize		unlimited
+coredumpsize		0 kbytes
+memoryuse		unlimited
+vmemoryuse		unlimited
+descriptors		1024
+memorylocked		64 kbytes
+maxproc		513331
+======================================
+(Special)Runtime environment variables:
+
+Runtime environment variables:
+UVM_HOME=/Tools/synopsys/vcs/X-2025.06-SP2/etc/uvm
+VCS_TARGET_ARCH=amd64
+CEREBRUSHOME=/Tools/cadence/CEREBRUS221
+LC_ALL=C
+LS_COLORS=rs=0:di=38;5;33:ln=38;5;51:mh=00:pi=40;38;5;11:so=38;5;13:do=38;5;5:bd=48;5;232;38;5;11:cd=48;5;232;38;5;3:or=48;5;232;38;5;9:mi=01;05;37;41:su=48;5;196;38;5;15:sg=48;5;11;38;5;16:ca=48;5;196;38;5;226:tw=48;5;10;38;5;16:ow=48;5;10;38;5;21:st=48;5;21;38;5;15:ex=38;5;40:*.tar=38;5;9:*.tgz=38;5;9:*.arc=38;5;9:*.arj=38;5;9:*.taz=38;5;9:*.lha=38;5;9:*.lz4=38;5;9:*.lzh=38;5;9:*.lzma=38;5;9:*.tlz=38;5;9:*.txz=38;5;9:*.tzo=38;5;9:*.t7z=38;5;9:*.zip=38;5;9:*.z=38;5;9:*.dz=38;5;9:*.gz=38;5;9:*.lrz=38;5;9:*.lz=38;5;9:*.lzo=38;5;9:*.xz=38;5;9:*.zst=38;5;9:*.tzst=38;5;9:*.bz2=38;5;9:*.bz=38;5;9:*.tbz=38;5;9:*.tbz2=38;5;9:*.tz=38;5;9:*.deb=38;5;9:*.rpm=38;5;9:*.jar=38;5;9:*.war=38;5;9:*.ear=38;5;9:*.sar=38;5;9:*.rar=38;5;9:*.alz=38;5;9:*.ace=38;5;9:*.zoo=38;5;9:*.cpio=38;5;9:*.7z=38;5;9:*.rz=38;5;9:*.cab=38;5;9:*.wim=38;5;9:*.swm=38;5;9:*.dwm=38;5;9:*.esd=38;5;9:*.jpg=38;5;13:*.jpeg=38;5;13:*.mjpg=38;5;13:*.mjpeg=38;5;13:*.gif=38;5;13:*.bmp=38;5;13:*.pbm=38;5;13:*.pgm=38;5;13:*.ppm=38;5;13:*.tga=38;5;13:*.xbm=38;5;13:*.xpm=38;5;13:*.tif=38;5;13:*.tiff=38;5;13:*.png=38;5;13:*.svg=38;5;13:*.svgz=38;5;13:*.mng=38;5;13:*.pcx=38;5;13:*.mov=38;5;13:*.mpg=38;5;13:*.mpeg=38;5;13:*.m2v=38;5;13:*.mkv=38;5;13:*.webm=38;5;13:*.ogm=38;5;13:*.mp4=38;5;13:*.m4v=38;5;13:*.mp4v=38;5;13:*.vob=38;5;13:*.qt=38;5;13:*.nuv=38;5;13:*.wmv=38;5;13:*.asf=38;5;13:*.rm=38;5;13:*.rmvb=38;5;13:*.flc=38;5;13:*.avi=38;5;13:*.fli=38;5;13:*.flv=38;5;13:*.gl=38;5;13:*.dl=38;5;13:*.xcf=38;5;13:*.xwd=38;5;13:*.yuv=38;5;13:*.cgm=38;5;13:*.emf=38;5;13:*.ogv=38;5;13:*.ogx=38;5;13:*.aac=38;5;45:*.au=38;5;45:*.flac=38;5;45:*.m4a=38;5;45:*.mid=38;5;45:*.midi=38;5;45:*.mka=38;5;45:*.mp3=38;5;45:*.mpc=38;5;45:*.ogg=38;5;45:*.ra=38;5;45:*.wav=38;5;45:*.oga=38;5;45:*.opus=38;5;45:*.spx=38;5;45:*.xspf=38;5;45:
+LD_LIBRARY_PATH=/Tools/cadence/XCELIUM2309/tools/lib:/Tools/cadence/IC231/tools/lib
+PULSE_CLIENTCONFIG=/home/pedro.macedo/.x2go/C-pedro.macedo-1407-1774359432_stDXFCE_dp24/.pulse-client.conf
+SYS_INST_DIR=/Tools/synopsys/verdi/X-2025.06-SP2
+SSH_CONNECTION=192.168.131.110 54670 192.168.13.66 22
+X2GO_AGENT_PID=528118
+LANG=C
+QT_GRAPHICSSYSTEM=native
+INCISIVEHOME=/Tools/cadence/INCISIVE152
+HISTCONTROL=ignoredups
+DISPLAY=:1407.0
+HOSTNAME=microeletronica
+GENUSHOME=/Tools/cadence/DDI221/GENUS221
+VCS_STACK_EXEC=true
+OLDPWD=/home/pedro.macedo/CI-EXPERT-UVM/workspace/labs/s1/prj/calc4
+CADENCE=/Tools/cadence
+COLORTERM=truecolor
+MAKE_TERMOUT=/dev/pts/1
+STRATUSHOME=/Tools/cadence/STRATUS2301
+SNPSLMD_LICENSE_FILE=27020@melicense.embedded.ufcg.edu.br
+AMSHOME=/Tools/cadence/XCELIUM2309
+SYN_HOMEDIR=/Tools/synopsys/syn/X-2025.06-SP4
+CDS_Netlisting_Mode=Analog
+PVSHOME=/Tools/cadence/PVS231
+SSH_AUTH_SOCK=/tmp/ssh-yuxRs0kEypyn/agent.535365
+MFLAGS=
+which_declare=declare -f
+CUSTOM_HOMEDIR=/Tools/synopsys/customcompiler/X-2025.06-4
+XDG_SESSION_ID=154
+NOVAS_SYNC_MOTIF_DISP=
+USER=pedro.macedo
+PANEL_GDK_CORE_DEVICE_EVENTS=0
+STARRC_HOMEDIR=/Tools/synopsys/starrc/X-2025.06-SP2
+VCS_EXEC_DONE=1
+ANIPREVIEW=/mnt/hdd1tera/animatepreview/
+SELINUX_ROLE_REQUESTED=
+X_DIR=/mnt/hdd1tera/xfab_xh018
+PWD=/home/pedro.macedo/CI-EXPERT-UVM/workspace/labs/s1/prj/calc4/sim
+FM_HOME=/Tools/synopsys/fm/X-2025.06-SP4
+SSH_ASKPASS=/usr/libexec/openssh/gnome-ssh-askpass
+HOME=/home/pedro.macedo
+SSH_AGENT_PID=535366
+SSH_CLIENT=192.168.131.110 54670 22
+VCS_PATHMAP_PRELOAD_DONE=1
+XNLSPATH=/Tools/synopsys/verdi/X-2025.06-SP2/etc/access/nls
+SELINUX_LEVEL_REQUESTED=
+XSESSION_EXEC=xfce4-session
+MGC_HOME=/mnt/hdd1tera/mentor/calibre/aoj_cal_2021.1_16.10
+XDG_DATA_DIRS=/home/pedro.macedo/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share:/usr/share
+QT_VERDI_ENABLE_ICON_MEM_FIX=1
+VERISIUMDEBUGHOME=/Tools/cadence/VERISIUMDEBUGAGL2309
+VERDI_QT5=1
+CDSHOME=/Tools/cadence/IC231
+IUSHOME=/Tools/cadence/XCELIUM2309
+MODUSHOME=/Tools/cadence/MODUS231
+SPS_XFONT_PATH=/Tools/synopsys/verdi/X-2025.06-SP2/XFont
+CDN_SYNTH_ROOT=/Tools/cadence/DDI221/GENUS221/tools
+MATLABPATH=/Tools/cadence/SPECTRE231/tools/spectre/matlab/64bit:/Tools/cadence/SPECTRE231/tools/spectre/simulink:/Tools/cadence/XCELIUM2309/tools/affirma_ams/etc/matlab
+ICVALIDATOR_HOME=/Tools/synopsys/icvalidator/X-2025.06-SP2
+VMANAGERHOME=/Tools/cadence/VMANAGER2309
+CLS_CDSD_COMPATIBILITY_LOCKING=NO
+ALTOSHOME=/Tools/cadence/LIBERATE231
+MMSIMHOME=/Tools/cadence/SPECTRE231
+MAIL=/var/spool/mail/pedro.macedo
+SYNOPSYS=/Tools/synopsys
+ICC2_HOME=/Tools/synopsys/icc2/X-2025.06-SP2
+CDS_LIC_FILE=5280@melicense.embedded.ufcg.edu.br
+LD_NOVERSION=1
+QT_PLUGIN_PATH=/Tools/synopsys/verdi/X-2025.06-SP2/platform/LINUXAMD64/lib/Qt5/plugins
+SHELL=/bin/bash
+VTE_VERSION=5204
+TERM=xterm-256color
+CONFRMLHOME=/Tools/cadence/CONFRML231
+XMODIFIERS=@im=none
+LM_LICENSE_FILE=27020@melicense.embedded.ufcg.edu.br
+CDS_AUTO_64BIT=ALL
+QRC_HOME=/Tools/cadence/QUANTUS231
+X2GO_SESSION=pedro.macedo-1407-1774359432_stDXFCE_dp24
+SELINUX_USE_CURRENT_RANGE=
+MAKELEVEL=1
+PEGASUSHOME=/Tools/cadence/PEGASUS231
+VERDI_HOME=/Tools/synopsys/verdi/X-2025.06-SP2
+SHLVL=6
+MAKE_TERMERR=/dev/pts/1
+SPS_FONT_PATH=/Tools/synopsys/verdi/X-2025.06-SP2/font
+WINDOWID=39845890
+PRIMETIME_HOMEDIR=/Tools/synopsys/prime/X-2025.06-SP2
+MDV_XLM_HOME=/Tools/cadence/XCELIUM2309
+VERDI_ORIGNAL_LD_LIBRARY_PATH=/Tools/cadence/XCELIUM2309/tools/lib:/Tools/cadence/IC231/tools/lib
+LOGNAME=pedro.macedo
+JASPER=/Tools/cadence/JASPER2309
+DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-Btvhn1gRCI,guid=c42f73e4d5433bfb0d165d6869c2938b
+SPS_RGB_PATH=/Tools/synopsys/verdi/X-2025.06-SP2/etc/rgb
+XDG_RUNTIME_DIR=/run/user/1007
+XAUTHORITY=/home/pedro.macedo/.Xauthority
+MALLOC_ARENA_MAX=1
+PATH=/mnt/hdd1tera/animatepreview//bin:/mnt/hdd1tera/xfab_xh018/x_all/cadence/xenv:/mnt/hdd1tera/mentor/calibre/aoj_cal_2021.1_16.10/bin:/Tools/cadence/JASPER2309/bin:/Tools/cadence/CEREBRUS221/bin:/Tools/cadence/VERISIUMDEBUGAGL2309/bin:/Tools/cadence/QUANTUS231/bin:/Tools/cadence/VMANAGER2309/bin:/Tools/cadence/STRATUS2301/bin:/Tools/cadence/SSV221/bin:/Tools/cadence/SPECTRE231/tools/bin:/Tools/cadence/IC231/tools/bin:/Tools/cadence/QUANTUS231/bin:/Tools/cadence/IC231/tools/dfII/bin:/Tools/cadence/XCELIUM2309/tools/bin:/Tools/cadence/XCELIUM2309/tools/verilog/bin:/Tools/cadence/XCELIUM2309/tools/dfII/bin:/Tools/cadence/IC231/tools/plot/bin:/Tools/cadence/SPECTRE231/tools/mdl/bin:/Tools/cadence/IC231/tools/usr/bin:/Tools/cadence/PVS231/bin:/Tools/cadence/PVS231/tools/bin:/Tools/cadence/PEGASUS231/bin:/Tools/cadence/PEGASUS231/tools/bin:/Tools/cadence/MODUS231/bin:/Tools/cadence/LIBERATE231/bin:/Tools/cadence/DDI221/JLS221/bin:/Tools/cadence/DDI221/INNOVUS221/bin:/Tools/cadence/INCISIVE152/bin:/Tools/cadence/DDI221/GENUS221/bin:/Tools/cadence/CONFRML231/tools/bin:/tools/bin:/tools/assura/bin:/mnt/hdd1tera/animatepreview//bin:/mnt/hdd1tera/xfab_xh018/x_all/cadence/xenv:/mnt/hdd1tera/mentor/calibre/aoj_cal_2021.1_16.10/bin:/Tools/cadence/JASPER2309/bin:/Tools/cadence/CEREBRUS221/bin:/Tools/cadence/VERISIUMDEBUGAGL2309/bin:/Tools/cadence/QUANTUS231/bin:/Tools/cadence/VMANAGER2309/bin:/Tools/cadence/STRATUS2301/bin:/Tools/cadence/SSV221/bin:/Tools/cadence/SPECTRE231/tools/bin:/Tools/cadence/IC231/tools/bin:/Tools/cadence/QUANTUS231/bin:/Tools/cadence/IC231/tools/dfII/bin:/Tools/cadence/XCELIUM2309/tools/bin:/Tools/cadence/XCELIUM2309/tools/verilog/bin:/Tools/cadence/XCELIUM2309/tools/dfII/bin:/Tools/cadence/IC231/tools/plot/bin:/Tools/cadence/SPECTRE231/tools/mdl/bin:/Tools/cadence/IC231/tools/usr/bin:/Tools/cadence/PVS231/bin:/Tools/cadence/PVS231/tools/bin:/Tools/cadence/PEGASUS231/bin:/Tools/cadence/PEGASUS231/tools/bin:/Tools/cadence/MODUS231/bin:/Tools/cadence/LIBERATE231/bin:/Tools/cadence/DDI221/JLS221/bin:/Tools/cadence/DDI221/INNOVUS221/bin:/Tools/cadence/INCISIVE152/bin:/Tools/cadence/DDI221/GENUS221/bin:/Tools/cadence/CONFRML231/tools/bin:/tools/bin:/tools/assura/bin:/Tools/synopsys/lc/X-2025.06-SP2/bin:/Tools/synopsys/fm/X-2025.06-SP4/bin:/Tools/synopsys/verdi/X-2025.06-SP2/bin:/Tools/synopsys/vcs/X-2025.06-SP2/bin:/Tools/synopsys/syn/X-2025.06-SP4/bin:/Tools/synopsys/fusioncompiler/X-2025.06-SP2/bin:/Tools/synopsys/customcompiler/X-2025.06-4/bin:/Tools/synopsys/starrc/X-2025.06-SP2/bin:/Tools/synopsys/prime/X-2025.06-SP2/bin:/Tools/synopsys/icvalidator/X-2025.06-SP2/bin:/Tools/synopsys/icc2/X-2025.06-SP2/bin:/home/pedro.macedo/.local/bin:/home/pedro.macedo/bin:/usr/lib64/ccache:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin
+VCS_HOME=/Tools/synopsys/vcs/X-2025.06-SP2
+SSVHOME=/Tools/cadence/SSV221
+MAKEFLAGS=
+HISTSIZE=1000
+FUSION_HOMEDIR=/Tools/synopsys/fusioncompiler/X-2025.06-SP2
+CDS_DEBUGGER=/usr/bin/gdb
+SYS_PROG_NAME=verdi
+INNOVUS=/Tools/cadence/DDI221/INNOVUS221
+CCD_RC=/Tools/cadence/CONFRML231
+NOVASHLPPATH=/Tools/synopsys/verdi/X-2025.06-SP2/doc
+LESSOPEN=||/usr/bin/lesspipe.sh %s
+JOULESHOME=/Tools/cadence/DDI221/JLS221
+STARTUP=/usr/bin/env LD_LIBRARY_PATH= xfce4-session
+LC_HOME=/Tools/synopsys/lc/X-2025.06-SP2
+BASH_FUNC_which%%=() {  ( alias;
+ eval ${which_declare} ) | /usr/bin/which --tty-only --read-alias --read-functions --show-tilde --show-dot $@
+}
+NOVAS_LC_ALL=C
+SIMV_DAIDIR_PATH=/home/pedro.macedo/CI-EXPERT-UVM/workspace/labs/s1/prj/calc4/sim/./simv.daidir
+NOVAS_SIGNAL_BASE_EXTRACTION=1
+SIGNAL_BASE_EXTRACTION=1
+NOVAS_VERDI_SVTB_BETA=1
+VERDI_SVTB_BETA=1
+NOVAS_VERDI_SVTB_ALPHA=1
+VERDI_SVTB_ALPHA=1
+NOVAS_VERDI_TB_HT=1
+VERDI_TB_HT=1
+NOVAS_WAVE_REDRAW_ALLVC=1
+WAVE_REDRAW_ALLVC=1
+NOVAS_TCL_LIBRARY=/Tools/synopsys/verdi/X-2025.06-SP2/etc/access/tcl86_library
+TCL_LIBRARY=/Tools/synopsys/verdi/X-2025.06-SP2/etc/access/tcl86_library
+XKEYSYMDB=/Tools/synopsys/verdi/X-2025.06-SP2/etc/access/XKeysymDB2.1
+XLOCALEDIR=/Tools/synopsys/verdi/X-2025.06-SP2/etc/access/locale
+QTWEBENGINE_CHROMIUM_FLAGS=--log-level=3
+QT_XCB_NO_XI2=1
+NOVAS_SIGNAL_BASED_BA=0
+SIGNAL_BASED_BA=0
+SNPS_SIM_DEFAULT_GUI=verdi
+FSDB_FILE=/home/pedro.macedo/CI-EXPERT-UVM/workspace/labs/s1/prj/calc4/sim/inter.fsdb
+VCS_UCLI_STDIN_BLOCKING=1
+FSDB_VHDL_PROTECTED=1
+FSDB_RD_IR_ENABLE=1
+FSDB_SVA_STATUS=1
+VCS_STOP_SAFE=1
+DVE_SIM_SELECT_LOOP=on
+FLEXLM_BORROWFILE=/home/pedro.macedo/.microeletronica-borrow.txt
+Runtime command line arguments:
+argv[0]=/home/pedro.macedo/CI-EXPERT-UVM/workspace/labs/s1/prj/calc4/sim/simv
+argv[1]=-sml=verdi
+argv[2]=+UVM_VERDI_TRACE=UVM_AWARE
+argv[3]=+fsdb+gate=off
+argv[4]=-ucli2Proc
+argv[5]=-ucli
+argv[6]=-l
+argv[7]=/home/pedro.macedo/CI-EXPERT-UVM/workspace/labs/s1/prj/calc4/sim/verdiLog/sim.log
+**********Message Rewind**************
+308 profile - 100
+          CPU/Mem usage: 0.010 sys,  0.020 user,  321.58M mem
+309 Elapsed time:    0:00:01    Thu Mar 26 09:51:11 2026
+310 User CPU time used: 0 seconds
+311 System CPU time used: 0 seconds
+312 pliAppInit
+313 ndpGetenv(FSDB_FILE): /home/pedro.macedo/CI-EXPERT-UVM/workspace/labs/s1/prj/calc4/sim/inter.fsdb
+314 ndpGetenv(FSDB_SVA_STATUS): 1
+315 ndpGetenv(FSDB_VHDL_PROTECTED): 1
+316 FSDB_GATE & FSDB_RTL is disabled.
+317 FSDB_DYNAMIC_ALIAS is enabled.
+318 libnuma.so open fail. libnuma.so: cannot open shared object file: No such file or directory
+319 FSDB NUMA optimize not available.
+320 FSDB_PACKED_MODE is enabled.
+321 FSDB_GATE_PACKED is enabled.
+322 [SC]Init: MemoryConsumed=0.00MB ElapsedTime=0hour 0min. 0sec.
+323 FSDB_REDUCE_VC_MEM is enabled.
+324 Enable Parallel Dumping.
+325 pliAppMiscSet: New Sim Round
+326 pliEntryInit
+327 LIBSSCORE=found /Tools/synopsys/verdi/X-2025.06-SP2/share/PLI/lib/LINUXAMD64/libsscore_vcs202506.so through $NOVAS_HOME setting.
+328 FSDB Dumper for VCS, Release Verdi_X-2025.06-SP2, Linux x86_64/64bit, 11/27/2025
+329 (C) 1996 - 2025 by Synopsys, Inc.
+330 sps_tcl_fsdbDumpfile_main at 0
+331 argv[0]: /home/pedro.macedo/CI-EXPERT-UVM/workspace/labs/s1/prj/calc4/sim/inter.fsdb
+332 *Verdi* : Create FSDB file '/home/pedro.macedo/CI-EXPERT-UVM/workspace/labs/s1/prj/calc4/sim/inter.fsdb'
+333 [spi_vcs_vd_ppi_create_root]: no upf option
+334 DUMPER_MEMORY_REDUCTION is enabled.
+335 compile option from '/home/pedro.macedo/CI-EXPERT-UVM/workspace/labs/s1/prj/calc4/sim/simv.daidir/vcs_rebuild'.
+336   "vcs '-sverilog' '-full64' '-debug_access+all' '-kdb' '../rtl/calc4.sv' '../tb/calc4_tb.sv' '-o' 'simv' 2>&1"
+337 sps_tcl_fsdbDumpflush_vd_main at 0 : N/A(0)
+338 *Verdi* : Flush all FSDB Files at 0 s.
+339 sps_tcl_fsdbDumpflush_vd_main at 0 : N/A(0)
+340 *Verdi* : Flush all FSDB Files at 0 s.
+341 sps_call_fsdbDumpfile_main at 0 : ../tb/calc4_tb.sv(46)
+342 argv[0]: (wave.fsdb)
+343 *Verdi* WARNING: Env/runtime option has specified fsdbfile name as "/home/pedro.macedo/CI-EXPERT-UVM/workspace/labs/s1/prj/calc4/sim/inter.fsdb". Fsdbfile name in task "wave.fsdb" is ignored.
+344 DVDI_is_vir_unload_enabled is enable
+345 FSDB_VCS_ENABLE_NATIVE_VC is enable
+346 FSDB_VCS_ENABLE_MEMORY_NATIVE_VC is enabled
+347 sps_call_fsdbDumpvars_vd_main at 0 : ../tb/calc4_tb.sv(47)
+348 argv[0]: (0)
+349 argv[1]: (handle) calc4_tb
+350 *Verdi* : Begin traversing the scope (calc4_tb), layer (0).
+351 *Verdi* : End of traversing.
+352 pliAppHDL_DumpVarComplete traverse var: profile - 
+          CPU/Mem usage: 0.010 sys,  0.040 user,  425.04M mem
+                   incr: 0.000 sys,  0.000 user,  7.26M mem
+                   accu: 0.000 sys,  0.000 user,  7.26M mem
+              accu incr: 0.000 sys,  0.000 user,  7.26M mem
+
+          Count usage: 8 var,  8 idcode,  8 callback
+                 incr: 8 var,  8 idcode,  8 callback
+                 accu: 8 var,  8 idcode,  8 callback
+            accu incr: 8 var,  8 idcode,  8 callback
+353 Idcode  0 - bc1:0  mda:0
+354 Elapsed time:    0:00:34    Thu Mar 26 09:51:44 2026
+355 User CPU time used: 0 seconds
+356 System CPU time used: 0 seconds
+357 pliAppHDL_DumpVarComplete: profile - 
+          CPU/Mem usage: 0.010 sys,  0.040 user,  425.04M mem
+                   incr: 0.000 sys,  0.000 user,  0.00M mem
+                   accu: 0.000 sys,  0.000 user,  7.26M mem
+              accu incr: 0.000 sys,  0.000 user,  0.00M mem
+
+          Count usage: 8 var,  8 idcode,  8 callback
+                 incr: 0 var,  0 idcode,  0 callback
+                 accu: 8 var,  8 idcode,  8 callback
+            accu incr: 0 var,  0 idcode,  0 callback
+358 Idcode  0 - bc1:0  mda:0
+359 Elapsed time:    0:00:34    Thu Mar 26 09:51:44 2026
+360 User CPU time used: 0 seconds
+361 System CPU time used: 0 seconds
+362 sps_tcl_fsdbDumpflush_vd_main at 110 : N/A(0)
+363 *Verdi* : Flush all FSDB Files at 110 s.
+364 End of simulation at 110
+365 Memory usage: 426.906 M
+366 Maximum resident set size: 124 MB
+367 Hard page faults: 8
+368 Soft page faults: 5778
+369 Elapsed time:    0:00:48    Thu Mar 26 09:51:58 2026
+370 User CPU time used: 0 seconds
+371 System CPU time used: 0 seconds
+372 Begin FSDB profile info:
+373 FSDB Writer : bc1(0) bcn(58) mtf/stf(0/3)
+FSDB Writer elapsed time : flush(0.288686) io wait(0.000000) theadpool wait(0.000000)
+FSDB Writer cpu time : MT Compression : 0
+374 End FSDB profile info
+375 FSDB closed. Name: /home/pedro.macedo/CI-EXPERT-UVM/workspace/labs/s1/prj/calc4/sim/inter.fsdb Size: 8897
+376 Parallel profile     - ProducerThread:1 ConsumerThread:1 Buffer:64MB
+377                      - BlockUsed:1 Acquire:0 BufferUsed:1173
+378                      - Flush:7 Expand:0 ProducerWait:0 ConsumerWait:0
+379                      - MainProducerTime:0.067497669 TotalConsumerTime:0.000000000
+380                      - ElapsedTime:46.461239000
+381 Producer   0 profile - BlockUsed:3 Acquire:0 BufferUsed:1173
+382 Consumer   0 profile - Affinity:-1 CPUTime:0.000000000 LifeTime:0.000000000 (-nan%)
+383                      - BlockUsed:3 Acquire:0 BufferUsed:1173
+384 SimExit
+385 Elapsed time:    0:00:48    Thu Mar 26 09:51:58 2026
+386 User CPU time used: 0 seconds
+387 System CPU time used: 0 seconds
+388 Sim process exit

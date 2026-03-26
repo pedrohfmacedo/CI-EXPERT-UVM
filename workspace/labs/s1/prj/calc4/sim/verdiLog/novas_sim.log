@@ -1,0 +1,45 @@
+Invoking simulator...
+
+./simv -sml=verdi +UVM_VERDI_TRACE=UVM_AWARE +fsdb+gate=off -ucli2Proc -ucli
+debImport "-i" "-simflow" "-dbdir" "./simv.daidir"
+*Verdi* Loading libsscore_vcs202506.so
+
+FSDB Dumper for VCS, Release Verdi_X-2025.06-SP2, Linux x86_64/64bit, 11/27/2025
+(C) 1996 - 2025 by Synopsys, Inc.
+*Verdi* : Create FSDB file '/home/pedro.macedo/CI-EXPERT-UVM/workspace/labs/s1/prj/calc4/sim/inter.fsdb'
+
+*Verdi* : Flush all FSDB Files at 0 s.
+
+*Verdi* : Enable RPC Server(1425905)
+
+srcTBInvokeSim
+Chronologic VCS simulator copyright 1991-2025
+Contains Synopsys proprietary information.
+Compiler version X-2025.06-SP2_Full64; Runtime version X-2025.06-SP2_Full64;  Mar 26 09:51 2026
+Information: Term was not able to be set up using xterm-256color. Using "xterm" by default instead. (CLE-10)
+Verdi>run
+Op: 00: + ; 01: - ;10 : * ;11: / ;
+ a       b      op | result
+*Verdi* WARNING: Env/runtime option has specified fsdbfile name as "/home/pedro.macedo/CI-EXPERT-UVM/workspace/labs/s1/prj/calc4/sim/inter.fsdb". Fsdbfile name in task "wave.fsdb" is ignored.
+*Verdi* : Begin traversing the scope (calc4_tb), layer (0).
+*Verdi* : End of traversing.
+10     5     00 | 15
+10     5     01 | 5
+10     5     10 | 50
+10     5     11 | 2
+20     4     00 | 24
+20     4     01 | 16
+20     4     10 | 80
+20     4     11 | 5
+255     1     00 | 0
+50     10     10 | 244
+10     0     11 | x
+$finish called from file "../tb/calc4_tb.sv", line 43.
+$finish at simulation time                  110
+Simulation complete, time is 110.
+calc4_tb.sv, 43 :         $finish;
+           V C S   S i m u l a t i o n   R e p o r t 
+Time: 110
+CPU Time:      0.060 seconds;       Data structure size:   0.0Mb
+Thu Mar 26 09:51:58 2026
+debExit

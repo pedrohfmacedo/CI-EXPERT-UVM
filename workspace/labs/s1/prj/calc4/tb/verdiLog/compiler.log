@@ -1,0 +1,10 @@
+*design* DebussyLib (btIdent Verdi_X-2025.06-SP2)
+Command arguments:
+    +define+verilog
+    /home/pedro.macedo/CI-EXPERT-UVM/workspace/labs/s1/prj/calc4/rtl/calc4.sv
+    -sv
+
+Highest level modules:
+calc4
+
+Total	0 error(s),   0 warning(s)

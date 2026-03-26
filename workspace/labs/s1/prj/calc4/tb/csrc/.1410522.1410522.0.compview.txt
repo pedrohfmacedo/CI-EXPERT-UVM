@@ -1,0 +1,9 @@
+{"vcs1":{"timestamp_begin":1774527978.790400313, "rt":0.20, "ut":0.11, "st":0.07}}
+{"vcselab":{"timestamp_begin":1774527979.059256925, "rt":0.19, "ut":0.12, "st":0.02}}
+{"link":{"timestamp_begin":1774527979.299690593, "rt":0.18, "ut":0.10, "st":0.07}}
+{"SNPS_VCS_INTERNAL_ROOT_START_TIME": 1774527978.496750375}
+{"VCS_COMP_START_TIME": 1774527978.496750375}
+{"VCS_COMP_END_TIME": 1774527979.542683577}
+{"VCS_USER_OPTIONS": "-sverilog -full64 -debug_acess+all calc4.sv ../tb/calc4_tb.sv"}
+{"vcs1": {"peak_mem": 406852}}
+{"vcselab": {"peak_mem": 248820}}

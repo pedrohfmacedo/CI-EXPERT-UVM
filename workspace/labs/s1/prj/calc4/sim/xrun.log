@@ -1,0 +1,54 @@
+xrun(64): 23.09-s003: (c) Copyright 1995-2023 Cadence Design Systems, Inc.
+TOOL:	xrun(64)	23.09-s003: Started on Mar 24, 2026 at 12:28:25 -03
+xrun
+	../tb/calc4_tb.sv
+	../rtl/calc4.sv
+	-access +rwc
+file: ../tb/calc4_tb.sv
+	module worklib.calc4_tb:sv
+		errors: 0, warnings: 0
+file: ../rtl/calc4.sv
+	module worklib.calc4:sv
+		errors: 0, warnings: 0
+		Caching library 'worklib' ....... Done
+	Elaborating the design hierarchy:
+	Top level design units:
+		calc4_tb
+	Building instance overlay tables: .................... Done
+	Generating native compiled code:
+		worklib.calc4:sv <0x7de5ba94>
+			streams:   1, words:   694
+		worklib.calc4_tb:sv <0x0a940422>
+			streams:   6, words: 13694
+	Building instance specific data structures.
+	Loading native compiled code:     .................... Done
+	Design hierarchy summary:
+		                 Instances  Unique
+		Modules:                 2       2
+		Registers:               5       5
+		Vectored wires:          5       -
+		Always blocks:           1       1
+		Initial blocks:          1       1
+		Pseudo assignments:      4       -
+		Simulation timescale:  1ps
+	Writing initial simulation snapshot: worklib.calc4_tb:sv
+Loading snapshot worklib.calc4_tb:sv .................... Done
+xcelium> source /Tools/cadence/XCELIUM2309/tools/xcelium/files/xmsimrc
+xcelium> run
+Op: 00: + ; 01: - ;10 : * ;11: / ;
+ a       b      op | result
+10     5     00 | 15
+10     5     01 | 5
+10     5     10 | 50
+10     5     11 | 2
+20     4     00 | 24
+20     4     01 | 16
+20     4     10 | 80
+20     4     11 | 5
+255     1     00 | 0
+50     10     10 | 244
+10     0     11 | x
+Simulation complete via $finish(1) at time 110 NS + 0
+../tb/calc4_tb.sv:44         $finish;
+xcelium> exit
+TOOL:	xrun(64)	23.09-s003: Exiting on Mar 24, 2026 at 12:28:25 -03  (total: 00:00:00)

@@ -1,0 +1,8 @@
+//
+// File created by:  xrun
+// Do not modify this file
+//
+../tb/calc4_tb.sv
+../rtl/calc4.sv
+-access
++rwc
