@@ -1,0 +1,53 @@
+questoes
+	ff + porta
+	eda
+	fluxo gdsii
+	sta
+	cdc.
+	pvt.
+conversão vin gex
+sop e pos 
+tabela verdaed - ?> cirucito.
+exprtessao booleana.
+fsm e karnaugh -> vazado.
+verdi -> 
+vdsm -> sta.
+verdilog.cmd -> todas as operações -> 
+Rebuild and restart -> 
+etapa intermerdairai - > gtehc -> independdente de pdk.
+
+make gui
+mae
+breakpoint. -> como usar. -> Print.
+rebuild & restart(Muda e reseta). X restart (Reseta o mesmo).
+ scanchain ->  sequencial -> verificar.
+mux e flop -> depurar depois que o chipt a manufaturado.
+
+
+clkj = 
+p = 1/clk = 
+setup /hold
+
+rexcovery w- > reset;
+
+sta = bateu o time ou n?
+tcq + tpd +ts < pclk
+não fechou time -> slack negativo. (Slack diferença entre o tempo necfssário e o tempo de checkagem). 
+
+gttech -> generic 
+
+contraint -> power/timing* -> specification.
+portas lógicas, inversores, ff,latches, memoria -> standart-cell -> pdk 
+
+erro de proejti -> desenho de memoria -> 
+pvt - process - tensao - temperatura -> pdk.
+.lb -> represetnação -> nldm (mais antigo) less acurate -> non linear delay model.
+			ccs (mais preciso) morre accurate -> compositr currente soyurcer
+
+constraint -> seleção pdk -> 
+sdf - > 
+design ware -> queredinha -> 
+
+sincronizador. 
+filler - > cell -> prenchimento
+corenr 
