@@ -4,7 +4,6 @@
 
 // Interface 
 interface demux1x8_if (input logic clk);
-    logic clk;
     logic rstn;
     logic en;
     logic [2:0] sel;
@@ -15,11 +14,11 @@ endinterface
 // Top 
 module demux1x8_tb;
 
-logic clock 
+logic clk = 0;
 logic [7:0] expected;
 
 // Instance of the interface
-demux1x8_if demux_if (clock);
+demux1x8_if demux_if (.clk(clk));
 
 // Counter Scoreboard
 int pass_count = 0;
@@ -58,13 +57,14 @@ function logic [7:0] reference_model(logic en, logic [2:0] sel, logic din);
 endfunction
 
 // Check function, scores the results (Scoreboard)
-function void check(logic [7:0] dut_out, logic [7:0] ref_out);
+function void check(logic [7:0] dut_out, logic [7:0] ref_out, logic en, logic [2:0] sel, logic din);
     if (dut_out === ref_out)
         pass_count++;
-    else
+    else begin
         fail_count++;
         $display("[ERROR] time=%0t en=%b sel=%3b din=%b | DUT=%8b REF=%8b",
-        $time, en, sel, din, dut_out, ref_out);
+                 $time, en, sel, din, dut_out, ref_out);
+    end
 endfunction
 
 // Test sequence, stimulus generation
@@ -73,29 +73,45 @@ initial begin
     $display("========= Initial tests =========");
 
     // Initialize interface signals (Reset)
-    dut_if.rstn = 0;
-    dut_if.en = 0;
-    dut_if.sel = 0;
-    dut_if.din = 0;
+    demux_if.rstn = 0;
+    demux_if.en = 0;
+    demux_if.sel = 0;
+    demux_if.din = 0;
         
-    repeat (2) @(posedge clk);
-    dut_if.rstn = 1;
-
+    //repeat (2) @(negedge clk);
+    #10 demux_if.rstn = 1;
+    demux_if.en = 1;
+    //demux_if.din = 1;
     //Loop for tests
     repeat (100) begin
         // Randomize inputs
-        dut_if.en = $urandom_range(0, 1);
-        dut_if.sel = $urandom_range(0, 7);
-        dut_if.din = $urandom_range(0, 1);
+        demux_if.sel = $urandom_range(0, 7);
+        demux_if.din = $urandom_range(0, 1);
 
         // Wait for the output to stabilize
-        @(posedge clk);
+        #10;
 
         // Get expected output from reference model
-        expected = reference_model(dut_if.en, dut_if.sel, dut_if.din);
+        expected = reference_model(demux_if.en, demux_if.sel, demux_if.din);
 
         // Check DUT output against expected output
-        check(dut_if.dout, expected);
+        check(demux_if.dout, expected, demux_if.en, demux_if.sel, demux_if.din);
+    end
+
+    demux_if.en = 0;
+    repeat (100) begin
+        // Randomize inputs
+        demux_if.sel = $urandom_range(0, 7);
+        demux_if.din = $urandom_range(0, 1);
+
+        // Wait for the output to stabilize
+        #10;
+
+        // Get expected output from reference model
+        expected = reference_model(demux_if.en, demux_if.sel, demux_if.din);
+
+        // Check DUT output against expected output
+        check(demux_if.dout, expected, demux_if.en, demux_if.sel, demux_if.din);
     end
 
         // Summary
@@ -104,11 +120,12 @@ initial begin
         $display("FAIL: %d", fail_count);
         $display("========================\n");
 
+        $finish;
 end
 
 initial begin
-    $dumpfile("demux1x8_tb.vcd");
-    $dumpvars(0, demux1x8_tb);
+    $fsdbDumpfile("demux1x8.fsdb");
+    $fsdbDumpvars();
 end
 
 endmodule
