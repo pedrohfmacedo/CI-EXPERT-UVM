@@ -1,4 +1,4 @@
-BLOCK  = 1x8demux 
+BLOCK  = 1x8demux
 
 # RTL
 RTL_FILES = rtl/$(BLOCK).v
