@@ -55,8 +55,8 @@ mux8x1 uut (
 );
 
 initial begin
-    $dumpfile("mux8x1_tb.vcd");
-    $dumpvars(0, mux8x1_tb);
+    $fsdbDumpfile("demux1x8.fsdb");
+    $fsdbDumpvars();
 end
 
 endmodule

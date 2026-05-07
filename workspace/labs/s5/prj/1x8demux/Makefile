@@ -19,7 +19,6 @@ vcs:
 vcs2:
 	vcs $(VCS_FLAGS2) $(RTL_FILES) $(TB_FILES2) 
 
-
 run: 
 	./simv +FSDB=$(BLOCK).fsdb
 
@@ -27,13 +26,13 @@ gui:
 	./simv -gui
 
 verdi_wf:
-	verdi -play cmd/$(BLOCK).cmd
+	verdi -play cmd/$(BLOCK)wave.cmd
 
 verdi_wf_easy:
 	verdi -nologo -ssf $(BLOCK).fsdb
 
 verdi_sc:
-	verdi -play schematic-top.cmd
+	verdi -play cmd/$(BLOCK)sc.cmd
 
 vcs_clean:
 	rm -rf csrc *.daidir simv *.log *.key *.conf *.rc *.fsdb verdiLog/ *.vcd

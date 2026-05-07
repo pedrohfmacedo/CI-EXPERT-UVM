@@ -4,6 +4,15 @@
 
 module demux1x8_tb;
 
+
+// Interface 
+interface demux1x8_if (input logic clk);
+    logic rstn;
+    logic en;
+    logic [2:0] sel;
+    logic din;
+    logic [7:0] dout;   
+endinterface
 // Inputs
 reg clk;
 reg rstn;
@@ -51,8 +60,7 @@ demux1x8 uut (
 );
 
 initial begin
-    $dumpfile("demux1x8_tb.vcd");
-    $dumpvars(0, demux1x8_tb);
+    $fsdbDumpfile("demux1x8.fsdb");
+    $fsdbDumpvars();
 end
-
 endmodule
