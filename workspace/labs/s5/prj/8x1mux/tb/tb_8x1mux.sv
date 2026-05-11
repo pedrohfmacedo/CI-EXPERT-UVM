@@ -32,25 +32,25 @@ mux8x1 dut (
     .clk(mux_if.clk),
     .rstn(mux_if.rstn),
     .en(mux_if.en),  // avtive high enable
-    .din(mux_if.sel), //data input
-    .sel(mux_if.din), // select lines
+    .din(mux_if.din), //data input
+    .sel(mux_if.sel), // select lines
     .dout(mux_if.dout) // data output
 );
 // Reference model
-function logic reference_model(logic en, logic [2:0] sel, logic [7:0] din);
+function logic reference_model(logic en, logic [2:0] sel, logic [7:0] din, logic prev_out);
     if (en)
         return din[sel];
     else
-        return 1'b0;
+        return prev_out;
 endfunction
 
 // Check function scores the results (Scoreboard)
-function void check(logic dut_out, logic [7:0] ref_out, logic en, logic [2:0] sel, logic [7:0] din);
+function void check(logic dut_out, logic ref_out, logic en, logic [2:0] sel, logic [7:0] din);
     if (dut_out === ref_out)
         pass_count++;
     else begin
         fail_count++;
-        $display("[ERROR] time=%0t en=%b sel=%3b din=%b | DUT=%8b REF=%8b",
+        $display("[ERROR] time=%0t en=%b sel=%d din=%b | DUT=%b REF=%b",
                  $time, en, sel, din, dut_out, ref_out);
     end
 endfunction
@@ -69,21 +69,27 @@ initial begin
     repeat (2) @(posedge clk);
     mux_if.rstn = 1;
     mux_if.en = 1;
+    expected = 0;
 
-    //Loop for tests
+    // Check one cycle after reset release
+    @(posedge clk); #1;
+    expected = reference_model(mux_if.en, mux_if.sel, mux_if.din, expected);
+    check(mux_if.dout, expected, mux_if.en, mux_if.sel, mux_if.din);
+
+    // Loop for tests
     repeat (100) begin
 
         // Randomize inputs
         @(negedge clk);
         mux_if.sel = $urandom_range(0, 7);
         mux_if.din = $urandom_range(0, 255);
-        // mux_if.din = 8'h0F;
+        //mux_if.din = 8'h0F;
 
         // Wait for the output to stabilize
         @(posedge clk); #1;
 
         // Get expected output from reference model
-        expected = reference_model(mux_if.en, mux_if.sel, mux_if.din);
+        expected = reference_model(mux_if.en, mux_if.sel, mux_if.din, expected);
 
         // Check DUT output against expected output
         check(mux_if.dout, expected, mux_if.en, mux_if.sel, mux_if.din);
@@ -93,26 +99,27 @@ initial begin
     repeat (100) begin
         // Randomize inputs
         mux_if.sel = $urandom_range(0, 7);
-        mux_if.din = $urandom_range(0, 255);
-
+        //mux_if.din = $urandom_range(0, 255);
+    
         // Wait for the output to stabilize
         @(posedge clk); #1;
 
         // Get expected output from reference model
-        expected = reference_model(mux_if.en, mux_if.sel, mux_if.din);
+        expected = reference_model(mux_if.en, mux_if.sel, mux_if.din, expected);
 
         // Check DUT output against expected output
         check(mux_if.dout, expected, mux_if.en, mux_if.sel, mux_if.din);
     end
 
         // Summary
-        $display("\n======== SUMMARY ========");
+        $display("\n================ SUMMARY ================");
         $display("PASS: %d", pass_count);
         $display("FAIL: %d", fail_count);
-        $display("========================\n");
+        $display("==========================================\n");
         $finish;
 end
 
+// FSDB dump for waveform viewing
 initial begin
     $fsdbDumpfile("mux1x8.fsdb");
     $fsdbDumpvars();
