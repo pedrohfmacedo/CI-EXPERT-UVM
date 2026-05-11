@@ -20,3 +20,10 @@ default.svf
 alib-52
 *.vcd
 .DS_Store
+
+# Ignore chat/assistant artifacts
+.chat/
+*.chat
+*.assistant
+*.copilot
+*.copilot.*
