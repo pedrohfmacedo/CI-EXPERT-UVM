@@ -20,6 +20,9 @@ vcs:
 vcs2:
 	vcs $(VCS_FLAGS2) $(RTL_FILES) $(TB_FILES2) 
 
+tb: 
+	vcs $(VCS_FLAGS2) $(TB_FILES2)
+
 run: 
 	./simv +FSDB=$(BLOCK).fsdb
 
@@ -35,5 +38,5 @@ verdi_wf_easy:
 verdi_sc:
 	verdi -play schematic-top.cmd
 
-vcs_clean:
+clean:
 	rm -rf csrc *.daidir simv *.log *.key *.conf *.rc *.fsdb verdiLog/ *.vcd
