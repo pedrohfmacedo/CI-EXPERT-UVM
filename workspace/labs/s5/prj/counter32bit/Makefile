@@ -12,7 +12,7 @@ FSDB_FILE = $(BLOCK)
 VCS_KDB   = -kdb 
 VCS_DEBUG = -debug_access+all
 VCS_FLAGS = -full64 -l ./vcs_logger.log $(VCS_KDB) $(VCS_DEBUG) -timescale=1ns/1ps
-
+VCS_FLAGS2 = -sverilog -full64 -l ./vcs_logger.log $(VCS_KDB) $(VCS_DEBUG) -timescale=1ns/1ps
 vcs:
 	vcs $(VCS_FLAGS) $(RTL_FILES) $(TB_FILES) 
 
