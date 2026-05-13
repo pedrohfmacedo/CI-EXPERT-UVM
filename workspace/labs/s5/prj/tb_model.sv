@@ -87,7 +87,7 @@ initial begin
         check();
     end
 
-    mux_if.en = 0;
+    _if.en = 0;
     repeat (100) begin
         // Randomize inputs
         //mux_if.din = $urandom_range(0, 255);
@@ -112,7 +112,7 @@ end
 
 // FSDB dump for waveform viewing
 initial begin
-    $fsdbDumpfile("mux1x8.fsdb");
+    $fsdbDumpfile(".fsdb");
     $fsdbDumpvars();
 end
 
