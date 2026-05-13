@@ -1,129 +1,470 @@
-//Function: The test bench applies random values to 3-bit select lines and checks the
-//dout. The waveform mux8x1_tb.vcd can be observed using waveform viewer.
-//Test bench file: mux8x1_tb.v
+// ============================================================
+// Interface
+// ============================================================
 
-// Interface 
 interface arbiter_if (input logic clk);
+
     logic reset_n;
-    logic en;
-    logic priority_sel; // input
-    logic client1_req;  // input
-    logic client2_req;  // input  
-    logic o_grant1;     // output
-    logic o_grant2;     // output
+    logic priority_sel;
+    logic client1_req;
+    logic client2_req;
+
+    logic o_grant1;
+    logic o_grant2;
+
 endinterface
 
-//Top
+
+// ============================================================
+// TOP TESTBENCH
+// ============================================================
+
 module arbiter_tb;
 
 logic clk = 0;
-logic expected1;
-logic expected2;
 
-// Instance of the interface
+logic exp_grant1;
+logic exp_grant2;
+
+// ------------------------------------------------------------
+// Reference model state variables
+// ------------------------------------------------------------
+
+reg [1:0] ref_curr_state;
+
+reg ref_client1_req_d;
+reg ref_client2_req_d;
+
+// ------------------------------------------------------------
+// Interface instance
+// ------------------------------------------------------------
+
 arbiter_if ab_if (.clk(clk));
 
-// Counter Scoreboard
+// ------------------------------------------------------------
+// Scoreboard counters
+// ------------------------------------------------------------
+
 int pass_count = 0;
 int fail_count = 0;
 
-// clock generation
-always #5 clk = ~clk; // toggle clock for every 5 ticks
+// ------------------------------------------------------------
+// Clock generation
+// ------------------------------------------------------------
 
-// Instance DUT
-dut ( .clk(ab_if.clk),
-      .reset_n(ab_if.reset_n),
-      .en(ab_if.en),
-      .priority_sel(ab_if.priority_sel),
-      .client1_req(ab_if.client1_req),
-      .client2_req(ab_if.client2_req),
-      .o_grant1(ab_if.o_grant1),
-      .o_grant2(ab_if.o_grant2)
+always #5 clk = ~clk;
+
+// ------------------------------------------------------------
+// DUT
+// ------------------------------------------------------------
+
+arbiter dut (
+    .clk          (ab_if.clk),
+    .reset_n      (ab_if.reset_n),
+    .priority_sel (ab_if.priority_sel),
+    .client1_req  (ab_if.client1_req),
+    .client2_req  (ab_if.client2_req),
+    .o_grant1     (ab_if.o_grant1),
+    .o_grant2     (ab_if.o_grant2)
 );
 
-// Reference model
-function logic reference_model();
+// ============================================================
+// REFERENCE MODEL
+// ============================================================
+
+function void reference_model(
+    input logic priority_sel,
+    input logic client1_req,
+    input logic client2_req,
+
+    output logic exp_grant1,
+    output logic exp_grant2
+);
+
+    parameter
+        IDLE    = 2'd0,
+        CLINET1 = 2'd1,
+        CLINET2 = 2'd2;
+
+    // --------------------------------------------------------
+    // Delayed request logic
+    // --------------------------------------------------------
+
+    if (exp_grant1)
+        ref_client1_req_d = 1'd0;
+    else if (client1_req)
+        ref_client1_req_d = 1'd1;
+
+    if (exp_grant2)
+        ref_client2_req_d = 1'd0;
+    else if (client2_req)
+        ref_client2_req_d = 1'd1;
+
+    // --------------------------------------------------------
+    // FSM
+    // --------------------------------------------------------
+
+    case (ref_curr_state)
+
+        IDLE: begin
+
+            if (priority_sel && ref_client1_req_d)
+                ref_curr_state = CLINET1;
+
+            else if (ref_client2_req_d)
+                ref_curr_state = CLINET2;
+
+            else
+                ref_curr_state = IDLE;
+
+        end
+
+        CLINET1: begin
+
+            if (ref_client2_req_d)
+                ref_curr_state = CLINET2;
+            else
+                ref_curr_state = IDLE;
+
+        end
+
+        CLINET2: begin
+
+            if (ref_client1_req_d)
+                ref_curr_state = CLINET1;
+            else
+                ref_curr_state = IDLE;
+
+        end
+
+        default:
+            ref_curr_state = IDLE;
+
+    endcase
+
+    // --------------------------------------------------------
+    // Expected outputs
+    // --------------------------------------------------------
+
+    exp_grant1 = (ref_curr_state == CLINET1);
+    exp_grant2 = (ref_curr_state == CLINET2);
 
 endfunction
 
-// Check function scores the results (Scoreboard)
-function void check();
-    if (dut_out === ref_out)
+// ============================================================
+// RESET REFERENCE MODEL
+// ============================================================
+
+function void reset_reference_model();
+
+    ref_curr_state    = 2'd0;
+    ref_client1_req_d = 1'd0;
+    ref_client2_req_d = 1'd0;
+
+endfunction
+
+// ============================================================
+// SCOREBOARD CHECKER
+// ============================================================
+
+function void check(
+
+    logic o_grant1,
+    logic o_grant2,
+
+    logic exp_grant1,
+    logic exp_grant2,
+
+    logic priority_sel,
+    logic client1_req,
+    logic client2_req
+);
+
+    if ((o_grant1 === exp_grant1) &&
+        (o_grant2 === exp_grant2)) begin
+
         pass_count++;
-    else begin
-        fail_count++;
-        $display("[ERROR] time=%0t en=%b sel=%d din=%b | DUT=%b REF=%b",
-                 $time, en, sel, din, dut_out, ref_out);
+
+        $display(
+        "[PASS] time=%0t | sel=%0b c1=%0b c2=%0b | DUT=(%0b,%0b) REF=(%0b,%0b)",
+        $time,
+        priority_sel,
+        client1_req,
+        client2_req,
+        o_grant1,
+        o_grant2,
+        exp_grant1,
+        exp_grant2
+        );
+
     end
+
+    else begin
+
+        fail_count++;
+
+        $display(
+        "[FAIL] time=%0t | sel=%0b c1=%0b c2=%0b | DUT=(%0b,%0b) REF=(%0b,%0b)",
+        $time,
+        priority_sel,
+        client1_req,
+        client2_req,
+        o_grant1,
+        o_grant2,
+        exp_grant1,
+        exp_grant2
+        );
+
+    end
+
 endfunction
 
-// Test sequence, stimulus generation
+// ============================================================
+// TEST SEQUENCE
+// ============================================================
 
 initial begin
- $display("========= Initial tests =========");
 
-    // Initialize interface signals (Reset)
-    ab_if.rstn = 0;
-        
-    repeat (2) @(posedge clk);
-    ab_if.rstn = 1;
-    ab_if.en = 1;
-    expected1 = 0;
-    expected2 = 0;
-    // Check one cycle after reset release
+    $display("\n========================================");
+    $display("         ARBITER TESTBENCH");
+    $display("========================================");
+
+    // --------------------------------------------------------
+    // INITIALIZATION
+    // --------------------------------------------------------
+
+    ab_if.reset_n      = 0;
+    ab_if.priority_sel = 0;
+    ab_if.client1_req  = 0;
+    ab_if.client2_req  = 0;
+
+    exp_grant1 = 0;
+    exp_grant2 = 0;
+
+    reset_reference_model();
+
+    repeat(2) @(posedge clk);
+
+    ab_if.reset_n = 1;
+
+    // ========================================================
+    // TEST 1 : ONLY CLIENT1 REQUEST
+    // ========================================================
+
+    $display("\n========== TEST 1 : CLIENT1 ==========");
+
+    ab_if.priority_sel = 0;
+    ab_if.client1_req  = 1;
+    ab_if.client2_req  = 0;
+
     @(posedge clk); #1;
-    
-    // Get expected output from reference model
-    expected = reference_model();
 
-    // Check DUT output against expected output
-    check();
+    reference_model(
+        ab_if.priority_sel,
+        ab_if.client1_req,
+        ab_if.client2_req,
+        exp_grant1,
+        exp_grant2
+    );
 
-    ab_if.en = 0;
-    // Loop for tests
-    repeat (100) begin
+    check(
+        ab_if.o_grant1,
+        ab_if.o_grant2,
+        exp_grant1,
+        exp_grant2,
+        ab_if.priority_sel,
+        ab_if.client1_req,
+        ab_if.client2_req
+    );
 
-        // Randomize inputs
-        @(negedge clk);
+    // ========================================================
+    // TEST 2 : ONLY CLIENT2 REQUEST
+    // ========================================================
 
+    $display("\n========== TEST 2 : CLIENT2 ==========");
 
-        // Wait for the output to stabilize
+    ab_if.priority_sel = 0;
+    ab_if.client1_req  = 0;
+    ab_if.client2_req  = 1;
+
+    @(posedge clk); #1;
+
+    reference_model(
+        ab_if.priority_sel,
+        ab_if.client1_req,
+        ab_if.client2_req,
+        exp_grant1,
+        exp_grant2
+    );
+
+    check(
+        ab_if.o_grant1,
+        ab_if.o_grant2,
+        exp_grant1,
+        exp_grant2,
+        ab_if.priority_sel,
+        ab_if.client1_req,
+        ab_if.client2_req
+    );
+
+    // ========================================================
+    // TEST 3 : SIMULTANEOUS REQUESTS
+    // ========================================================
+
+    $display("\n========== TEST 3 : SIMULTANEOUS ==========");
+
+    ab_if.priority_sel = 1;
+    ab_if.client1_req  = 1;
+    ab_if.client2_req  = 1;
+
+    @(posedge clk); #1;
+
+    reference_model(
+        ab_if.priority_sel,
+        ab_if.client1_req,
+        ab_if.client2_req,
+        exp_grant1,
+        exp_grant2
+    );
+
+    check(
+        ab_if.o_grant1,
+        ab_if.o_grant2,
+        exp_grant1,
+        exp_grant2,
+        ab_if.priority_sel,
+        ab_if.client1_req,
+        ab_if.client2_req
+    );
+
+    // ========================================================
+    // TEST 4 : ALTERNATING REQUESTS
+    // ========================================================
+
+    $display("\n========== TEST 4 : ALTERNATING ==========");
+
+    repeat (6) begin
+
+        ab_if.priority_sel = $urandom_range(0,1);
+        ab_if.client1_req  = ~ab_if.client1_req;
+        ab_if.client2_req  = ~ab_if.client2_req;
+
         @(posedge clk); #1;
 
-        // Get expected output from reference model
-        expected = reference_model();
+        reference_model(
+            ab_if.priority_sel,
+            ab_if.client1_req,
+            ab_if.client2_req,
+            exp_grant1,
+            exp_grant2
+        );
 
-        // Check DUT output against expected output
-        check();
+        check(
+            ab_if.o_grant1,
+            ab_if.o_grant2,
+            exp_grant1,
+            exp_grant2,
+            ab_if.priority_sel,
+            ab_if.client1_req,
+            ab_if.client2_req
+        );
+
     end
 
-    ab_if.en = 0;
-    repeat (100) begin
-        // Randomize inputs
-        //mux_if.din = $urandom_range(0, 255);
-    
-        // Wait for the output to stabilize
+    // ========================================================
+    // TEST 5 : RESET DURING OPERATION
+    // ========================================================
+
+    $display("\n========== TEST 5 : RESET ==========");
+
+    ab_if.priority_sel = 1;
+    ab_if.client1_req  = 1;
+    ab_if.client2_req  = 1;
+
+    @(posedge clk);
+
+    ab_if.reset_n = 0;
+
+    reset_reference_model();
+
+    @(posedge clk); #1;
+
+    exp_grant1 = 0;
+    exp_grant2 = 0;
+
+    check(
+        ab_if.o_grant1,
+        ab_if.o_grant2,
+        exp_grant1,
+        exp_grant2,
+        ab_if.priority_sel,
+        ab_if.client1_req,
+        ab_if.client2_req
+    );
+
+    ab_if.reset_n = 1;
+
+    // ========================================================
+    // RANDOM TESTS
+    // ========================================================
+
+    $display("\n========== RANDOM TESTS ==========");
+
+    repeat (50) begin
+
+        ab_if.priority_sel = $urandom_range(0,1);
+        ab_if.client1_req  = $urandom_range(0,1);
+        ab_if.client2_req  = $urandom_range(0,1);
+
         @(posedge clk); #1;
 
-        // Get expected output from reference model
-        expected = reference_model();
+        reference_model(
+            ab_if.priority_sel,
+            ab_if.client1_req,
+            ab_if.client2_req,
+            exp_grant1,
+            exp_grant2
+        );
 
-        // Check DUT output against expected output
-        check();
+        check(
+            ab_if.o_grant1,
+            ab_if.o_grant2,
+            exp_grant1,
+            exp_grant2,
+            ab_if.priority_sel,
+            ab_if.client1_req,
+            ab_if.client2_req
+        );
+
     end
 
-        // Summary
-        $display("\n================ SUMMARY ================");
-        $display("PASS: %d", pass_count);
-        $display("FAIL: %d", fail_count);
-        $display("==========================================\n");
-        $finish;
+    // ========================================================
+    // SUMMARY
+    // ========================================================
+
+    $display("\n========================================");
+    $display("               SUMMARY");
+    $display("========================================");
+
+    $display("PASS COUNT = %0d", pass_count);
+    $display("FAIL COUNT = %0d", fail_count);
+
+    $display("========================================\n");
+
+    #50;
+    $finish;
+
 end
 
-// FSDB dump for waveform viewing
+// ============================================================
+// FSDB DUMP
+// ============================================================
+
 initial begin
+
     $fsdbDumpfile("arbiter.fsdb");
     $fsdbDumpvars();
+
 end
 
 endmodule

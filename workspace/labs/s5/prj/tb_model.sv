@@ -1,7 +1,3 @@
-//Function: The test bench applies random values to 3-bit select lines and checks the
-//dout. The waveform mux8x1_tb.vcd can be observed using waveform viewer.
-//Test bench file: mux8x1_tb.v
-
 // Interface 
 interface _if (input logic clk);
     logic rstn;

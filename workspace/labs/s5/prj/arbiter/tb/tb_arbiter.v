@@ -48,38 +48,76 @@ module arbiter_tb;
       client1_req  = 1'b0;
       client2_req  = 1'b0;
 
+      $display("========================================");
+      $display("  Arbiter Testbench Started");
+      $display("========================================");
+      $display("Time: %0t | Initializing...", $time);
+
       // Reset
       #10 reset_n = 1'b0;
       #10 reset_n = 1'b1;
+      $display("Time: %0t | Reset complete", $time);
 
       // Case 1: client1 has priority
       @(posedge clk);
       #1;
+      $display("\n--- Test Case 1: Client1 Priority Mode ---");
       priority_sel = 1'b1;
       client1_req  = 1'b1;
       client2_req  = 1'b0;
+      $display("Time: %0t | priority_sel=1, client1_req=1, client2_req=0", $time);
 
       #10;
+      $display("Time: %0t | Switching: client1_req=0, client2_req=1", $time);
       client1_req  = 1'b0;
       client2_req  = 1'b1;
 
       #10;
+      $display("Time: %0t | Both requests cleared", $time);
       client1_req  = 1'b0;
       client2_req  = 1'b0;
 
       // Case 2: both request, client2 has priority
       #10;
+      $display("\n--- Test Case 2: Client2 Priority (Both Requesting) ---");
       priority_sel = 1'b0;
       client1_req  = 1'b1;
       client2_req  = 1'b1;
+      $display("Time: %0t | priority_sel=0, client1_req=1, client2_req=1", $time);
 
       // Case 3: both request, client1 has priority
       #10;
+      $display("\n--- Test Case 3: Client1 Priority (Both Requesting) ---");
       priority_sel = 1'b1;
       client1_req  = 1'b1;
       client2_req  = 1'b1;
+      $display("Time: %0t | priority_sel=1, client1_req=1, client2_req=1", $time);
 
-      #100 $finish;
+      #100 begin
+          $display("\n========================================");
+          $display("  Arbiter Testbench Finished");
+          $display("========================================");
+          $finish;
+      end
+  end
+
+  //--------------------------------------------------------------------------
+  // Monitors
+  //--------------------------------------------------------------------------
+  initial begin
+      $display("\n--- Signal Monitor Started ---");
+      forever begin
+          @(posedge clk);
+          $display("Time: %0t | CLK | priority_sel=%b | req1=%b req2=%b | grant1=%b grant2=%b",
+                   $time, priority_sel, client1_req, client2_req, o_grant1, o_grant2);
+      end
+  end
+
+  initial begin
+      forever begin
+          @(o_grant1 or o_grant2);
+          $display("Time: %0t | **GRANT CHANGE** | o_grant1=%b o_grant2=%b", $time, o_grant1, o_grant2);
+      end
   end
 
   //--------------------------------------------------------------------------

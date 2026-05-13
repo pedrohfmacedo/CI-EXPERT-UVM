@@ -10,3 +10,25 @@ Routes a single input (`din`) to one of 8 outputs (`dout`) based on a 3-bit sele
 * Uses **enable (`en`)** and **active-low reset (`rstn`)**.
 
 ---
+
+## Self-Checking SystemVerilog Testbench
+
+File: `tb/tb_1x8demux.sv`
+
+This testbench verifies the demux automatically. It drives random values for `sel` and `din`, computes the expected one-hot output with a reference model, and compares it against `dout`.
+
+Checks covered:
+
+* reset behavior
+* enabled demux routing
+* disabled behavior
+* randomized input combinations
+
+The simulation prints `PASS` and `FAIL` counters and reports mismatches with the current `en`, `sel`, `din`, DUT output, and reference output.
+
+Run with:
+
+```sh
+make vcs2
+make run
+```
