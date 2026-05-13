@@ -124,7 +124,7 @@ initial begin
 end
 
 initial begin
-    $fsdbDumpfile("demux1x8.fsdb");
+    $fsdbDumpfile("1x8demux.fsdb");
     $fsdbDumpvars();
 end
 
