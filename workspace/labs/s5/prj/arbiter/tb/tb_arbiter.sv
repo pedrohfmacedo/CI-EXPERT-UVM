@@ -3,20 +3,25 @@
 //Test bench file: mux8x1_tb.v
 
 // Interface 
-interface _if (input logic clk);
-    logic rstn;
+interface arbiter_if (input logic clk);
+    logic reset_n;
     logic en;
-    //...
+    logic priority_sel; // input
+    logic client1_req;  // input
+    logic client2_req;  // input  
+    logic o_grant1;     // output
+    logic o_grant2;     // output
 endinterface
 
 //Top
-module _tb;
+module arbiter_tb;
 
 logic clk = 0;
-logic expected;
+logic expected1;
+logic expected2;
 
 // Instance of the interface
-_if _if (.clk(clk));
+arbiter_if ab_if (.clk(clk));
 
 // Counter Scoreboard
 int pass_count = 0;
@@ -26,8 +31,14 @@ int fail_count = 0;
 always #5 clk = ~clk; // toggle clock for every 5 ticks
 
 // Instance DUT
-dut (
-
+dut ( .clk(ab_if.clk),
+      .reset_n(ab_if.reset_n),
+      .en(ab_if.en),
+      .priority_sel(ab_if.priority_sel),
+      .client1_req(ab_if.client1_req),
+      .client2_req(ab_if.client2_req),
+      .o_grant1(ab_if.o_grant1),
+      .o_grant2(ab_if.o_grant2)
 );
 
 // Reference model
@@ -52,15 +63,13 @@ initial begin
  $display("========= Initial tests =========");
 
     // Initialize interface signals (Reset)
-    _if.rstn = 0;
-    _if.en = 0;
-
+    ab_if.rstn = 0;
         
     repeat (2) @(posedge clk);
-   _if.rstn = 1;
-    _if.en = 1;
-    expected = 0;
-
+    ab_if.rstn = 1;
+    ab_if.en = 1;
+    expected1 = 0;
+    expected2 = 0;
     // Check one cycle after reset release
     @(posedge clk); #1;
     
@@ -70,6 +79,7 @@ initial begin
     // Check DUT output against expected output
     check();
 
+    ab_if.en = 0;
     // Loop for tests
     repeat (100) begin
 
@@ -87,7 +97,7 @@ initial begin
         check();
     end
 
-    _if.en = 0;
+    ab_if.en = 0;
     repeat (100) begin
         // Randomize inputs
         //mux_if.din = $urandom_range(0, 255);
@@ -112,7 +122,7 @@ end
 
 // FSDB dump for waveform viewing
 initial begin
-    $fsdbDumpfile(".fsdb");
+    $fsdbDumpfile("arbiter.fsdb");
     $fsdbDumpvars();
 end
 

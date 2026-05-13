@@ -86,7 +86,8 @@ module arbiter_tb;
   // Dump
   //--------------------------------------------------------------------------
   initial begin
-      $fsdbDumpvars();
+    $fsdbDumpfile("arbiter.fsdb");
+    $fsdbDumpvars();
   end
 
 endmodule

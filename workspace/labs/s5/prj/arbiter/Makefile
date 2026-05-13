@@ -34,5 +34,5 @@ verdi_wf_easy:
 verdi_sc:
 	verdi -play schematic-top.cmd
 
-vcs_clean:
-	rm -rf csrc *.daidir simv *.log *.key *.conf *.rc *.fsdb verdiLog/
+clean:
+	rm -rf csrc *.daidir simv *.log *.key *.conf *.rc *.fsdb verdiLog/ *.vcd
