@@ -30,7 +30,7 @@ vcs: setup
 vcs2: setup
 	vcs $(VCS_FLAGS2) $(RTL_FILES) $(TB_FILES2) 
 
-tb: 
+tb: setup
 	vcs $(VCS_FLAGS2) $(TB_FILES2)
 
 run: 
