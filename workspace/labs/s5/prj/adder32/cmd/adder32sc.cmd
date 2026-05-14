@@ -16,4 +16,4 @@ schSetOptions -win $_nSchema3 -pinName on
 schSetOptions -win $_nSchema3 -instName on
 schSetOptions -win $_nSchema3 -detailRTL on
 schFit -win $_nSchema3
-debExit
+

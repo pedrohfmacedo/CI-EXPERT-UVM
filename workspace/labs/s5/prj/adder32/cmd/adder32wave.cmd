@@ -12,4 +12,3 @@ schSetOptions -win $_nSchema3 -pinName on
 schSetOptions -win $_nSchema3 -instName on
 schSetOptions -win $_nSchema3 -localNetName on
 schSetOptions -win $_nSchema3 -detailRTL on
-debExit

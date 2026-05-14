@@ -7,4 +7,3 @@ schCreateWindow -delim "." -win $_nSchema1 -scope "multiplier_tb"
 verdiSetActWin -win $_nSchema_3
 schSelect -win $_nSchema3 -inst "dut"
 schPushViewIn -win $_nSchema3
-debExit

@@ -32,4 +32,4 @@ wvZoomOut -win $_nWave3
 wvZoomIn -win $_nWave3
 verdiSetActWin -win $_nWave3
 wvZoomIn -win $_nWave3
-debExit
+
