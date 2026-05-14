@@ -1,38 +1,74 @@
 BLOCK  = 1x8demux
 
+# Diretórios
+WORK_DIR = work
+LOG_DIR  = $(WORK_DIR)/logs
+
 # RTL
 RTL_FILES = rtl/$(BLOCK).v
 
 # TB
 TB_FILES  = tb/tb_$(BLOCK).v
-TB_FILES2  = tb/tb_$(BLOCK).sv
+TB_FILES2 = tb/tb_$(BLOCK).sv
+
+# Outputs
+SIMV      = $(WORK_DIR)/simv
+FSDB_FILE = $(WORK_DIR)/$(BLOCK).fsdb
 
 # VCS
-FSDB_FILE = $(BLOCK)
-VCS_KDB   = -kdb 
+VCS_KDB   = -kdb
 VCS_DEBUG = -debug_access+all
-VCS_FLAGS =  -full64 -l ./vcs_logger.log $(VCS_KDB) $(VCS_DEBUG) -timescale=1ns/1ps
-VCS_FLAGS2 =  -sverilog -full64 -l ./vcs_logger.log $(VCS_KDB) $(VCS_DEBUG) -timescale=1ns/1ps
-vcs:
-	vcs $(VCS_FLAGS) $(RTL_FILES) $(TB_FILES) 
 
-vcs2:
-	vcs $(VCS_FLAGS2) $(RTL_FILES) $(TB_FILES2) 
+VCS_FLAGS  = -full64 \
+              -l $(LOG_DIR)/vcs.log \
+              $(VCS_KDB) $(VCS_DEBUG) \
+              -timescale=1ns/1ps \
+              -o $(SIMV)
 
-run: 
-	./simv +FSDB=$(BLOCK).fsdb
+VCS_FLAGS2 = -sverilog \
+              -full64 \
+              -l $(LOG_DIR)/vcs.log \
+              $(VCS_KDB) $(VCS_DEBUG) \
+              -timescale=1ns/1ps \
+              -o $(SIMV)
+
+
+setup:
+	mkdir -p $(WORK_DIR) $(LOG_DIR)
+
+vcs: setup
+	vcs $(VCS_FLAGS) $(RTL_FILES) $(TB_FILES)
+
+vcs2: setup
+	vcs $(VCS_FLAGS2) $(RTL_FILES) $(TB_FILES2)
+
+run:
+	$(SIMV) +FSDB=$(FSDB_FILE)
 
 gui:
-	./simv -gui
+	$(SIMV) -gui
 
 verdi_wf:
 	verdi -play cmd/$(BLOCK)wave.cmd
 
 verdi_wf_easy:
-	verdi -nologo -ssf $(BLOCK).fsdb
+	verdi -nologo -ssf $(FSDB_FILE)
 
 verdi_sc:
 	verdi -play cmd/$(BLOCK)sc.cmd
 
-vcs_clean:
-	rm -rf csrc *.daidir simv *.log *.key *.conf *.rc *.fsdb verdiLog/ *.vcd
+clean:
+	rm -rf $(WORK_DIR) \
+		   sysProgressLog \
+	       verdiLog \
+	       novas* \
+	       ucli.key \
+	       .inter* \
+			*.log \
+			*.key \
+			*.conf \
+			*.rc \
+			*.fsdb \
+			*.vcd	\
+			*.vpd	\
+			sysProgressLog \
