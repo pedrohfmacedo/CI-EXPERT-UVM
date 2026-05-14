@@ -12,7 +12,7 @@ interface mux8x1_if (input logic clk);
 endinterface
 
 //Top
-module mux8x1_tb;
+module tb_mux8x1;
 
 logic clk = 0;
 logic dout;

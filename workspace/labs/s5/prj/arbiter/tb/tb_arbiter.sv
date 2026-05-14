@@ -1,7 +1,5 @@
-// ============================================================
-// Interface
-// ============================================================
 
+// Interface
 interface arbiter_if (input logic clk);
 
     logic reset_n;
@@ -14,50 +12,30 @@ interface arbiter_if (input logic clk);
 
 endinterface
 
-
-// ============================================================
-// TOP TESTBENCH
-// ============================================================
-
-module arbiter_tb;
+module tb_arbiter;
 
 logic clk = 0;
 
 logic exp_grant1;
 logic exp_grant2;
 
-// ------------------------------------------------------------
-// Reference model state variables
-// ------------------------------------------------------------
-
 reg [1:0] ref_curr_state;
 
 reg ref_client1_req_d;
 reg ref_client2_req_d;
 
-// ------------------------------------------------------------
 // Interface instance
-// ------------------------------------------------------------
-
 arbiter_if ab_if (.clk(clk));
-
-// ------------------------------------------------------------
-// Scoreboard counters
-// ------------------------------------------------------------
 
 int pass_count = 0;
 int fail_count = 0;
 
-// ------------------------------------------------------------
-// Clock generation
-// ------------------------------------------------------------
 
+// Clock generation
 always #5 clk = ~clk;
 
-// ------------------------------------------------------------
-// DUT
-// ------------------------------------------------------------
 
+// DUT
 arbiter dut (
     .clk          (ab_if.clk),
     .reset_n      (ab_if.reset_n),
@@ -68,10 +46,7 @@ arbiter dut (
     .o_grant2     (ab_if.o_grant2)
 );
 
-// ============================================================
 // REFERENCE MODEL
-// ============================================================
-
 function void reference_model(
     input logic priority_sel,
     input logic client1_req,
@@ -86,75 +61,69 @@ function void reference_model(
         CLINET1 = 2'd1,
         CLINET2 = 2'd2;
 
-    // --------------------------------------------------------
-    // Delayed request logic
-    // --------------------------------------------------------
-
-    if (exp_grant1)
-        ref_client1_req_d = 1'd0;
-    else if (client1_req)
-        ref_client1_req_d = 1'd1;
-
-    if (exp_grant2)
-        ref_client2_req_d = 1'd0;
-    else if (client2_req)
-        ref_client2_req_d = 1'd1;
-
-    // --------------------------------------------------------
-    // FSM
-    // --------------------------------------------------------
+    reg [1:0] ref_next_state;
+    reg       ref_grant1;
+    reg       ref_grant2;
 
     case (ref_curr_state)
 
         IDLE: begin
 
             if (priority_sel && ref_client1_req_d)
-                ref_curr_state = CLINET1;
+                ref_next_state = CLINET1;
 
             else if (ref_client2_req_d)
-                ref_curr_state = CLINET2;
+                ref_next_state = CLINET2;
 
             else
-                ref_curr_state = IDLE;
+                ref_next_state = IDLE;
 
         end
 
         CLINET1: begin
 
             if (ref_client2_req_d)
-                ref_curr_state = CLINET2;
+                ref_next_state = CLINET2;
             else
-                ref_curr_state = IDLE;
+                ref_next_state = IDLE;
 
         end
 
         CLINET2: begin
 
             if (ref_client1_req_d)
-                ref_curr_state = CLINET1;
+                ref_next_state = CLINET1;
             else
-                ref_curr_state = IDLE;
+                ref_next_state = IDLE;
 
         end
 
         default:
-            ref_curr_state = IDLE;
+            ref_next_state = IDLE;
 
     endcase
 
-    // --------------------------------------------------------
-    // Expected outputs
-    // --------------------------------------------------------
+    ref_grant1 = (ref_curr_state == CLINET1);
+    ref_grant2 = (ref_curr_state == CLINET2);
+
+    if (ref_grant1)
+        ref_client1_req_d = 1'd0;
+    else if (client1_req)
+        ref_client1_req_d = 1'd1;
+
+    if (ref_grant2)
+        ref_client2_req_d = 1'd0;
+    else if (client2_req)
+        ref_client2_req_d = 1'd1;
+
+    ref_curr_state = ref_next_state;
 
     exp_grant1 = (ref_curr_state == CLINET1);
     exp_grant2 = (ref_curr_state == CLINET2);
 
 endfunction
 
-// ============================================================
 // RESET REFERENCE MODEL
-// ============================================================
-
 function void reset_reference_model();
 
     ref_curr_state    = 2'd0;
@@ -163,10 +132,7 @@ function void reset_reference_model();
 
 endfunction
 
-// ============================================================
-// SCOREBOARD CHECKER
-// ============================================================
-
+// SCOREBOARD 
 function void check(
 
     logic o_grant1,
@@ -219,10 +185,43 @@ function void check(
 
 endfunction
 
-// ============================================================
-// TEST SEQUENCE
-// ============================================================
+// DRIVE ONE CLOCK AND CHECK
+task automatic drive_and_check(
+    input logic priority_sel,
+    input logic client1_req,
+    input logic client2_req
+);
 
+    @(negedge clk);
+
+    ab_if.priority_sel = priority_sel;
+    ab_if.client1_req  = client1_req;
+    ab_if.client2_req  = client2_req;
+
+    @(posedge clk); #1;
+
+    reference_model(
+        ab_if.priority_sel,
+        ab_if.client1_req,
+        ab_if.client2_req,
+        exp_grant1,
+        exp_grant2
+    );
+
+    check(
+        ab_if.o_grant1,
+        ab_if.o_grant2,
+        exp_grant1,
+        exp_grant2,
+        ab_if.priority_sel,
+        ab_if.client1_req,
+        ab_if.client2_req
+    );
+
+endtask
+
+
+// TEST SEQUENCE
 initial begin
 
     $display("\n========================================");
@@ -249,7 +248,7 @@ initial begin
 
     // ========================================================
     // TEST 1 : ONLY CLIENT1 REQUEST
-    // ========================================================
+
 
     $display("\n========== TEST 1 : CLIENT1 ==========");
 
@@ -345,7 +344,7 @@ initial begin
 
     repeat (6) begin
 
-        ab_if.priority_sel = $urandom_range(0,1);
+        ab_if.priority_sel = ~ab_if.priority_sel;
         ab_if.client1_req  = ~ab_if.client1_req;
         ab_if.client2_req  = ~ab_if.client2_req;
 
@@ -405,6 +404,77 @@ initial begin
     ab_if.reset_n = 1;
 
     // ========================================================
+    // DIRECTED FSM TRANSITION TESTS
+    // ========================================================
+
+    $display("\n========== DIRECTED FSM TRANSITIONS ==========");
+
+    @(negedge clk);
+    ab_if.reset_n      = 0;
+    ab_if.priority_sel = 0;
+    ab_if.client1_req  = 0;
+    ab_if.client2_req  = 0;
+    exp_grant1         = 0;
+    exp_grant2         = 0;
+    reset_reference_model();
+
+    repeat (2) @(posedge clk);
+
+    @(negedge clk);
+    ab_if.reset_n = 1;
+
+    // IDLE -> IDLE : no pending requests
+    drive_and_check(0, 0, 0);
+
+    // IDLE -> IDLE : client1 pending, but priority_sel=0 blocks client1
+    drive_and_check(0, 1, 0);
+
+    // IDLE -> CLINET1 : client1 pending and priority_sel=1
+    drive_and_check(1, 1, 0);
+
+    // CLINET1 -> IDLE : no client2 pending
+    drive_and_check(1, 0, 0);
+
+    // IDLE -> CLINET2 : capture client2, then grant client2
+    drive_and_check(0, 0, 1);
+    drive_and_check(0, 0, 1);
+
+    // CLINET2 -> IDLE : no client1 pending
+    drive_and_check(0, 0, 0);
+
+    // IDLE -> CLINET1 with simultaneous requests and client1 priority
+    drive_and_check(1, 1, 1);
+    drive_and_check(1, 1, 1);
+
+    // CLINET1 -> CLINET2 : client2 is still pending after client1 grant
+    drive_and_check(1, 0, 1);
+
+    // Return to a clean state before testing CLINET2 -> CLINET1
+    @(negedge clk);
+    ab_if.reset_n      = 0;
+    ab_if.priority_sel = 0;
+    ab_if.client1_req  = 0;
+    ab_if.client2_req  = 0;
+    exp_grant1         = 0;
+    exp_grant2         = 0;
+    reset_reference_model();
+
+    repeat (2) @(posedge clk);
+
+    @(negedge clk);
+    ab_if.reset_n = 1;
+
+    // IDLE -> CLINET2 with both pending and client2 priority
+    drive_and_check(0, 1, 1);
+    drive_and_check(0, 1, 1);
+
+    // CLINET2 -> CLINET1 : client1 was already pending
+    drive_and_check(0, 0, 0);
+
+    // CLINET1 -> IDLE : finish the directed sequence cleanly
+    drive_and_check(0, 0, 0);
+
+    // ========================================================
     // RANDOM TESTS
     // ========================================================
 
@@ -412,28 +482,10 @@ initial begin
 
     repeat (50) begin
 
-        ab_if.priority_sel = $urandom_range(0,1);
-        ab_if.client1_req  = $urandom_range(0,1);
-        ab_if.client2_req  = $urandom_range(0,1);
-
-        @(posedge clk); #1;
-
-        reference_model(
-            ab_if.priority_sel,
-            ab_if.client1_req,
-            ab_if.client2_req,
-            exp_grant1,
-            exp_grant2
-        );
-
-        check(
-            ab_if.o_grant1,
-            ab_if.o_grant2,
-            exp_grant1,
-            exp_grant2,
-            ab_if.priority_sel,
-            ab_if.client1_req,
-            ab_if.client2_req
+        drive_and_check(
+            $urandom_range(0,1),
+            $urandom_range(0,1),
+            $urandom_range(0,1)
         );
 
     end
