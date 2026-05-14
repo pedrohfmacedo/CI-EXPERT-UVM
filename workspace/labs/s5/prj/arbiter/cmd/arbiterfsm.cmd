@@ -1,0 +1,33 @@
+simSetSimulator "-vcssv" -exec "./simv" -args " " -uvmDebug on
+debImport "-i" "-simflow" "-dbdir" "./simv.daidir"
+srcTBInvokeSim
+verdiSetActWin -dock widgetDock_<Member>
+verdiSetActWin -dock widgetDock_MTB_SOURCE_TAB_1
+schCreateWindow -delim "." -win $_nSchema1 -scope "tb_arbiter"
+verdiSetActWin -win $_nSchema_3
+schSelect -win $_nSchema3 -inst "dut"
+schPushViewIn -win $_nSchema3
+schSelect -win $_nSchema3 -inst "arbiter\(@1\):FSM0:56:97:FSM"
+schPushViewIn -win $_nSchema3
+fsmSetCurrentWindow -win $_nState4
+verdiSetActWin -win $_nState_4
+fsmResizeWindow 0 11 754 304 -win $_nState4
+fsmResizeWindow 0 11 754 313 -win $_nState4
+fsmResizeWindow 0 11 754 317 -win $_nState4
+fsmResizeWindow 0 11 754 327 -win $_nState4
+fsmResizeWindow 0 11 754 340 -win $_nState4
+fsmResizeWindow 0 11 754 352 -win $_nState4
+fsmResizeWindow 0 11 754 363 -win $_nState4
+fsmResizeWindow 0 11 754 373 -win $_nState4
+fsmResizeWindow 0 11 754 391 -win $_nState4
+fsmResizeWindow 0 11 754 404 -win $_nState4
+fsmResizeWindow 0 11 754 411 -win $_nState4
+fsmResizeWindow 0 11 754 421 -win $_nState4
+fsmResizeWindow 0 11 754 430 -win $_nState4
+fsmResizeWindow 0 11 754 434 -win $_nState4
+fsmSetOptions -stateAction 1 -win $_nState4
+fsmSetOptions -largeFont 1 -win $_nState4
+fsmSetOptions -transCondition 1 -win $_nState4
+fsmSetOptions -transAction 1 -win $_nState4
+fsmSetOptions -annot 1 -win $_nState4
+fsmGetMachineProperty -win $_nState4
