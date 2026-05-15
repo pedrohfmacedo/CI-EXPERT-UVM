@@ -22,6 +22,7 @@ reg din;
 
 // Outputs
 wire [7:0] dout;
+reg [1023:0] fsdb_file;
 
 // clock generation
 always #5 clk = ~clk; // toggle clock for every 5 ticks
@@ -60,7 +61,10 @@ demux1x8 uut (
 );
 
 initial begin
-    $fsdbDumpfile("demux1x8.fsdb");
+    if (!$value$plusargs("FSDB=%s", fsdb_file))
+        fsdb_file = "1x8demux.fsdb";
+
+    $fsdbDumpfile(fsdb_file);
     $fsdbDumpvars();
 end
 endmodule

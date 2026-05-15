@@ -23,6 +23,7 @@ demux1x8_if demux_if (.clk(clk));
 // Counter Scoreboard
 int pass_count = 0;
 int fail_count = 0;
+string fsdb_file;
 
 // Clock generation
 always #5 clk = ~clk; 
@@ -124,7 +125,10 @@ initial begin
 end
 
 initial begin
-    $fsdbDumpfile("1x8demux.fsdb");
+    if (!$value$plusargs("FSDB=%s", fsdb_file))
+        fsdb_file = "1x8demux.fsdb";
+
+    $fsdbDumpfile(fsdb_file);
     $fsdbDumpvars();
 end
 

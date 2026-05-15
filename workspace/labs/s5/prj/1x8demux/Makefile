@@ -22,6 +22,7 @@ VCS_DEBUG = -debug_access+all
 VCS_FLAGS  = -full64 \
               -l $(LOG_DIR)/vcs.log \
               $(VCS_KDB) $(VCS_DEBUG) \
+              -Mdir=$(WORK_DIR)/csrc \
               -timescale=1ns/1ps \
               -o $(SIMV)
 
@@ -29,6 +30,7 @@ VCS_FLAGS2 = -sverilog \
               -full64 \
               -l $(LOG_DIR)/vcs.log \
               $(VCS_KDB) $(VCS_DEBUG) \
+              -Mdir=$(WORK_DIR)/csrc \
               -timescale=1ns/1ps \
               -o $(SIMV)
 
@@ -43,10 +45,10 @@ vcs2: setup
 	vcs $(VCS_FLAGS2) $(RTL_FILES) $(TB_FILES2)
 
 run:
-	$(SIMV) +FSDB=$(FSDB_FILE)
+	cd $(WORK_DIR) && ./simv +FSDB=$(BLOCK).fsdb
 
 gui:
-	$(SIMV) -gui
+	cd $(WORK_DIR) && ./simv -gui
 
 verdi_wf:
 	verdi -play cmd/$(BLOCK)wave.cmd
