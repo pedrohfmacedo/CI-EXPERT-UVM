@@ -1,29 +1,59 @@
 // Interface 
-interface _if (input logic clk);
-    logic rstn;
-    logic en;
-    //...
+interface robot_if (input logic clk);
+    // in
+   logic s0_req;
+   logic s1_req;
+   logic s2_req;
+   logic s3_req;
+    // out
+   logic s0_unloadstart;
+   logic s1_unloadstart;
+   logic s2_unloadstart;
+   logic s3_unloadstart;
+    // in
+   logic s0_unload_done;
+   logic s1_unload_done;
+   logic s2_unload_done;
+   logic s3_unload_done;
 endinterface
 
 //Top
 module robot_model_tb;
 
 logic clk = 0;
-logic expected;
+logic exp_s0_unloadstart;
+logic exp_s1_unloadstart;
+logic exp_s2_unloadstart;
+logic exp_s3_unloadstart;
+
 
 // Instance of the interface
-_if _if (.clk(clk));
+robot_if_if rb_if (.clk(clk));
 
 // Counter Scoreboard
 int pass_count = 0;
 int fail_count = 0;
 
 // clock generation
-always #5 clk = ~clk; // toggle clock for every 5 ticks
+always #5 clk = ~clk;
 
 // Instance DUT
-dut (
-
+robot_model dut (
+    .clock          (rb_if.clk),
+    .reset_n        (rb_if.reset_n),
+    .s0_req         (rb_if.s0_req),
+    .s1_req         (rb_if.s1_req),
+    .s2_req         (rb_if.s2_req),
+    .s3_req         (rb_if.s3_req),
+    .s0_unloadstart (rb_if.s0_unloadstart),
+    .s1_unloadstart (rb_if.s1_unloadstart),
+    .s2_unloadstart (rb_if.s2_unloadstart),
+    .s3_unloadstart (rb_if.s3_unloadstart),
+    .s0_unload_done (rb_if.s0_unload_done),
+    .s1_unload_done (rb_if.s1_unload_done),
+    .s2_unload_done (rb_if.s2_unload_done),
+    .s3_unload_done (rb_if.s3_unload_done),
+    .load_start     (rb_if.load_start)
 );
 
 // Reference model
