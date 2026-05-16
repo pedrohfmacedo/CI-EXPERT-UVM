@@ -185,7 +185,8 @@ end
 
 // assign s0_unloadstart =( unload_cstate == JOINTA_RIGHT | RELEASE_CLAWE |JOINTA_LEFT);
 assign s0_unloadstart = load_done_int;
-assign s1_unloadstart = load_done_int;
+assign s1_unloadstart = load_done_int
+;
 // assign s1_unloadstart =( unload_cstate == JOINTA_RIGHT | JOINTC_DOWN |JOINTC_UP | RELEASE_CLAWE |JOINTA_LEFT) ;
 assign s2_unloadstart = (unload_cstate == JOINTA_RIGHT | RELEASE_CLAWE |JOINTA_LEFT) ;
 assign s3_unloadstart = (unload_cstate == JOINTA_RIGHT | JOINTC_DOWN |JOINTC_UP | RELEASE_CLAWE |JOINTA_LEFT) ;
