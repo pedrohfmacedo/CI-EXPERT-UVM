@@ -68,34 +68,33 @@ function void reference_model(
     case (ref_curr_state)
 
         IDLE: begin
-
-            if (priority_sel && ref_client1_req_d)
+            if (priority_sel && ref_client1_req_d) begin
                 ref_next_state = CLINET1;
-
-            else if (ref_client2_req_d)
+            end
+            else if (ref_client2_req_d) begin
                 ref_next_state = CLINET2;
-
-            else
+            end
+            else begin
                 ref_next_state = IDLE;
-
+            end
         end
 
         CLINET1: begin
-
-            if (ref_client2_req_d)
+            if (ref_client2_req_d) begin 
                 ref_next_state = CLINET2;
-            else
+            end
+            else begin
                 ref_next_state = IDLE;
-
+            end
         end
 
         CLINET2: begin
-
-            if (ref_client1_req_d)
+            if (ref_client1_req_d) begin
                 ref_next_state = CLINET1;
-            else
+            end
+            else begin 
                 ref_next_state = IDLE;
-
+            end
         end
 
         default:
@@ -106,15 +105,18 @@ function void reference_model(
     ref_grant1 = (ref_curr_state == CLINET1);
     ref_grant2 = (ref_curr_state == CLINET2);
 
-    if (ref_grant1)
+    if (ref_grant1) begin
         ref_client1_req_d = 1'd0;
-    else if (client1_req)
+    end
+    else if (client1_req) begin 
         ref_client1_req_d = 1'd1;
-
-    if (ref_grant2)
+    end
+    if (ref_grant2) begin
         ref_client2_req_d = 1'd0;
-    else if (client2_req)
+    end
+    else if (client2_req) begin
         ref_client2_req_d = 1'd1;
+    end 
 
     ref_curr_state = ref_next_state;
 
@@ -137,50 +139,23 @@ function void check(
 
     logic o_grant1,
     logic o_grant2,
-
     logic exp_grant1,
     logic exp_grant2,
-
     logic priority_sel,
     logic client1_req,
     logic client2_req
 );
 
-    if ((o_grant1 === exp_grant1) &&
-        (o_grant2 === exp_grant2)) begin
-
+    if ((o_grant1 === exp_grant1) && (o_grant2 === exp_grant2)) begin
         pass_count++;
-
-        $display(
-        "[PASS] time=%0t | sel=%0b c1=%0b c2=%0b | DUT=(%0b,%0b) REF=(%0b,%0b)",
-        $time,
-        priority_sel,
-        client1_req,
-        client2_req,
-        o_grant1,
-        o_grant2,
-        exp_grant1,
-        exp_grant2
-        );
-
+        $display( "[PASS] time=%0t | sel=%0b c1=%0b c2=%0b | DUT=(%0b,%0b) REF=(%0b,%0b)",
+        $time, priority_sel, client1_req, client2_req, o_grant1, o_grant2, exp_grant1, exp_grant2 );
     end
 
     else begin
-
         fail_count++;
-
-        $display(
-        "[FAIL] time=%0t | sel=%0b c1=%0b c2=%0b | DUT=(%0b,%0b) REF=(%0b,%0b)",
-        $time,
-        priority_sel,
-        client1_req,
-        client2_req,
-        o_grant1,
-        o_grant2,
-        exp_grant1,
-        exp_grant2
-        );
-
+        $display( "[FAIL] time=%0t | sel=%0b c1=%0b c2=%0b | DUT=(%0b,%0b) REF=(%0b,%0b)", 
+        $time, priority_sel, client1_req, client2_req, o_grant1, o_grant2, exp_grant1, exp_grant2);
     end
 
 endfunction
@@ -193,11 +168,9 @@ task automatic drive_and_check(
 );
 
     @(negedge clk);
-
     ab_if.priority_sel = priority_sel;
     ab_if.client1_req  = client1_req;
     ab_if.client2_req  = client2_req;
-
     @(posedge clk); #1;
 
     reference_model(
@@ -225,33 +198,23 @@ endtask
 initial begin
 
     $display("\n========================================");
-    $display("         ARBITER TESTBENCH");
+    $display("         INITIAL TESTS");
     $display("========================================");
 
-    // --------------------------------------------------------
-    // INITIALIZATION
-    // --------------------------------------------------------
-
+    // INITIALIZATION SIGNAL
     ab_if.reset_n      = 0;
     ab_if.priority_sel = 0;
     ab_if.client1_req  = 0;
     ab_if.client2_req  = 0;
-
     exp_grant1 = 0;
     exp_grant2 = 0;
 
     reset_reference_model();
-
     repeat(2) @(posedge clk);
-
     ab_if.reset_n = 1;
 
-    // ========================================================
     // TEST 1 : ONLY CLIENT1 REQUEST
-
-
     $display("\n========== TEST 1 : CLIENT1 ==========");
-
     ab_if.priority_sel = 0;
     ab_if.client1_req  = 1;
     ab_if.client2_req  = 0;
@@ -276,12 +239,8 @@ initial begin
         ab_if.client2_req
     );
 
-    // ========================================================
     // TEST 2 : ONLY CLIENT2 REQUEST
-    // ========================================================
-
     $display("\n========== TEST 2 : CLIENT2 ==========");
-
     ab_if.priority_sel = 0;
     ab_if.client1_req  = 0;
     ab_if.client2_req  = 1;
@@ -306,16 +265,11 @@ initial begin
         ab_if.client2_req
     );
 
-    // ========================================================
     // TEST 3 : SIMULTANEOUS REQUESTS
-    // ========================================================
-
     $display("\n========== TEST 3 : SIMULTANEOUS ==========");
-
     ab_if.priority_sel = 1;
     ab_if.client1_req  = 1;
     ab_if.client2_req  = 1;
-
     @(posedge clk); #1;
 
     reference_model(
@@ -336,12 +290,8 @@ initial begin
         ab_if.client2_req
     );
 
-    // ========================================================
-    // TEST 4 : ALTERNATING REQUESTS
-    // ========================================================
-
+    // TEST 4 : ALTERNATING REQUESTS=
     $display("\n========== TEST 4 : ALTERNATING ==========");
-
     repeat (6) begin
 
         ab_if.priority_sel = ~ab_if.priority_sel;
@@ -370,24 +320,16 @@ initial begin
 
     end
 
-    // ========================================================
-    // TEST 5 : RESET DURING OPERATION
-    // ========================================================
-
+    // TEST 5 : RESET DURING OPERATION==
     $display("\n========== TEST 5 : RESET ==========");
-
     ab_if.priority_sel = 1;
     ab_if.client1_req  = 1;
     ab_if.client2_req  = 1;
-
     @(posedge clk);
-
     ab_if.reset_n = 0;
 
     reset_reference_model();
-
     @(posedge clk); #1;
-
     exp_grant1 = 0;
     exp_grant2 = 0;
 
@@ -403,12 +345,8 @@ initial begin
 
     ab_if.reset_n = 1;
 
-    // ========================================================
     // DIRECTED FSM TRANSITION TESTS
-    // ========================================================
-
     $display("\n========== DIRECTED FSM TRANSITIONS ==========");
-
     @(negedge clk);
     ab_if.reset_n      = 0;
     ab_if.priority_sel = 0;
@@ -417,9 +355,7 @@ initial begin
     exp_grant1         = 0;
     exp_grant2         = 0;
     reset_reference_model();
-
     repeat (2) @(posedge clk);
-
     @(negedge clk);
     ab_if.reset_n = 1;
 
@@ -474,49 +410,32 @@ initial begin
     // CLINET1 -> IDLE : finish the directed sequence cleanly
     drive_and_check(0, 0, 0);
 
-    // ========================================================
-    // RANDOM TESTS
-    // ========================================================
-
+    // RANDOM TESTS=
     $display("\n========== RANDOM TESTS ==========");
-
     repeat (50) begin
-
         drive_and_check(
             $urandom_range(0,1),
             $urandom_range(0,1),
             $urandom_range(0,1)
         );
-
     end
-
-    // ========================================================
+=
     // SUMMARY
-    // ========================================================
-
     $display("\n========================================");
     $display("               SUMMARY");
     $display("========================================");
-
     $display("PASS COUNT = %0d", pass_count);
     $display("FAIL COUNT = %0d", fail_count);
-
     $display("========================================\n");
-
     #50;
     $finish;
 
 end
 
-// ============================================================
 // FSDB DUMP
-// ============================================================
-
 initial begin
-
     $fsdbDumpfile("arbiter.fsdb");
     $fsdbDumpvars();
-
 end
 
 endmodule

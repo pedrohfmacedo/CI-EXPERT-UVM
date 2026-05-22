@@ -1,47 +1,24 @@
-//=========================================================
-// Function:
-// The testbench applies random values to op_a, op_b, and en,
-// and checks the DUT output using a reference model.
-//
-// Waveform:
-// adder32.fsdb
-//
-// Testbench File:
-// tb_adder32.sv
-//=========================================================
-
 module adder_tb;
 
-    //=====================================================
     // Signals
-    //=====================================================
     logic         clk;
     logic         reset_n;
     logic         en;
     logic [31:0]  op_a;
     logic [31:0]  op_b;
-
     logic [31:0]  adder_out;
     logic         carry_out;
-
     logic [32:0]  expected;
 
-    //=====================================================
     // Scoreboard Counters
-    //=====================================================
     int pass_count = 0;
     int fail_count = 0;
 
-    //=====================================================
     // Clock Generation
-    //=====================================================
     initial clk = 0;
-
     always #5 clk = ~clk;
 
-    //=====================================================
     // DUT Instance
-    //=====================================================
     adder dut (
         .clk        (clk),
         .reset_n    (reset_n),
@@ -52,28 +29,23 @@ module adder_tb;
         .carry_out  (carry_out)
     );
 
-    //=====================================================
     // Reference Model
-    //=====================================================
     function logic [32:0] reference_model (
         input logic         en,
         input logic [31:0]  a,
         input logic [31:0]  b,
         input logic [32:0]  prev
     );
-
         if (en) begin
             return a + b;
-        end
+        end 
         else begin
             return prev;
         end
 
     endfunction
 
-    //=====================================================
     // Scoreboard Check
-    //=====================================================
     function void check (
         input logic [31:0] dut_out,
         input logic        dut_carry,
@@ -84,34 +56,19 @@ module adder_tb;
         input logic [31:0]  b
     );
 
-        if ((dut_out === ref_out) &&
-            (dut_carry === ref_carry)) begin
-
+        if ((dut_out === ref_out) && (dut_carry === ref_carry)) begin
             pass_count++;
-
         end
         else begin
-
             fail_count++;
-
             $display(
                 "[ERROR] time=%0t en=%b a=%h b=%h | DUT=%h C=%b REF=%h C=%b",
-                $time,
-                en,
-                a,
-                b,
-                dut_out,
-                dut_carry,
-                ref_out,
-                ref_carry
-            );
+                $time, en, a, b, dut_out, dut_carry, ref_out, ref_carry );
         end
 
     endfunction
 
-    //=====================================================
     // Stimulus
-    //=====================================================
     initial begin
 
         $display("============= INITIAL TESTS =============");
@@ -125,13 +82,10 @@ module adder_tb;
 
         // Apply reset
         repeat (2) @(posedge clk);
-
         reset_n = 1;
-
         // Wait one cycle
         @(posedge clk);
         #1;
-
         // Expected output
         expected = reference_model(en, op_a, op_b, expected);
 
@@ -139,9 +93,7 @@ module adder_tb;
         check(adder_out, carry_out, expected[31:0], expected[32],
               en, op_a, op_b);
 
-        //=================================================
         // Enable Tests
-        //=================================================
         en = 1;
 
         repeat (100) begin
@@ -164,9 +116,7 @@ module adder_tb;
 
         end
 
-        //=================================================
         // Disable Tests
-        //=================================================
         en = 0;
 
         expected = {carry_out, adder_out};
@@ -191,9 +141,7 @@ module adder_tb;
 
         end
 
-        //=================================================
         // Edge Case Tests
-        //=================================================
         $display("\n============= EDGE CASE TESTS =============");
         en = 1;
         
@@ -239,9 +187,7 @@ module adder_tb;
         expected = reference_model(en, op_a, op_b, expected);
         check(adder_out, carry_out, expected[31:0], expected[32], en, op_a, op_b);
 
-        //=================================================
         // Toggle Enable Tests
-        //=================================================
         $display("\n============= TOGGLE ENABLE TESTS =============");
         
         repeat (50) begin
@@ -254,9 +200,7 @@ module adder_tb;
             check(adder_out, carry_out, expected[31:0], expected[32], en, op_a, op_b);
         end
 
-        //=================================================
         // Reset During Operation Test
-        //=================================================
         $display("\n========== RESET DURING OPERATION ==========");
         en = 1;
         op_a = 32'hAAAAAAAA;
@@ -276,9 +220,7 @@ module adder_tb;
         expected = 0;
         check(adder_out, carry_out, expected[31:0], expected[32], en, op_a, op_b);
 
-        //=================================================
         // Summary
-        //=================================================
         $display("\n================ SUMMARY ================");
         $display("PASS: %0d", pass_count);
         $display("FAIL: %0d", fail_count);
@@ -288,9 +230,7 @@ module adder_tb;
 
     end
 
-    //=====================================================
     // FSDB Dump
-    //=====================================================
     initial begin
         $fsdbDumpfile("adder32.fsdb");
         $fsdbDumpvars(0, adder_tb);

@@ -2,10 +2,8 @@ module updown_counter_tb;
     logic clk;
     logic resetn;
     logic en;
-
     logic [3:0] up_counter;
     logic [3:0] down_counter;
-
     logic [3:0] exp_up_counter;
     logic [3:0] exp_down_counter;
 
@@ -34,39 +32,28 @@ module updown_counter_tb;
         input logic [3:0] prev_down
     );
 
-        if (!resetn)
+        if (!resetn) begin
             reference_model = {4'b1111, 4'b0000};
-        else if (en)
+        end
+        else if (en) begin
             reference_model = {prev_down - 4'b0001, prev_up + 4'b0001};
-        else
+        end
+        else begin
             reference_model = {prev_down, prev_up};
-
+        end
     endfunction
 
     // Check task
     task check;
 
-        if ((up_counter === exp_up_counter) &&
-            (down_counter === exp_down_counter)) begin
-
+        if ((up_counter === exp_up_counter) && (down_counter === exp_down_counter)) begin
             pass_count++;
-
         end
         else begin
-
             fail_count++;
-
             $display(
                 "[ERROR] time=%0t resetn=%0b en=%0b | DUT up=%0d down=%0d | REF up=%0d down=%0d",
-                $time,
-                resetn,
-                en,
-                up_counter,
-                down_counter,
-                exp_up_counter,
-                exp_down_counter
-            );
-
+                $time, resetn, en, up_counter, down_counter, exp_up_counter, exp_down_counter);
         end
 
     endtask
@@ -75,7 +62,6 @@ module updown_counter_tb;
     initial begin
 
         $display("========= UP/DOWN COUNTER TESTS =========");
-
         resetn = 0;
         en = 0;
         exp_up_counter = 4'b0000;
@@ -92,7 +78,6 @@ module updown_counter_tb;
 
         @(negedge clk);
         resetn = 1;
-
         @(negedge clk);
         en = 1;
 
