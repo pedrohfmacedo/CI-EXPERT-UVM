@@ -1,5 +1,6 @@
 
-module robot_model(clock,
+module robot_model(
+   clock,
    reset_n,
    s0_req,
    s1_req,
@@ -54,7 +55,10 @@ parameter WRIST_VERT = 2'b11;
 // logic starts here
 assign load_done_int = (load_cstate == WRIST_VERT);
 
-// next state logic of main control state machine
+// ====================================================
+// LOGIC NEXT STATE OF MAIN CONTROL 
+// ====================================================e
+
 always @(posedge clock or negedge reset_n) begin
    if (~reset_n) begin
       curr_state    <= 2'b00;
@@ -68,7 +72,10 @@ always @(posedge clock or negedge reset_n) begin
    end
 end
 
-// Main Control state machine
+// ====================================================
+// MAIN CONTROL STATE MACHINE 
+// ====================================================
+
 wire unload_done; 
 assign unload_done = s0_unload_done | s1_unload_done | s2_unload_done | s3_unload_done;
 
@@ -112,7 +119,9 @@ wire s3_unloadstart;
 assign s0ors2_req = s0_req | s2_req;
 assign s1ors3_req = s1_req | s3_req; 
 
-// load state machine
+// ====================================================
+// UNLOAD STATE MACHINE 
+// ====================================================// load state machine
 always @(reset_n or load_cstate or s0ors2_req or load_done_int or s1ors3_req) begin
    if (~reset_n)
       load_nstate <= IDLE;
@@ -134,6 +143,10 @@ end
 
 // output generation
 assign load_start = (load_cstate == WRIST_HOR);
+
+// ====================================================
+// UNLOAD STATE MACHINE 
+// ====================================================
 
 // unload state machine
 parameter JOINTA_RIGHT = 3'b001;

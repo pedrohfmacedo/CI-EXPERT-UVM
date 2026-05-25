@@ -6,6 +6,7 @@ LOG_DIR  = $(WORK_DIR)/logs
 
 # RTL
 RTL_FILES = rtl/$(BLOCK).v
+RTL_FILES2 = rtl/$(BLOCK).sv
 
 # TB
 TB_FILES  = tb/$(BLOCK)_tb.v
@@ -34,7 +35,6 @@ VCS_FLAGS2 = -sverilog \
               -timescale=1ns/1ps \
               -o $(SIMV)
 
-
 setup:
 	mkdir -p $(WORK_DIR) $(LOG_DIR)
 
@@ -43,6 +43,9 @@ vcs: setup
 
 vcs2: setup
 	vcs $(VCS_FLAGS2) $(RTL_FILES) $(TB_FILES2)
+
+vcs3: setup
+	vcs $(VCS_FLAGS2) $(RTL_FILES2) $(TB_FILES2)
 
 run:
 	cd $(WORK_DIR) && ./simv +FSDB=$(BLOCK).fsdb
@@ -58,6 +61,9 @@ verdi_wf_easy:
 
 verdi_sc:
 	verdi -play cmd/$(BLOCK)sc.cmd
+
+verdi_fsm:
+	verdi -play cmd/$(BLOCK)fsm.cmd
 
 clean:
 	rm -rf $(WORK_DIR) \
