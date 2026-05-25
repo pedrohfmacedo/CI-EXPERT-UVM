@@ -1,45 +1,46 @@
 interface robot_if(input logic clk);
 
     logic reset_n;
-
+    // in
     logic s0_req;
     logic s1_req;
     logic s2_req;
     logic s3_req;
-
+    // out
     logic s0_unloadstart;
     logic s1_unloadstart;
     logic s2_unloadstart;
     logic s3_unloadstart;
-
+    // in
     logic s0_unload_done;
     logic s1_unload_done;
     logic s2_unload_done;
     logic s3_unload_done;
-
+    //out 
     logic load_start;
 
 endinterface
 
+//top
 module robot_model_tb;
 
-    logic clk = 0;
-
+        logic clk = 0;
+    // Instance of the interface
     robot_if rb_if(clk);
 
+    //Counter Scoreboard
     int pass_count = 0;
     int fail_count = 0;
-
     logic exp_load_start;
     logic exp_s0_unloadstart;
     logic exp_s1_unloadstart;
     logic exp_s2_unloadstart;
     logic exp_s3_unloadstart;
-
     bit main_state_seen   [4];
     bit load_state_seen   [4];
     bit unload_state_seen [8];
 
+    //Reference model states
     typedef enum logic [1:0] {
         REF_M_WAIT_REQ = 2'd0,
         REF_M_S0_S1    = 2'd1,
@@ -57,9 +58,9 @@ module robot_model_tb;
         REF_U_IDLE         = 3'd0,
         REF_U_JOINTA_RIGHT = 3'd1,
         REF_U_JOINTC_DOWN  = 3'd2,
-        REF_U_RELEASE_CLAW = 3'd3,
-        REF_U_JOINTC_UP    = 3'd4,
-        REF_U_JOINTA_LEFT  = 3'd5
+        REF_U_JOINTC_UP    = 3'd3,
+        REF_U_RELEASE_CLAW = 3'd4,
+        REF_U_JOINTA_LEFT  = 3'd6
     } ref_unload_state_e;
 
     ref_main_state_e   ref_main_state;
@@ -67,27 +68,25 @@ module robot_model_tb;
     ref_unload_state_e ref_unload_state;
     int                ref_station;
 
+    // Clock Generation
     always #5 clk = ~clk;
 
+    // Instance DUT
     robot_model dut (
         .clock           (rb_if.clk),
         .reset_n         (rb_if.reset_n),
-
         .s0_req          (rb_if.s0_req),
         .s1_req          (rb_if.s1_req),
         .s2_req          (rb_if.s2_req),
         .s3_req          (rb_if.s3_req),
-
         .s0_unloadstart  (rb_if.s0_unloadstart),
         .s1_unloadstart  (rb_if.s1_unloadstart),
         .s2_unloadstart  (rb_if.s2_unloadstart),
         .s3_unloadstart  (rb_if.s3_unloadstart),
-
         .s0_unload_done  (rb_if.s0_unload_done),
         .s1_unload_done  (rb_if.s1_unload_done),
         .s2_unload_done  (rb_if.s2_unload_done),
         .s3_unload_done  (rb_if.s3_unload_done),
-
         .load_start      (rb_if.load_start)
     );
 
@@ -207,7 +206,7 @@ module robot_model_tb;
 
             REF_M_S0_S1,
             REF_M_S2_S3: begin
-                if (dones != 4'b0000)
+                if (station_done(ref_station, dones))
                     next_main_state = REF_M_WAIT_REQ;
             end
 
@@ -300,7 +299,7 @@ module robot_model_tb;
         $display("Main FSM: WAIT_REQ=00, S0/S1=01, S2/S3=10");
         $display("Load FSM: IDLE=00, WRIST_HOR=01, LOAD_ITEM=10, WRIST_VERT=11");
         $display("Unload FSM: IDLE=000, JOINTA_RIGHT=001, JOINTC_DOWN=010,");
-        $display("            RELEASE_CLAW=011, JOINTC_UP=100, JOINTA_LEFT=101\n");
+        $display("            JOINTC_UP=011, RELEASE_CLAW=100, JOINTA_LEFT=110\n");
     endtask
 
     task automatic check(input string test_name);
@@ -603,7 +602,10 @@ module robot_model_tb;
             end
         end
 
-        for (int i = 0; i <= 5; i++) begin
+        for (int i = 0; i <= 6; i++) begin
+            if (i == 5)
+                continue;
+
             if (unload_state_seen[i]) begin
                 pass_count++;
                 $display("[PASS] UNLOAD_STATE_ENCODING_%0d     observed", i);
