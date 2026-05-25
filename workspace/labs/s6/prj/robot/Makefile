@@ -6,7 +6,7 @@ LOG_DIR  = $(WORK_DIR)/logs
 
 # RTL
 RTL_FILES = rtl/$(BLOCK).v
-RTL_FILES2 = rtl/$(BLOCK).sv
+RTL_FILES2 = rtl/$(BLOCK)_correct.v
 
 # TB
 TB_FILES  = tb/$(BLOCK)_tb.v
@@ -42,9 +42,6 @@ vcs: setup
 	vcs $(VCS_FLAGS) $(RTL_FILES) $(TB_FILES)
 
 vcs2: setup
-	vcs $(VCS_FLAGS2) $(RTL_FILES) $(TB_FILES2)
-
-vcs3: setup
 	vcs $(VCS_FLAGS2) $(RTL_FILES2) $(TB_FILES2)
 
 run:
@@ -55,6 +52,9 @@ gui:
 
 verdi_wf:
 	verdi -play cmd/$(BLOCK)wave.cmd
+
+verdi_wf2:
+	verdi -play cmd/$(BLOCK)wave2.cmd
 
 verdi_wf_easy:
 	verdi -nologo -ssf $(FSDB_FILE)
