@@ -2,16 +2,17 @@
 module robot_model(
    clock,
    reset_n,
+   //inputs
    s0_req,
    s1_req,
    s2_req,
    s3_req,
-
+   //outputs
    s0_unloadstart,
    s1_unloadstart,
    s2_unloadstart,
    s3_unloadstart,
-
+//inputs
    s0_unload_done,
    s1_unload_done,
    s2_unload_done,

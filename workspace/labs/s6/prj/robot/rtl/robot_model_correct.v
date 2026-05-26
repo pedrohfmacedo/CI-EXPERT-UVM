@@ -260,7 +260,7 @@ end
 assign load_start = (load_cstate == WRIST_HOR);
 
 // FIX: unloadstart is asserted only for the station being served. It remains
-// high from WRIST_VERT through the unload sequence, matching the self-checking TB.
+// high from WRIST_VERT through the unload sequence until JOINTA_LEFT, ignoring other requests and done bits.
 assign s0_unloadstart = station_valid && (station == 2'd0) &&
                         ((load_cstate == WRIST_VERT) || (unload_cstate != IDLE));
 assign s1_unloadstart = station_valid && (station == 2'd1) &&
