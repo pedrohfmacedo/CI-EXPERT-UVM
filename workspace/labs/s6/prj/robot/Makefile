@@ -7,10 +7,11 @@ LOG_DIR  = $(WORK_DIR)/logs
 # RTL
 RTL_FILES = rtl/$(BLOCK).v
 RTL_FILES2 = rtl/$(BLOCK)_correct.v
-
+RTL_FILES3 = rtl/$(BLOCK).sv
 # TB
 TB_FILES  = tb/$(BLOCK)_tb.v
 TB_FILES2 = tb/$(BLOCK)_tb.sv
+TB_FILES3 = tb/$(BLOCK)_tb_correct.sv
 
 # Outputs
 SIMV      = $(WORK_DIR)/simv
@@ -38,10 +39,13 @@ VCS_FLAGS2 = -sverilog \
 setup:
 	mkdir -p $(WORK_DIR) $(LOG_DIR)
 
-vcs: setup
+vcs_simple: setup
 	vcs $(VCS_FLAGS) $(RTL_FILES) $(TB_FILES)
 
-vcs2: setup
+vcs_seflie: setup
+	vcs $(VCS_FLAGS2) $(RTL_FILES) $(TB_FILES2)
+
+vcs_new_rtl: setup
 	vcs $(VCS_FLAGS2) $(RTL_FILES2) $(TB_FILES2)
 
 run:
@@ -51,9 +55,6 @@ gui:
 	cd $(WORK_DIR) && ./simv -gui
 
 verdi_wf:
-	verdi -play cmd/$(BLOCK)wave.cmd
-
-verdi_wf2:
 	verdi -play cmd/$(BLOCK)wave2.cmd
 
 verdi_wf_easy:

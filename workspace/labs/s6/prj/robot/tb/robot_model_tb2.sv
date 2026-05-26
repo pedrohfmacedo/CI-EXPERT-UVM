@@ -134,6 +134,7 @@ function automatic bit station_done(int station, logic [3:0] value);
     station_done = ((station >= 0) && (station < 4)) ? value[station] : 1'b0;
 endfunction
 
+// Reset reference model 
 function automatic void reset_reference_model();
     ref_main_state   = REF_M_WAIT_REQ;
     ref_load_state   = REF_L_IDLE;
@@ -150,14 +151,14 @@ function automatic void reset_reference_model();
     dut_out = 5'b00000;
 endfunction
 
+// All reset
 task automatic reset();
-    rb_if.reset_n = 1'b0;
 
+    rb_if.reset_n = 1'b0;
     rb_if.s0_req = 1'b0;
     rb_if.s1_req = 1'b0;
     rb_if.s2_req = 1'b0;
     rb_if.s3_req = 1'b0;
-
     rb_if.s0_unload_done = 1'b0;
     rb_if.s1_unload_done = 1'b0;
     rb_if.s2_unload_done = 1'b0;
@@ -173,6 +174,7 @@ task automatic reset();
     #1;
 endtask
 
+// Reference model robot
 function automatic logic [4:0] reference_model();
     logic [3:0] reqs;
     logic [3:0] dones;
@@ -344,12 +346,12 @@ function void check();
     end
 endfunction
 
+// Drive request and unload_done vectors into the interface.
 task automatic drive_inputs(logic [3:0] reqs, logic [3:0] dones);
     rb_if.s0_req = reqs[0];
     rb_if.s1_req = reqs[1];
     rb_if.s2_req = reqs[2];
     rb_if.s3_req = reqs[3];
-
     rb_if.s0_unload_done = dones[0];
     rb_if.s1_unload_done = dones[1];
     rb_if.s2_unload_done = dones[2];
@@ -365,6 +367,7 @@ task automatic sample_and_check(string test_name);
     check();
 endtask
 
+// Run a complete valid unload flow for one station request.
 task automatic run_station_sequence(int station);
     logic [3:0] reqs;
     logic [3:0] dones;
@@ -375,7 +378,6 @@ task automatic run_station_sequence(int station);
     reset();
 
     $display("\n========= Station S%0d directed sequence =========", station);
-
     @(negedge clk);
     drive_inputs(reqs, dones);
     sample_and_check($sformatf("S%0d_LOAD_START", station));
@@ -404,6 +406,7 @@ task automatic run_station_sequence(int station);
     sample_and_check($sformatf("S%0d_BACK_IDLE", station));
 endtask
 
+// Apply an invalid request pattern and check that the DUT/reference stay idle.
 task automatic run_out_of_spec_sequence(logic [3:0] reqs, string test_name);
     reset();
 
@@ -418,15 +421,14 @@ task automatic run_out_of_spec_sequence(logic [3:0] reqs, string test_name);
     sample_and_check({test_name, "_CLEAR"});
 endtask
 
-// Test sequence, stimulus generation
+// Test sequence, stimulus generation 
 initial begin
     $display("========= Initial tests =========");
-
+    // Sequence
     run_station_sequence(0);
     run_station_sequence(1);
     run_station_sequence(2);
     run_station_sequence(3);
-
     run_out_of_spec_sequence(4'b1111, "MULTIPLE_REQ_1111");
     run_out_of_spec_sequence(4'b1010, "MULTIPLE_REQ_1010");
 
@@ -435,7 +437,6 @@ initial begin
     $display("MISS: %d", miss_count);
     $display("MISMATCH: %d", mismatch_count);
     $display("==========================================\n");
-
     $finish;
 end
 
