@@ -57,6 +57,9 @@ gui:
 verdi_wf:
 	verdi -play cmd/$(BLOCK)wave2.cmd
 
+verdi_wf_new_rtl:
+	verdi -play cmd/$(BLOCK)_rtl_correct.cmd
+
 verdi_wf_easy:
 	verdi -nologo -ssf $(FSDB_FILE)
 
