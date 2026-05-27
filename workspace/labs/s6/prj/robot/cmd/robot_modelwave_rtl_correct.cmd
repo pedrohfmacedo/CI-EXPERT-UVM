@@ -1,5 +1,5 @@
-simSetSimulator "-vcssv" -exec "./simv" -args " " -uvmDebug on
-debImport "-i" "-simflow" "-dbdir" "./simv.daidir"
+simSetSimulator "-vcssv" -exec "work/./simv" -args " " -uvmDebug on
+debImport "-i" "-simflow" "-dbdir" "work/./simv.daidir"
 srcTBInvokeSim
 verdiSetActWin -dock widgetDock_<Member>
 verdiWindowResize -win $_Verdi_1 "313" "41" "900" "700"
@@ -595,4 +595,3 @@ wvScrollDown -win $_nWave3 1
 wvScrollUp -win $_nWave3 1
 wvScrollDown -win $_nWave3 1
 wvScrollUp -win $_nWave3 1
-debExit
