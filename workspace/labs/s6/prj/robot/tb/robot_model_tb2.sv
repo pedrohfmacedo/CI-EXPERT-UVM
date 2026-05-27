@@ -367,6 +367,42 @@ task automatic sample_and_check(string test_name);
     check();
 endtask
 
+task automatic run_long_reset_wave_test();
+    $display("\n========= Long reset_n active/inactive waveform test =========");
+
+    @(negedge clk);
+    rb_if.reset_n = 1'b0;
+    drive_inputs(4'b1010, 4'b1111);
+    reset_reference_model();
+
+    repeat (12)
+        sample_and_check("LONG_RESET_ACTIVE_LOW");
+
+    @(negedge clk);
+    rb_if.reset_n = 1'b1;
+    drive_inputs(4'b0000, 4'b0000);
+
+    repeat (10)
+        sample_and_check("LONG_RESET_INACTIVE_IDLE");
+
+    @(negedge clk);
+    drive_inputs(4'b0001, 4'b0000);
+    sample_and_check("LONG_RESET_S0_LOAD_START");
+    sample_and_check("LONG_RESET_S0_LOAD_ITEM");
+    sample_and_check("LONG_RESET_S0_WRIST_VERT");
+    sample_and_check("LONG_RESET_S0_JOINTA_RIGHT");
+    sample_and_check("LONG_RESET_S0_RELEASE_CLAW");
+
+    @(negedge clk);
+    drive_inputs(4'b0001, 4'b0001);
+    sample_and_check("LONG_RESET_S0_DONE");
+
+    @(negedge clk);
+    drive_inputs(4'b0000, 4'b0000);
+    sample_and_check("LONG_RESET_S0_JOINTA_LEFT");
+    sample_and_check("LONG_RESET_BACK_IDLE");
+endtask
+
 // Run a complete valid unload flow for one station request.
 task automatic run_station_sequence(int station);
     logic [3:0] reqs;
@@ -425,6 +461,7 @@ endtask
 initial begin
     $display("========= Initial tests =========");
     // Sequence
+    run_long_reset_wave_test();
     run_station_sequence(0);
     run_station_sequence(1);
     run_station_sequence(2);

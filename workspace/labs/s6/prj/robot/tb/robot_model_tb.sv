@@ -430,6 +430,38 @@ module robot_model_tb;
         rb_if.reset_n = 1'b1;
     endtask
 
+    task automatic run_long_reset_observation();
+        $display("\n========== LONG RESET ACTIVE/INACTIVE OBSERVATION ==========");
+
+        @(negedge clk);
+        rb_if.reset_n = 1'b0;
+        drive_inputs(4'b1010, 4'b1111);
+        reset_reference_model();
+        update_expected_outputs();
+
+        repeat (12) begin
+            @(posedge clk); #1;
+            reference_model_step();
+            check("LONG_RESET_ACTIVE_LOW");
+        end
+
+        @(negedge clk);
+        rb_if.reset_n = 1'b1;
+        drive_inputs(4'b0000, 4'b0000);
+
+        repeat (10)
+            drive_and_check(4'b0000, 4'b0000, "LONG_RESET_INACTIVE_IDLE");
+
+        drive_and_check(4'b0001, 4'b0000, "LONG_RESET_S0_LOAD_START");
+        drive_and_check(4'b0001, 4'b0000, "LONG_RESET_S0_LOAD_ITEM");
+        drive_and_check(4'b0001, 4'b0000, "LONG_RESET_S0_WRIST_VERT");
+        drive_and_check(4'b0001, 4'b0000, "LONG_RESET_S0_JOINTA_RIGHT");
+        drive_and_check(4'b0001, 4'b0000, "LONG_RESET_S0_RELEASE_CLAW");
+        drive_and_check(4'b0001, 4'b0001, "LONG_RESET_S0_DONE");
+        drive_and_check(4'b0000, 4'b0000, "LONG_RESET_S0_JOINTA_LEFT");
+        drive_and_check(4'b0000, 4'b0000, "LONG_RESET_BACK_IDLE");
+    endtask
+
     task automatic run_valid_request_encoding_tests();
         $display("\n========== VALID ONE-HOT REQUEST ENCODINGS ==========");
 
@@ -630,6 +662,8 @@ module robot_model_tb;
         update_expected_outputs();
 
         check_static_rtl_properties();
+
+        run_long_reset_observation();
 
         apply_reset();
 
