@@ -1,0 +1,610 @@
+\subsection{Demux1x8}
+
+\subsubsection{Estimulos aplicados}
+
+Para o modulo \texttt{demux1x8}, os estimulos foram aplicados pelo testbench
+self-checking \texttt{tb/tb\_1x8demux.sv}. Inicialmente, o DUT e colocado em
+reset com \texttt{rstn = 0}, \texttt{en = 0}, \texttt{sel = 0} e
+\texttt{din = 0}. Apos a liberacao do reset ativo baixo, o testbench habilita o
+modulo com \texttt{en = 1} e aplica 100 combinacoes aleatorias de
+\texttt{sel} e \texttt{din}.
+
+Essa primeira fase cobre a operacao principal do demultiplexador, pois
+\texttt{sel} varia entre as oito saidas possiveis e \texttt{din} varia entre
+zero e um. Em seguida, o testbench coloca \texttt{en = 0} e executa mais 100
+iteracoes aleatorias. Essa segunda fase foi usada para observar o comportamento
+fora da operacao habilitada.
+
+\subsubsection{Expectativa de saida}
+
+Com \texttt{en = 1}, a expectativa e que apenas o bit de \texttt{dout}
+selecionado por \texttt{sel} receba o valor de \texttt{din}. Os demais bits
+devem permanecer em zero. Assim, \texttt{sel = 3'b000} direciona \texttt{din}
+para \texttt{dout[0]}, enquanto \texttt{sel = 3'b111} direciona \texttt{din}
+para \texttt{dout[7]}.
+
+Como a saida do RTL e registrada, a resposta esperada nao e puramente
+combinacional. A atualizacao de \texttt{dout} deve ocorrer na borda positiva de
+\texttt{clk}. Para \texttt{en = 0}, o modelo de referencia do testbench espera
+\texttt{dout = 8'b00000000}. Entretanto, o RTL nao possui atribuicao explicita
+nesse ramo; pela estrutura do design, a saida tende a manter o valor anterior.
+Esse ponto deve ser tratado como decisao de especificacao.
+
+\subsubsection{Interpretacao da forma de onda}
+
+Na waveform, os sinais principais sao \texttt{clk}, \texttt{rstn},
+\texttt{en}, \texttt{sel}, \texttt{din} e \texttt{dout}. Durante o reset, a
+saida deve ser zerada. Apos \texttt{rstn} subir, cada mudanca valida de
+\texttt{sel} e \texttt{din} deve aparecer em \texttt{dout} somente depois da
+borda positiva de \texttt{clk}.
+
+Durante a fase com \texttt{en = 1}, a leitura esperada e observar o bit
+selecionado acompanhando \texttt{din}. Por exemplo, com \texttt{sel = 3'b010}
+e \texttt{din = 1}, a saida esperada e \texttt{8'b00000100}; com
+\texttt{sel = 3'b111} e \texttt{din = 1}, a saida esperada e
+\texttt{8'b10000000}. Na fase com \texttt{en = 0}, deve-se observar se a saida
+zera, como o modelo espera, ou se fica retida, como a estrutura do RTL sugere.
+
+No print utilizado para este modulo, a imagem anexada mostra principalmente o
+terminal de execucao e a geracao do arquivo FSDB. Assim, a interpretacao da
+waveform fica associada ao arquivo \texttt{1x8demux.fsdb}, enquanto o print
+confirma que a simulacao foi executada ate o fim e que o dump de sinais foi
+criado para posterior abertura no Verdi.
+
+\subsubsection{Resultados da execucao}
+
+A execucao apresentada no resumo da simulacao mostrou \texttt{PASS = 200} e
+\texttt{FAIL = 0}. Portanto, para a rodada executada, todas as comparacoes do
+testbench coincidiram com o modelo de referencia. Mesmo com o resultado aprovado,
+o caso \texttt{en = 0} deve permanecer documentado, pois ele define se a
+especificacao correta e zerar ou reter a saida quando o modulo esta
+desabilitado.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.65\textwidth]{\detokenize{img/1.demux1x8/waveforme.png}}
+    \caption{Print da execucao self-checking do modulo \texttt{demux1x8}.}
+    \label{fig:demux1x8-resultados}
+\end{figure}
+
+\subsection{Mux8x1}
+
+\subsubsection{Estimulos aplicados}
+
+No \texttt{mux8x1}, o testbench \texttt{tb/tb\_8x1mux.sv} inicializa o DUT em
+reset, com \texttt{rstn = 0}, \texttt{en = 0}, \texttt{sel = 0} e
+\texttt{din = 0}. Depois de dois ciclos de clock, o reset e liberado e
+\texttt{en} e ativado. A primeira verificacao ocorre com os sinais ainda em
+valor inicial, funcionando como uma checagem simples de saida apos reset.
+
+Depois disso, sao aplicadas 100 combinacoes aleatorias para \texttt{sel} e
+\texttt{din}, com \texttt{en = 1}. Essa fase exercita a selecao dos oito bits
+de entrada. Na segunda fase, o testbench coloca \texttt{en = 0} e executa mais
+100 ciclos variando \texttt{sel}. Essa parte verifica se a saida permanece
+estavel quando o multiplexador esta desabilitado.
+
+\subsubsection{Expectativa de saida}
+
+Com \texttt{en = 1}, a saida esperada e \texttt{dout = din[sel]}. Portanto, o
+valor de \texttt{sel} define qual bit do vetor \texttt{din[7:0]} sera
+encaminhado para a saida escalar \texttt{dout}. Por exemplo, se
+\texttt{sel = 3'b000}, a saida deve receber \texttt{din[0]}; se
+\texttt{sel = 3'b111}, a saida deve receber \texttt{din[7]}.
+
+Com \texttt{en = 0}, o modelo de referencia espera retencao. Assim,
+\texttt{dout} deve manter o ultimo valor valido, mesmo que \texttt{sel} ou
+\texttt{din} mudem. Esse comportamento e coerente com um multiplexador cuja
+saida foi registrada em clock.
+
+\subsubsection{Interpretacao da forma de onda}
+
+Na waveform, deve-se observar que \texttt{dout} nao muda imediatamente quando
+\texttt{sel} ou \texttt{din} mudam. Como a saida e registrada, a atualizacao
+deve ocorrer apos a borda positiva de \texttt{clk}. Durante a fase habilitada,
+cada amostra de \texttt{dout} deve corresponder ao bit selecionado de
+\texttt{din}.
+
+Na fase com \texttt{en = 0}, a forma de onda deve mostrar \texttt{dout}
+congelado. Mesmo que o seletor varie, a saida deve manter o valor armazenado
+anteriormente. Esse e o principal comportamento a ser confirmado visualmente,
+pois separa a logica de selecao da logica de enable.
+
+O print associado a este modulo mostra a execucao via \texttt{make run} e a
+criacao do arquivo \texttt{mux1x8.fsdb}. Embora a imagem seja o terminal, ela
+evidencia que a simulacao gerou o dump de waveform e terminou normalmente. Na
+abertura do FSDB, os sinais esperados para essa analise sao \texttt{clk},
+\texttt{rstn}, \texttt{en}, \texttt{sel}, \texttt{din[7:0]} e \texttt{dout}.
+
+\subsubsection{Resultados da execucao}
+
+No print de execucao do \texttt{mux8x1}, o resumo apresenta
+\texttt{PASS = 201} e \texttt{FAIL = 0}. O numero de acertos inclui a primeira
+checagem logo apos o reset, as 100 verificacoes com \texttt{en = 1} e as 100
+verificacoes com \texttt{en = 0}. Portanto, a selecao de \texttt{din[sel]} e a
+retencao da saida foram validadas para todos os casos aplicados.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.65\textwidth]{\detokenize{img/2.mux8x1/waveforme.png}}
+    \caption{Print da execucao self-checking do modulo \texttt{mux8x1}.}
+    \label{fig:mux8x1-resultados}
+\end{figure}
+
+\subsection{Decoder2x4}
+
+\subsubsection{Estimulos aplicados}
+
+No \texttt{decoder2x4}, o testbench aplica reset inicial com \texttt{rstn = 0}
+e \texttt{en = 0}. Apos a liberacao do reset, ha uma primeira comparacao com
+enable baixo. Em seguida, \texttt{en} e ativado e sao aplicados 100 valores
+aleatorios para \texttt{din}.
+
+Depois, o testbench desativa \texttt{en} e executa mais 100 verificacoes para
+confirmar retencao. Tambem existem duas fases adicionais tentando aplicar
+valores fora da faixa esperada. Como \texttt{din} possui apenas 2 bits, valores
+maiores que 3 sao truncados durante a atribuicao ao sinal.
+
+\subsubsection{Expectativa de saida}
+
+Com \texttt{en = 1}, o comportamento esperado e uma saida one-hot de 4 bits:
+\texttt{din = 2'b00} gera \texttt{dout = 4'b0001},
+\texttt{din = 2'b01} gera \texttt{dout = 4'b0010},
+\texttt{din = 2'b10} gera \texttt{dout = 4'b0100} e
+\texttt{din = 2'b11} gera \texttt{dout = 4'b1000}.
+
+Com \texttt{en = 0}, o modelo de referencia espera que \texttt{dout} mantenha o
+valor anterior. Os casos fora de faixa, na pratica, continuam resultando em uma
+das quatro combinacoes possiveis, pois o sinal de entrada possui largura fixa de
+2 bits.
+
+\subsubsection{Interpretacao da forma de onda}
+
+Na waveform, a primeira observacao deve ser o reset levando \texttt{dout} para
+zero. Depois disso, com \texttt{en = 1}, cada valor de \texttt{din} deve gerar
+um unico bit ativo em \texttt{dout}, sempre sincronizado com a borda positiva de
+\texttt{clk}. A transicao de \texttt{din} nao deve ser interpretada como
+resposta imediata, pois a saida e registrada.
+
+Durante os ciclos com \texttt{en = 0}, \texttt{dout} deve permanecer no valor
+anterior. Ao analisar os casos chamados de fora de faixa, deve-se lembrar que a
+waveform mostrara apenas dois bits em \texttt{din}; portanto, os valores
+aleatorios maiores foram truncados antes de chegar ao DUT.
+
+No print da waveform do decoder, aparecem os sinais \texttt{clk},
+\texttt{rstn}, \texttt{en}, \texttt{din[1:0]} e \texttt{dout[3:0]}. A imagem
+mostra \texttt{rstn} saindo de zero e permanecendo em nivel alto, enquanto
+\texttt{din} percorre valores como \texttt{0}, \texttt{1}, \texttt{3} e
+\texttt{2}. A saida acompanha essa decodificacao em formato one-hot, com valores
+como \texttt{1}, \texttt{2}, \texttt{8} e \texttt{4}, sempre alinhados aos
+ciclos de clock.
+
+\subsubsection{Resultados da execucao}
+
+No print de execucao do \texttt{decoder2x4}, o resumo apresenta
+\texttt{PASS = 401} e \texttt{FAIL = 0}. Esse total cobre a checagem inicial,
+as fases com \texttt{en = 1}, as fases com \texttt{en = 0} e os testes com
+valores aleatorios que sao truncados pela largura de \texttt{din}. O resultado
+confirma que a decodificacao one-hot e a retencao ficaram coerentes com o modelo.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\textwidth]{\detokenize{img/3.decoder2x4/waveforme.png}}
+    \caption{Waveform do modulo \texttt{decoder2x4}.}
+    \label{fig:decoder2x4-resultados}
+\end{figure}
+
+\subsection{Encoder4x2}
+
+\subsubsection{Estimulos aplicados}
+
+No \texttt{encoder4x2}, o testbench inicia com reset ativo baixo, enable
+desligado e entrada \texttt{din = 4'b0000}. Depois da liberacao do reset, o
+primeiro caso verifica se a saida permanece estavel quando \texttt{en = 0}.
+
+Na sequencia, o testbench habilita o modulo e aplica os quatro valores one-hot
+validos: \texttt{0001}, \texttt{0010}, \texttt{0100} e \texttt{1000}. Depois,
+sao aplicadas 50 entradas aleatorias, misturando casos validos e invalidos. Por
+fim, \texttt{en} e desabilitado e sao feitos 20 ciclos para verificar retencao
+da saida.
+
+\subsubsection{Expectativa de saida}
+
+Para entradas one-hot validas, a expectativa e codificar a posicao do bit ativo:
+\texttt{0001 -> 00}, \texttt{0010 -> 01}, \texttt{0100 -> 10} e
+\texttt{1000 -> 11}. Para entradas invalidas, o RTL possui um caminho
+\texttt{default}, portanto o valor esperado pelo modelo e \texttt{dout = 2'b00}.
+
+Com \texttt{en = 0}, a saida deve manter o ultimo valor, pois o modelo de
+referencia usa a saida anterior como expectativa. Assim, mudancas em
+\texttt{din} nao devem produzir nova codificacao enquanto o enable estiver
+baixo.
+
+\subsubsection{Interpretacao da forma de onda}
+
+Na waveform, cada entrada one-hot deve produzir o codigo correspondente apos a
+borda positiva de \texttt{clk}. Se \texttt{din = 4'b0100}, por exemplo, a saida
+esperada e \texttt{dout = 2'b10}; se \texttt{din = 4'b1000}, espera-se
+\texttt{dout = 2'b11}.
+
+Os casos invalidos devem ser observados com cuidado: quando mais de um bit de
+\texttt{din} esta ativo, ou quando nenhum bit esta ativo, o RTL nao faz
+codificacao por prioridade; ele cai no \texttt{default}. Durante a fase
+desabilitada, a waveform deve mostrar \texttt{dout} retido.
+
+Na waveform anexada, os sinais exibidos sao \texttt{din[3:0]}, \texttt{clk},
+\texttt{dout[1:0]}, \texttt{rstn} e \texttt{en}. O print mostra entradas como
+\texttt{2}, \texttt{8}, \texttt{4}, \texttt{1} e \texttt{0}. As entradas
+one-hot validas geram codigos correspondentes, por exemplo \texttt{8 -> 3},
+\texttt{4 -> 2} e \texttt{1 -> 0}. Quando aparece \texttt{din = 0}, a saida
+retorna para \texttt{0}, coerente com o caminho \texttt{default}.
+
+\subsubsection{Resultados da execucao}
+
+O print de execucao do \texttt{encoder4x2} apresenta \texttt{PASS = 75} e
+\texttt{FAIL = 0}. Esse resultado cobre a checagem com enable baixo, os quatro
+casos one-hot dirigidos, as 50 entradas aleatorias e os 20 ciclos finais de
+retencao. Assim, tanto os casos validos quanto os invalidos foram aceitos pelo
+modelo de referencia.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\textwidth]{\detokenize{img/4.encoder4x2/waveforme.png}}
+    \caption{Waveform do modulo \texttt{encoder4x2}.}
+    \label{fig:encoder4x2-resultados}
+\end{figure}
+
+\subsection{Matrix2x2 Multiplier}
+
+\subsubsection{Estimulos aplicados}
+
+No \texttt{matrix2x2\_mult}, o testbench inicia com reset e enable baixo. Depois
+da liberacao do reset, o modulo e habilitado e uma primeira verificacao e feita
+com \texttt{A = 0} e \texttt{B = 0}. Em seguida, sao executadas 100
+multiplicacoes aleatorias com \texttt{en = 1}.
+
+Cada entrada de 32 bits representa uma matriz 2x2 empacotada em quatro elementos
+de 8 bits. Depois da fase habilitada, o testbench coloca \texttt{en = 0} e
+aplica mais 100 combinacoes aleatorias de \texttt{A} e \texttt{B}, verificando
+se \texttt{Res} permanece retido.
+
+\subsubsection{Expectativa de saida}
+
+O modelo de referencia desempacota \texttt{A} e \texttt{B} em quatro elementos:
+\texttt{a00}, \texttt{a01}, \texttt{a10}, \texttt{a11} e
+\texttt{b00}, \texttt{b01}, \texttt{b10}, \texttt{b11}. A saida esperada e a
+multiplicacao matricial:
+\texttt{r00 = a00*b00 + a01*b10},
+\texttt{r01 = a00*b01 + a01*b11},
+\texttt{r10 = a10*b00 + a11*b10} e
+\texttt{r11 = a10*b01 + a11*b11}.
+
+O resultado e empacotado novamente em \texttt{Res}. Com \texttt{en = 0}, o
+valor esperado e manter o resultado anterior, mesmo que as matrizes de entrada
+mudem.
+
+\subsubsection{Interpretacao da forma de onda}
+
+Na waveform, as entradas \texttt{A} e \texttt{B} podem mudar antes da borda de
+clock, mas \texttt{Res} deve assumir o novo produto somente apos a borda
+positiva de \texttt{clk}. Isso confirma que o resultado final e registrado.
+
+Na fase com \texttt{en = 0}, o ponto mais importante e observar que
+\texttt{Res} permanece constante. Caso \texttt{A} e \texttt{B} mudem e
+\texttt{Res} tambem mude com enable baixo, isso indicaria divergencia em relacao
+ao modelo de referencia.
+
+Na waveform do multiplicador de matrizes aparecem \texttt{A[31:0]},
+\texttt{B[31:0]}, \texttt{Res[31:0]}, \texttt{clk}, \texttt{rstn} e
+\texttt{en}. O print mostra uma fase inicial com sinais desconhecidos
+(\texttt{X}), seguida pelo reset que leva o resultado para zero. Depois, com
+\texttt{en} ativo, entradas como \texttt{A = 3b29\_e213} e
+\texttt{B = 6926\_2e70} produzem novo valor em \texttt{Res}, evidenciando que
+o resultado empacotado muda apenas nos ciclos habilitados.
+
+\subsubsection{Resultados da execucao}
+
+O resumo da execucao mostra se todas as multiplicacoes aleatorias e os ciclos de
+retencao foram aprovados pelo scoreboard. Com \texttt{FAIL = 0}, o testbench
+indica que o empacotamento, o calculo matricial e a retencao foram validados.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\textwidth]{\detokenize{img/5.multiplierx2x/waveforme.png}}
+    \caption{Waveform do modulo \texttt{matrix2x2\_mult}.}
+    \label{fig:matrix2x2-resultados}
+\end{figure}
+
+\subsection{Multiplier16x16}
+
+\subsubsection{Estimulos aplicados}
+
+No \texttt{multiplier16x16}, o testbench inicia com reset ativo, enable baixo e
+operandos zerados. Apos a liberacao do reset, sao executadas 100 multiplicacoes
+aleatorias com \texttt{en = 1}, variando \texttt{op\_a} e \texttt{op\_b} em
+toda a faixa de 16 bits.
+
+Depois, o enable e desativado e mais 100 combinacoes aleatorias sao aplicadas
+para validar retencao. O testbench tambem inclui casos dirigidos, como
+multiplicacao por zero, multiplicacao por um, operandos maximos, operandos com
+MSB ativo, reset durante operacao e um teste explicito de hold.
+
+\subsubsection{Expectativa de saida}
+
+Com \texttt{en = 1}, a saida esperada e
+\texttt{multi\_out = op\_a * op\_b}, com resultado de 32 bits. Como os
+operandos possuem 16 bits, a multiplicacao pode preencher tanto a parte baixa
+quanto a parte alta de \texttt{multi\_out}.
+
+Com \texttt{en = 0}, o modelo espera que \texttt{multi\_out} mantenha o valor
+anterior. Quando \texttt{reset\_n = 0}, a saida esperada e zero,
+independentemente dos operandos.
+
+\subsubsection{Interpretacao da forma de onda}
+
+Na waveform, o produto deve aparecer apos a borda positiva de \texttt{clk}. Os
+casos dirigidos ajudam a interpretar visualmente a saida: multiplicacao por zero
+deve gerar zero; multiplicacao por um deve reproduzir o outro operando; e
+operandos maximos devem exercitar a parte alta do resultado.
+
+Durante a fase com \texttt{en = 0}, alteracoes em \texttt{op\_a} e
+\texttt{op\_b} nao devem alterar \texttt{multi\_out}. O reset durante operacao
+deve ser visivel como um retorno imediato da saida para zero.
+
+Na waveform anexada, aparecem \texttt{clk}, \texttt{reset\_n}, \texttt{en},
+\texttt{op\_a[15:0]}, \texttt{op\_b[15:0]} e \texttt{multi\_out[31:0]}. O
+print mostra \texttt{reset\_n} sendo liberado, \texttt{en} indo para nivel alto
+e os operandos passando a assumir valores diferentes de zero. A saida
+\texttt{multi\_out} muda para produtos como \texttt{2902\_5250} e
+\texttt{c9\_dc5a}, confirmando visualmente a atualizacao registrada do produto.
+
+\subsubsection{Resultados da execucao}
+
+O resumo da execucao deve ser usado para confirmar que os casos aleatorios, os
+casos dirigidos, o reset e a retencao passaram no scoreboard. Com
+\texttt{FAIL = 0}, o comportamento observado esta coerente com a multiplicacao
+registrada esperada.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\textwidth]{\detokenize{img/6.multipĺier16x16/waveforme.png}}
+    \caption{Waveform do modulo \texttt{multiplier16x16}.}
+    \label{fig:multiplier16x16-resultados}
+\end{figure}
+
+\subsection{Counter Overflow}
+
+\subsubsection{Estimulos aplicados}
+
+No \texttt{counter\_overflow}, o testbench inicia com \texttt{reset\_n = 0},
+\texttt{en = 0}, \texttt{load = 0} e valor esperado igual a zero. Apos dois
+ciclos de reset, \texttt{reset\_n} e liberado e ocorre uma primeira checagem do
+estado inicial.
+
+Depois, sao executados 200 ciclos aleatorios variando \texttt{en} e
+\texttt{load}. Dessa forma, a simulacao cobre ciclos de contagem, ciclos de
+carga, ciclos sem operacao e ciclos em que os dois controles podem ficar ativos
+ao mesmo tempo.
+
+\subsubsection{Expectativa de saida}
+
+O comportamento esperado e representado por um valor de 33 bits. Os 32 bits
+menos significativos correspondem a \texttt{counter\_out}, e o bit mais
+significativo corresponde a \texttt{counter\_overflow}. Quando \texttt{load = 1},
+o contador deve carregar o valor predefinido. Quando \texttt{en = 1}, o contador
+deve incrementar.
+
+Um ponto especifico desse design e a prioridade entre \texttt{load} e
+\texttt{en}. No RTL, ambos sao testados em comandos \texttt{if} separados dentro
+do mesmo bloco sequencial. Assim, quando \texttt{load} e \texttt{en} estao
+ativos no mesmo ciclo, a atribuicao relacionada ao incremento pode sobrescrever
+a atribuicao de carga.
+
+\subsubsection{Interpretacao da forma de onda}
+
+Na waveform, o reset deve levar \texttt{counter\_out} e
+\texttt{counter\_overflow} para zero. Quando \texttt{load} esta ativo, deve-se
+observar o carregamento do valor predefinido. Quando apenas \texttt{en} esta
+ativo, o valor deve incrementar a cada borda positiva de \texttt{clk}.
+
+O caso mais importante para analise visual e o ciclo em que \texttt{load} e
+\texttt{en} aparecem simultaneamente. A waveform deve confirmar qual operacao
+teve prioridade efetiva. Essa observacao e essencial para documentar o
+comportamento real do design, nao apenas a intencao descrita em alto nivel.
+
+No print da waveform, os sinais visiveis sao \texttt{clk}, \texttt{reset\_n},
+\texttt{en}, \texttt{load}, \texttt{counter\_out[31:0]} e
+\texttt{counter\_overflow}. A imagem mostra o contador saindo de zero,
+incrementando para \texttt{1}, carregando valores proximos de
+\texttt{ffff\_fff8} e depois seguindo para \texttt{ffff\_fff9},
+\texttt{ffff\_fffa}, \texttt{ffff\_fffb} e \texttt{ffff\_fffc}. Tambem e
+possivel observar \texttt{counter\_overflow} em nivel alto apos a carga do valor
+de 33 bits.
+
+\subsubsection{Resultados da execucao}
+
+O resultado da execucao indica se o contador, o overflow, a carga e a prioridade
+entre controles bateram com o modelo usado no testbench. Com \texttt{FAIL = 0},
+o scoreboard considera a implementacao aprovada para os 200 ciclos aleatorios
+executados.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\textwidth]{\detokenize{img/7.counter_overflow/waveforme.png}}
+    \caption{Waveform do modulo \texttt{counter\_overflow}.}
+    \label{fig:counter-overflow-resultados}
+\end{figure}
+
+\subsection{Updown Counter}
+
+\subsubsection{Estimulos aplicados}
+
+No \texttt{updown\_counter}, o testbench inicia com \texttt{resetn = 0} e
+\texttt{en = 0}. Durante o reset, o modelo espera \texttt{up\_counter = 0000}
+e \texttt{down\_counter = 1111}. Depois da liberacao de reset, o enable e
+ativado para executar 40 ciclos de contagem.
+
+Em seguida, \texttt{en} e desativado por 20 ciclos para verificar retencao. O
+testbench tambem executa 10 ciclos adicionais de contagem, aplica reset durante
+a operacao e finaliza com 100 ciclos aleatorios de enable.
+
+\subsubsection{Expectativa de saida}
+
+Com \texttt{en = 1}, \texttt{up\_counter} deve incrementar a cada ciclo, e
+\texttt{down\_counter} deve decrementar a cada ciclo. Como ambos possuem 4 bits,
+o rollover faz parte do comportamento esperado: apos \texttt{1111}, o contador
+ascendente retorna para \texttt{0000}; no contador descendente, o comportamento
+ocorre no sentido oposto.
+
+Com \texttt{en = 0}, ambos os contadores devem manter seus valores anteriores.
+Com \texttt{resetn = 0}, as saidas devem retornar aos valores iniciais
+\texttt{0000} e \texttt{1111}.
+
+\subsubsection{Interpretacao da forma de onda}
+
+Na waveform, a analise deve comparar os dois contadores na mesma borda de clock.
+Enquanto \texttt{up\_counter} sobe, \texttt{down\_counter} deve descer. Essa
+relacao entre as duas saidas e o principal indicador de comportamento correto.
+
+Durante os ciclos com \texttt{en = 0}, os dois sinais devem ficar parados. O
+reset durante a operacao deve interromper a contagem e devolver as saidas para
+os valores iniciais. Tambem se deve observar o rollover de 4 bits para confirmar
+que nao ha saturacao indevida.
+
+Na waveform anexada, aparecem \texttt{clk}, \texttt{resetn}, \texttt{en},
+\texttt{up\_counter[3:0]} e \texttt{down\_counter[3:0]}. O print mostra
+\texttt{resetn} sendo liberado, \texttt{en} indo para nivel alto e os contadores
+seguindo em sentidos opostos: \texttt{up\_counter} passa por
+\texttt{0, 1, 2, 3, ...}, enquanto \texttt{down\_counter} passa por
+\texttt{f, e, d, c, ...}. Essa relacao visual confirma a operacao conjunta do
+contador ascendente e descendente.
+
+\subsubsection{Resultados da execucao}
+
+O resumo de execucao mostra se as fases de reset, contagem, retencao, novo reset
+e enable aleatorio foram aprovadas pelo scoreboard. Com \texttt{FAIL = 0}, o
+testbench confirma que as duas contagens seguiram o modelo de referencia.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\textwidth]{\detokenize{img/8.updown/waveforme.png}}
+    \caption{Waveform do modulo \texttt{updown\_counter}.}
+    \label{fig:updown-waveform}
+\end{figure}
+
+\subsection{Arbiter}
+
+\subsubsection{Estimulos aplicados}
+
+No \texttt{arbiter}, o testbench utiliza uma sequencia dirigida para exercitar a
+FSM. Os casos incluem ausencia de requisicoes, requisicao apenas do cliente 1,
+requisicao apenas do cliente 2, requisicoes simultaneas, mudanca de prioridade e
+reset durante operacao.
+
+Depois dos casos dirigidos, sao executadas 50 combinacoes aleatorias variando
+\texttt{priority\_sel}, \texttt{client1\_req} e \texttt{client2\_req}. Essa
+mistura permite observar transicoes da FSM e validar se os grants seguem a
+politica de prioridade esperada.
+
+\subsubsection{Expectativa de saida}
+
+As saidas esperadas sao \texttt{o\_grant1} e \texttt{o\_grant2}. Quando apenas
+um cliente requisita, o grant deve ser direcionado para esse cliente de acordo
+com o estado da FSM. Quando os dois clientes requisitam simultaneamente,
+\texttt{priority\_sel} define qual cliente deve ser atendido primeiro.
+
+Durante reset, ambos os grants devem ser zerados e o modelo de referencia deve
+retornar ao estado inicial. Tambem se espera que o arbitro nao mantenha grants
+incoerentes quando nao ha requisicoes pendentes.
+
+\subsubsection{Interpretacao da forma de onda}
+
+Na waveform, a leitura deve acompanhar \texttt{priority\_sel},
+\texttt{client1\_req}, \texttt{client2\_req}, \texttt{o\_grant1} e
+\texttt{o\_grant2}. Em requisicoes simultaneas, a prioridade selecionada deve
+explicar qual grant e ativado. Quando a prioridade muda, a transicao da FSM deve
+ser observada nas bordas de clock seguintes.
+
+O reset deve aparecer como retorno claro dos grants para zero. Tambem e
+importante verificar se nao ha dois grants ativos de forma indevida no mesmo
+ciclo. A waveform do arbiter e especialmente util porque mostra a relacao entre
+entradas de requisicao, prioridade e saidas concedidas ao longo do tempo.
+
+No print da waveform, sao exibidos \texttt{clk}, \texttt{reset\_n},
+\texttt{priority\_sel}, \texttt{client1\_req}, \texttt{client2\_req},
+\texttt{o\_grant1} e \texttt{o\_grant2}. A imagem mostra a liberacao de reset,
+mudancas em \texttt{priority\_sel} e requisicoes dos dois clientes. Observa-se
+que os grants alternam conforme as requisicoes e a prioridade, sem que
+\texttt{o\_grant1} e \texttt{o\_grant2} fiquem ativos indevidamente ao mesmo
+tempo.
+
+\subsubsection{Resultados da execucao}
+
+O testbench imprime mensagens de \texttt{PASS} e \texttt{FAIL} para as
+comparacoes contra o modelo de referencia. Um resumo final com \texttt{FAIL = 0}
+indica que os casos dirigidos, o reset e as combinacoes aleatorias foram
+aceitos pelo scoreboard.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\textwidth]{\detokenize{img/9.arbiter/waveforme.png}}
+    \caption{Waveform usada para analise do modulo \texttt{arbiter}.}
+    \label{fig:arbiter-waveform}
+\end{figure}
+
+\subsection{Adder32}
+
+\subsubsection{Estimulos aplicados}
+
+No \texttt{adder32}, o testbench inicia com \texttt{reset\_n = 0},
+\texttt{en = 0}, \texttt{op\_a = 0} e \texttt{op\_b = 0}. Apos a liberacao do
+reset, ocorre uma primeira checagem com enable baixo. Em seguida, sao aplicadas
+100 somas aleatorias com \texttt{en = 1}.
+
+Depois, \texttt{en} e desativado e sao executados 100 ciclos com operandos
+aleatorios para verificar retencao. O testbench tambem aplica casos dirigidos:
+soma com overflow, soma zero, soma de valores maximos, soma simples, padroes
+alternados, operandos com MSB ativo, alternancia de enable e reset durante a
+operacao.
+
+\subsubsection{Expectativa de saida}
+
+Com \texttt{en = 1}, o resultado esperado e a soma de 33 bits
+\texttt{op\_a + op\_b}. Os 32 bits inferiores devem aparecer em
+\texttt{adder\_out}, e o bit mais significativo deve aparecer em
+\texttt{carry\_out}. Com \texttt{en = 0}, ambos devem manter o valor anterior.
+
+Com \texttt{reset\_n = 0}, tanto \texttt{adder\_out} quanto
+\texttt{carry\_out} devem retornar para zero. Os casos de overflow sao
+importantes porque validam a separacao entre resultado de 32 bits e carry.
+
+\subsubsection{Interpretacao da forma de onda}
+
+Na waveform, a saida deve ser atualizada apos a borda positiva de \texttt{clk}.
+Um caso de leitura direta e \texttt{32'hFFFFFFFF + 32'h00000001}, que deve gerar
+\texttt{adder\_out = 32'h00000000} e \texttt{carry\_out = 1}. Outro caso util e
+\texttt{32'hAAAAAAAA + 32'h55555555}, que deve gerar \texttt{32'hFFFFFFFF} sem
+carry.
+
+Durante a fase com \texttt{en = 0}, alteracoes nos operandos nao devem alterar
+as saidas. O reset durante a operacao deve limpar tanto o resultado quanto o
+carry, servindo como marcador claro para a analise temporal.
+
+Na waveform anexada, aparecem \texttt{clk}, \texttt{reset\_n}, \texttt{en},
+\texttt{op\_a[31:0]}, \texttt{op\_b[31:0]}, \texttt{adder\_out[31:0]} e
+\texttt{carry\_out}. O print mostra operandos aleatorios variando a cada ciclo
+e \texttt{adder\_out} assumindo a soma correspondente. Tambem e possivel
+observar \texttt{carry\_out} alternando em ciclos nos quais a soma ultrapassa
+32 bits, o que confirma que o carry esta sendo avaliado junto com a saida.
+
+\subsubsection{Resultados da execucao}
+
+O resumo da execucao indica se as somas aleatorias, os casos dirigidos, a
+retencao e o reset foram aprovados. Quando \texttt{FAIL = 0}, o testbench
+considera o somador validado para os cenarios exercitados.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\textwidth]{\detokenize{img/10.adder/waveforme.png}}
+    \caption{Waveform do modulo \texttt{adder32}.}
+    \label{fig:adder32-resultados}
+\end{figure}
