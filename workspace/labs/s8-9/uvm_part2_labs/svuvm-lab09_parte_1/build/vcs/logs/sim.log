@@ -1,0 +1,100 @@
+Command: /home/pedro.macedo/CI-EXPERT-UVM/workspace/labs/s8-9/uvm_part2_labs/svuvm-lab09_parte_1/./blockname +ntb_random_seed=1 +UVM_TESTNAME=blockname_test_baseline +UVM_TR_RECORD +UVM_LOG_RECORD -l build/vcs/logs/sim.log
+Chronologic VCS simulator copyright 1991-2025
+Contains Synopsys proprietary information.
+Compiler version X-2025.06-SP2_Full64; Runtime version X-2025.06-SP2_Full64;  Sep 26 18:35 2026
+UVM_INFO /Tools/synopsys/vcs/X-2025.06-SP2/etc/uvm-1.2/base/uvm_root.svh(407) @ 0: reporter [UVM/RELNOTES] 
+----------------------------------------------------------------
+UVM-1.2.Synopsys
+(C) 2007-2014 Mentor Graphics Corporation
+(C) 2007-2014 Cadence Design Systems, Inc.
+(C) 2006-2014 Synopsys, Inc.
+(C) 2011-2013 Cypress Semiconductor Corp.
+(C) 2013-2014 NVIDIA Corporation
+----------------------------------------------------------------
+
+  ***********       IMPORTANT RELEASE NOTES         ************
+
+  You are using a version of the UVM library that has been compiled
+  with `UVM_NO_DEPRECATED undefined.
+  See http://www.eda.org/svdb/view.php?id=3313 for more details.
+
+  You are using a version of the UVM library that has been compiled
+  with `UVM_OBJECT_DO_NOT_NEED_CONSTRUCTOR undefined.
+  See http://www.eda.org/svdb/view.php?id=3770 for more details.
+
+      (Specify +UVM_NO_RELNOTES to turn off this notice)
+
+*Verdi* Enable Verdi Message Catcher.
+UVM_INFO /Tools/synopsys/vcs/X-2025.06-SP2/etc/uvm-1.2/verdi/uvm_custom_install_verdi_recorder.sv(300) @ 0: reporter [VERDI_TR_AUTO] +UVM_TR_RECORD implicitly enables recording_details to UVM_FULL for all components. For explicit control use +UVM_DISABLE_AUTO_COMPONENT and set recording_detail on components accordingly
+*Verdi* Loading libsscore_vcs202506.so
+FSDB Dumper for VCS, Release Verdi_X-2025.06-SP2, Linux x86_64/64bit, 11/27/2025
+(C) 1996 - 2025 by Synopsys, Inc.
+*Verdi* FSDB WARNING: The FSDB file already exists. Overwriting the FSDB file may crash the programs that are using this file.
+*Verdi* : Create FSDB file 'novas.fsdb'
+UVM_INFO @ 0: reporter [RNTST] Running test blockname_test_baseline...
+UVM_INFO /Tools/synopsys/vcs/X-2025.06-SP2/etc/uvm-1.2/base/uvm_root.svh(594) @ 0: reporter [UVMTOP] UVM testbench topology:
+------------------------------------------------------------------
+Name                    Type                        Size  Value   
+------------------------------------------------------------------
+uvm_test_top            blockname_test_baseline     -     @346    
+  c                     consumer                    -     @366    
+    consumer_get_port   uvm_blocking_get_port       -     @427    
+      recording_detail  uvm_verbosity               32    UVM_FULL
+    recording_detail    uvm_verbosity               32    UVM_FULL
+  fifo                  uvm_tlm_analysis_fifo #(T)  -     @374    
+    analysis_export     uvm_analysis_imp            -     @418    
+      recording_detail  uvm_verbosity               32    UVM_FULL
+    get_ap              uvm_analysis_port           -     @409    
+      recording_detail  uvm_verbosity               32    UVM_FULL
+    get_peek_export     uvm_get_peek_imp            -     @391    
+      recording_detail  uvm_verbosity               32    UVM_FULL
+    put_ap              uvm_analysis_port           -     @400    
+      recording_detail  uvm_verbosity               32    UVM_FULL
+    put_export          uvm_put_imp                 -     @382    
+      recording_detail  uvm_verbosity               32    UVM_FULL
+    recording_detail    uvm_verbosity               32    UVM_FULL
+  p                     producer                    -     @358    
+    prod_tlm_port       uvm_blocking_put_port       -     @436    
+      recording_detail  uvm_verbosity               32    UVM_FULL
+    recording_detail    uvm_verbosity               32    UVM_FULL
+  recording_detail      uvm_verbosity               32    UVM_FULL
+------------------------------------------------------------------
+
+UVM_INFO tb/comps/producer.svh(20) @ 0: uvm_test_top.p [p] PRODUCER started, objection raised.
+Info: Verdi UVM-1.2 Hooks File 2022/05/26 
+UVM_INFO tb/comps/producer.svh(38) @ 1000000000000: uvm_test_top.p [p] PRODUCER finished, objection dropped.
+UVM_INFO /Tools/synopsys/vcs/X-2025.06-SP2/etc/uvm-1.2/base/uvm_objection.svh(1276) @ 1000000000000: reporter [TEST_DONE] 'run' phase is ready to proceed to the 'extract' phase
+UVM_INFO /Tools/synopsys/vcs/X-2025.06-SP2/etc/uvm-1.2/base/uvm_report_catcher.svh(705) @ 1000000000000: reporter [UVM/REPORT/CATCHER] 
+--- UVM Report catcher Summary ---
+
+
+Number of demoted UVM_FATAL reports  :    0
+Number of demoted UVM_ERROR reports  :    0
+Number of demoted UVM_WARNING reports:    0
+Number of caught UVM_FATAL reports   :    0
+Number of caught UVM_ERROR reports   :    0
+Number of caught UVM_WARNING reports :    0
+
+UVM_INFO /Tools/synopsys/vcs/X-2025.06-SP2/etc/uvm-1.2/base/uvm_report_server.svh(904) @ 1000000000000: reporter [UVM/REPORT/SERVER] 
+--- UVM Report Summary ---
+
+** Report counts by severity
+UVM_INFO :    8
+UVM_WARNING :    0
+UVM_ERROR :    0
+UVM_FATAL :    0
+** Report counts by id
+[RNTST]     1
+[TEST_DONE]     1
+[UVM/RELNOTES]     1
+[UVM/REPORT/CATCHER]     1
+[UVMTOP]     1
+[VERDI_TR_AUTO]     1
+[p]     2
+
+$finish called from file "/Tools/synopsys/vcs/X-2025.06-SP2/etc/uvm-1.2/base/uvm_root.svh", line 532.
+$finish at simulation time        1000000000000
+           V C S   S i m u l a t i o n   R e p o r t 
+Time: 1000000000000 ps
+CPU Time:      0.300 seconds;       Data structure size:   0.5Mb
+Sat Sep 26 18:35:36 2026

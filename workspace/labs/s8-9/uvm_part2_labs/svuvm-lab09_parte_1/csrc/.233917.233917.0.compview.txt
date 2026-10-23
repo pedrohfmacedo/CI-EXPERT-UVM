@@ -1,0 +1,8 @@
+Command exited with non-zero status 255
+{"vcs1":{"timestamp_begin":1790458502.870095926, "rt":1.96, "ut":2.08, "st":0.15}}
+{"SNPS_VCS_INTERNAL_ROOT_START_TIME": 1790458502.478785314}
+{"VCS_COMP_START_TIME": 1790458502.478785314}
+{"VCS_COMP_END_TIME": 1790458504.880922828}
+{"VCS_USER_OPTIONS": "-sverilog -full64 -kdb -debug_access+all -timescale=1ns/1ps -ntb_opts uvm-1.2 +incdir+tb -l build/vcs/logs/vcs_comp.log tb/blockname_pkg.sv tb/blockname_tb_top.sv -o blockname"}
+{"kdb": {"elabcom_name":"<Kdbresolver>", "log_dir":"blockname.daidir/kdbresolverLog"}}
+{"vcs1": {"peak_mem": 496340}}
