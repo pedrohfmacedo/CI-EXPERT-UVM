@@ -1,0 +1,1183 @@
+Command: /home/pedro.macedo/CI-EXPERT-UVM/workspace/labs/s6/prj/robot/work/simv -sml=verdi +UVM_VERDI_TRACE=UVM_AWARE +fsdb+gate=off -ucli2Proc -ucli -l /home/pedro.macedo/CI-EXPERT-UVM/workspace/labs/s6/prj/robot/verdiLog/sim.log
+Chronologic VCS simulator copyright 1991-2025
+Contains Synopsys proprietary information.
+Compiler version X-2025.06-SP2_Full64; Runtime version X-2025.06-SP2_Full64;  Jun  2 21:34 2026
+
+ucli% synUtils::getArch
+linux64
+ucli% loaddl -simv /Tools/synopsys/verdi/X-2025.06-SP2/share/PLI/VCS/LINUXAMD64/libnovas.so LoadFSDBDumpCmd;LoadFSDBDumpCmd
+LoadFSDBDumpCmd success
+ucli% config ckptfsdbcheck off;config endofsim noexit;config onfail {enable all};config followactivescope on;catch {setUcliVerdiConnected};set watch::resultTagsForVerdiBP {<ucli_break_bp_status_begin> <ucli_break_bp_status_end>};set ucliCore::support_restore_through_stask_in_verdi 1;cbug::config pretty_print auto;fsdbDumpfile {/home/pedro.macedo/CI-EXPERT-UVM/workspace/labs/s6/prj/robot/inter.fsdb} ;fsdbDumpflush ; 
+*Verdi* Loading libsscore_vcs202506.so
+FSDB Dumper for VCS, Release Verdi_X-2025.06-SP2, Linux x86_64/64bit, 11/27/2025
+(C) 1996 - 2025 by Synopsys, Inc.
+*Verdi* : Create FSDB file '/home/pedro.macedo/CI-EXPERT-UVM/workspace/labs/s6/prj/robot/inter.fsdb'
+*Verdi* : Flush all FSDB Files at 0 ps.
+
+ucli% synEnv::hasFataled
+0
+ucli% ucliCore::getToolPID
+4023466
+ucli% sps_interactive
+*Verdi* : Enable RPC Server(4023466)
+
+ucli% ucliCore::getToolPID
+4023466
+ucli% ucliCore::getToolPID
+4023466
+ucli% if {[catch {ucliCore::setFocus tool}]} {}
+
+ucli% puts $ucliCore::nativeUcliMode
+0
+
+ucli% ucliCore::getToolTopPID
+4023466
+ucli% pid
+4023478
+ucli% synUtils::sendTool -active {_icl_createSharedMemory /tmp/vcs_dve_general.pedro.macedo.4023466 }
+
+ucli% if { [info vars watch::vcbp_str_len_limit_of_get_value] != ""} {set watch::vcbp_str_len_limit_of_get_value 1024}
+1024
+ucli% info command stateVerdiChangeCB
+
+ucli% proc stateVerdiChangeCB args { if {$ucliGUI::state eq "terminated"} {puts "\n<VERDI_Terminated>\n";catch {setVerdiSimTerminated}}}
+
+ucli% trace variable ucliGUI::state wu stateVerdiChangeCB
+
+ucli% if {[catch {rename synopsys::restore verdiHack::restore} ]} {puts "0"}
+
+ucli% proc synopsys::restore {args} { verdiHack::restore $args; puts "\n<VERDI_RESTORE>\n"}
+
+ucli% if {[catch {rename quit verdiHack::quit} ]} {puts "0"}
+
+ucli% proc quit {args} { if {[string length $args] == 0} { verdiHack::quit; } elseif {([string equal "-h" $args] == 1)||([string equal "-he" $args] == 1)||([string equal "-hel" $args] == 1)||([string equal "-help" $args] == 1)} { puts "\n quit           # Exit the simulation.\n \[-noprompt\]        (Exit the simulation and Verdi.)\n"} elseif {([string equal "-n" $args] == 1)||([string equal "-no" $args] == 1)||([string equal "-nop" $args] == 1)||([string equal "-nopr" $args] == 1)||([string equal "-nopro" $args] == 1)||([string equal "-noprom" $args] == 1)||([string equal "-nopromp" $args] == 1)||([string equal "-noprompt" $args] == 1)} { puts "\nVERDI_EXIT_N\n" } else { verdiHack::quit $args; } }
+
+ucli% if {[catch {rename exit verdiHack::exit} ]} {puts "0"}
+
+ucli% proc exit {args} { if {[string length $args] == 0} { verdiHack::exit; } elseif {([string equal "-h" $args] == 1)||([string equal "-he" $args] == 1)||([string equal "-hel" $args] == 1)||([string equal "-help" $args] == 1)} { puts "\n exit           # Exit the simulation.\n \[-noprompt\]        (Exit the simulation and Verdi.)\n"} elseif {([string equal "-n" $args] == 1)||([string equal "-no" $args] == 1)||([string equal "-nop" $args] == 1)||([string equal "-nopr" $args] == 1)||([string equal "-nopro" $args] == 1)||([string equal "-noprom" $args] == 1)||([string equal "-nopromp" $args] == 1)||([string equal "-noprompt" $args] == 1)} { puts "\nVERDI_EXIT_N\n" } else { verdiHack::exit $args; } }
+
+ucli% proc checkpoint::beforeRecreate {} { sps_interactive }
+
+ucli% if {[catch {ucliCore::setFocus tool}]} {}
+
+ucli% save::getUserdefinedProcs
+::stateVerdiChangeCB ::LoadFSDBDumpCmd
+ucli% info procs
+ipi_get_str fsdbDumpMDAByFile fsdbDumpMDA echo fsdbDumpMemNow fsdbAutoSwitchDumpfile unknown sps_interactive auto_import stat fsdbDumpfile setenv auto_execok pkg_mkIndex stateVerdiChangeCB fsdbDumpSingle proc_body auto_reset ipi_begin fsdbDumpoff getenv fsdbDumplimit fsdbDumpPattern ipi_handle ipi_get_prop fsdbDumpvarsByFile fsdbDumpMDAInScope lminus ipi_sim_get ls auto_load_index proc_args fsdbAddRuntimeSignal fsdbDumpSC print_message_info ridbDump fsdbDumpSVAoff fsdbSuppress fsdbDumpvars help fsdbDumpMDAOnChange ipi_control auto_qualify fsdbDumpMem sourceSavedOnbreakHandler tclPkgUnknown printenv ipi_handle_by_name helpdoc fsdbDumpMemInScope fsdbDumpFinish is_true fsdbDumpon sh fsdbQueryInfo LoadFSDBDumpCmd fsdbDumpPSL fsdbDumpSVA ipi_end wrapperSpecmanSn fsdbDumpSVAon fsdbDumpClassObjectByFile is_false auto_load fsdbDumpPSLon ipi_get_int64 fsdbSubstituteHier ipi_get_value ipi_iterate exit fsdbDumpMemInFile tclLog fsdbDumpflush get_unix_variable mem_debug ipi_scan fsdbDumpPSLoff fsdbDumpClassObject fsdbDumpvarsToFile set_unix_variable bgerror fsdbDumpStrength add_group fsdbSwitchDumpfile source add_wave sos_fsdbDumpvars ipi_set_prop unsetenv fsdbDumpvarsES readline fsdbDisplay ipi_handle_free set_group ipi_get quit define_proc_attributes tclPkgSetup fsdbDumpMDANow ipi_init_play_tcl fsdbDumpIO
+ucli% info commands
+ipi_get_str cchange subst fsdbDumpMDAByFile pwd cshow guiSource fsdbDumpMDA echo fsdbDumpMemNow fsdbAutoSwitchDumpfile ucliConnectToSharedMem unknown ucliIsScriptPauseByVerdi lrange sps_interactive auto_import setVerdiSimTerminated coverage case stat fsdbDumpfile break setenv dump auto_execok msglog linsert pkg_mkIndex dumplist catch stateVerdiChangeCB mpformat fsdbDumpSingle if join detach_sim halt proc_body abortScriptAfterDetachVerdi report_violations which auto_reset lp_show ipi_begin pause dve_help fsdbDumpoff format getenv listing fsdbDumplimit package binary trace ctimeout onbreak after flush fsdbDumpPattern step restore ipi_handle power continue get_command_option_values force try foreach ipi_get_prop fsdbDumpvarsByFile lrepeat tailcall unset fsdbDumpMDAInScope lminus ipi_sim_get interp write_app_var lindex stack yield ls resetInterruptCount runAfterDetachVerdi eof saif list printvar create_command_group keysFileChangeCB virtual auto_load_index checkpoint proc_args finish fsdbAddRuntimeSignal cgettimeout sexpr lsearch fblocked fsdbDumpSC fanin lappend print_message_info proc cextract ridbDump writelist get_defined_commands cdump fsdbDumpSVAoff fsdbSuppress man set_sig_vas_in_waiting_input fconfigure fsdbDumpvars help fsdbDumpMDAOnChange ipi_control switch auto_qualify fsdbDumpMem mpexpr status sourceSavedOnbreakHandler tclPkgUnknown close printenv ipi_handle_by_name helpdoc thread lreverse set read fsdbDumpMemInScope initAttachableFile unalias fsdbDumpFinish setVerdiAttachable seek while set_cle_options is_true set_message_info writeKeyLog cbug fsdbDumpon find_forces yieldto sh start_verdi load fsdbQueryInfo memory sn vcsExecFuncInSharedObject cenable history puts gdb loadSharedObject tblog assertion resume _synopsys_cci_unalias socket tell open get_message_ids cadd exec pid stop LoadFSDBDumpCmd unloadSharedObject redirect fsdbDumpPSL throw fsdbDumpSVA ipi_end return ace wrapperSpecmanSn error fsdbDumpSVAon split fsdbDumpClassObjectByFile is_false array ucliAttachedByVerdi vbus get lreplace concat coroutine fcopy update parse_proc_arguments report_app_var run search setUcliVerdiStatus for append auto_load fsdbDumpPSLon ucliLaunchVerdi alias logFileChangeCB scan setUcliVerdiConnected apply sdc_check abort set_current_command_mode release zlib chan loads _spw_define_proc_attributes ipi_get_int64 onerror print_suppressed_messages scope fileevent fsdbSubstituteHier inputFileChangeCB regexp resultTagsForVerdiCB set_app_var ipi_get_value cdelete upvar ipi_iterate save encoding onfail exit fsdbDumpMemInFile incr tclLog fsdbDumpflush get_message_info get_unix_variable show senv glob mem_debug ipi_scan GUIsource config fsdbDumpPSLoff time eval lassign fsdbDumpClassObject gets fsdbDumpvarsToFile tcl_exit set_unix_variable restart start change llength variable constraints xprop bgerror fsdbDumpStrength call clock info apropos add_group fsdbSwitchDumpfile ucliDetachVerdi source GUI_tcl_shell_puts global tcheck initreg add_wave report_timing sos_fsdbDumpvars ipi_set_prop next drivers cd file lmap unload namespace loaddl unsetenv get_app_var fsdbDumpvarsES suppress_message vwait readline dict fsdbDisplay uplevel ipi_handle_free date set_group lset rename ipi_get quit sh_list_key_bindings do unsuppress_message define_proc_attributes error_info tclPkgSetup expr printPromptStr regsub onCheckpointCB csave fsdbDumpMDANow dtl_load ipi_init_play_tcl lsort fsdbDumpIO doFileChangeCB _synopsys_cci_alias writeHistoryLog cdisable string
+ucli% set ucliCore::resultTagsForVerdi [list <?special_verdi_begin?> <?special_verdi_end?>]
+<?special_verdi_begin?> <?special_verdi_end?>
+ucli% if {[catch {ucliCore::setFocus tool}]} {}
+
+ucli% if {[catch {get uvm_pkg.UVM_VERSION_STRING} result] == 0} {puts $result}
+
+ucli% senv hasTB
+0
+ucli% if {[catch {ucliCore::setFocus tool}]} {}
+
+ucli% fsdbDumpflush 
+*Verdi* : Flush all FSDB Files at 0 ps.
+
+ucli% senv
+activeDomain: Verilog
+activeFile: tb/robot_model_tb.sv
+activeFrame: 
+activeLine: 25
+activeScope: robot_model_tb
+activeThread: 
+endCol: 0
+file: tb/robot_model_tb.sv
+frame: 
+fsdbFilename: 
+hasTB: 0
+inputFilename: 
+keyFilename: ucli.key
+line: 25
+logFilename: /home/pedro.macedo/CI-EXPERT-UVM/workspace/labs/s6/prj/robot/verdiLog/sim.log
+macroIndex: -1
+macroOffset: -1
+pid: 4023466
+scope: robot_model_tb
+startCol: 0
+state: stopped
+thread: 
+time: 0
+timePrecision: 1 ps
+vcdFilename: 
+vpdFilename:
+ucli% synUtils::resolveSourceFilename tb/robot_model_tb.sv
+tb/robot_model_tb.sv
+ucli% puts $::ucliCore::cbug_active
+0
+
+ucli% if {[catch {ucliCore::setFocus tool}]} {}
+
+ucli% checkpoint -list -all
+There are no checkpoints present.
+ucli% stop
+No stop points are set
+ucli% if {[catch {ucliCore::setFocus tool}]} {}
+
+ucli% fsdbDumpvars 1 "robot_model_tb.dut"  +all +trace_process;fsdbDumpflush 
+*Verdi* : Begin traversing the scope (robot_model_tb.dut), layer (1).
+*Verdi* : Enable +trace_process and +all dumping.
+*Verdi* : End of traversing.
+*Verdi* : Flush all FSDB Files at 0 ps.
+
+ucli% if {[catch {ucliCore::setFocus tool}]} {}
+
+ucli% run
+<slp!&*()_+>
+
+========================================
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 653<sls!&*()_+>time: 0 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+        ROBOT SELF-CHECKING TB
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 654<sls!&*()_+>time: 0 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+========================================
+
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 655<sls!&*()_+>time: 0 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+Signal table:
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 290<sls!&*()_+>time: 0 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
++------------------+-------------------------------------------------------------+
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 291<sls!&*()_+>time: 0 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+| Column           | Signals                                                     |
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 292<sls!&*()_+>time: 0 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
++------------------+-------------------------------------------------------------+
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 293<sls!&*()_+>time: 0 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+| req[3:0]         | s3_req s2_req s1_req s0_req                                 |
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 294<sls!&*()_+>time: 0 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+| done[3:0]        | s3_unload_done s2_unload_done s1_unload_done s0_unload_done |
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 295<sls!&*()_+>time: 0 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+| unload[3:0]      | s3_unloadstart s2_unloadstart s1_unloadstart s0_unloadstart |
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 296<sls!&*()_+>time: 0 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+| main/load/unload | dut.curr_state dut.load_cstate dut.unload_cstate            |
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 297<sls!&*()_+>time: 0 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
++------------------+-------------------------------------------------------------+
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 298<sls!&*()_+>time: 0 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+Main FSM: WAIT_REQ=00, S0/S1=01, S2/S3=10
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 299<sls!&*()_+>time: 0 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+Load FSM: IDLE=00, WRIST_HOR=01, LOAD_ITEM=10, WRIST_VERT=11
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 300<sls!&*()_+>time: 0 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+Unload FSM: IDLE=000, JOINTA_RIGHT=001, JOINTC_DOWN=010,
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 301<sls!&*()_+>time: 0 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+            JOINTC_UP=011, RELEASE_CLAW=100, JOINTA_LEFT=110
+
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 302<sls!&*()_+>time: 0 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[PASS] MAIN_STATE_WIDTH              t=0 width=2
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 362<sls!&*()_+>time: 0 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[PASS] LOAD_STATE_WIDTH              t=0 width=2
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 371<sls!&*()_+>time: 0 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] UNLOAD_STATE_WIDTH            t=0 width=2 expected=3
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 384<sls!&*()_+>time: 0 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+
+========== LONG RESET ACTIVE/INACTIVE OBSERVATION ==========
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 434<sls!&*()_+>time: 0 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+*Verdi* WARNING: Env/runtime option has specified fsdbfile name as "/home/pedro.macedo/CI-EXPERT-UVM/workspace/labs/s6/prj/robot/inter.fsdb". Fsdbfile name in task "robot_model.fsdb" is ignored.
+*Verdi* : Begin traversing the scope (robot_model_tb), layer (0).
+*Verdi* : End of traversing.
+<slp!&*()_+>
+[FAIL] LONG_RESET_ACTIVE_LOW            t=16000 req=1010 done=1111 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 16000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] LONG_RESET_ACTIVE_LOW            t=26000 req=1010 done=1111 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 26000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] LONG_RESET_ACTIVE_LOW            t=36000 req=1010 done=1111 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 36000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] LONG_RESET_ACTIVE_LOW            t=46000 req=1010 done=1111 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 46000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] LONG_RESET_ACTIVE_LOW            t=56000 req=1010 done=1111 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 56000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] LONG_RESET_ACTIVE_LOW            t=66000 req=1010 done=1111 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 66000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] LONG_RESET_ACTIVE_LOW            t=76000 req=1010 done=1111 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 76000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] LONG_RESET_ACTIVE_LOW            t=86000 req=1010 done=1111 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 86000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] LONG_RESET_ACTIVE_LOW            t=96000 req=1010 done=1111 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 96000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] LONG_RESET_ACTIVE_LOW            t=106000 req=1010 done=1111 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 106000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] LONG_RESET_ACTIVE_LOW            t=116000 req=1010 done=1111 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 116000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] LONG_RESET_ACTIVE_LOW            t=126000 req=1010 done=1111 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 126000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] LONG_RESET_INACTIVE_IDLE         t=146000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 146000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] LONG_RESET_INACTIVE_IDLE         t=156000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 156000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] LONG_RESET_INACTIVE_IDLE         t=166000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 166000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] LONG_RESET_INACTIVE_IDLE         t=176000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 176000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] LONG_RESET_INACTIVE_IDLE         t=186000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 186000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] LONG_RESET_INACTIVE_IDLE         t=196000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 196000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] LONG_RESET_INACTIVE_IDLE         t=206000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 206000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] LONG_RESET_INACTIVE_IDLE         t=216000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 216000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] LONG_RESET_INACTIVE_IDLE         t=226000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 226000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] LONG_RESET_INACTIVE_IDLE         t=236000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 236000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] LONG_RESET_S0_LOAD_START         t=246000 req=0001 done=0000 | DUT out=(load=1 unload=1100) st=(01,01,001) | REF out=(load=1 unload=0000) st=(01,01,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 246000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] LONG_RESET_S0_LOAD_ITEM          t=256000 req=0001 done=0000 | DUT out=(load=0 unload=1000) st=(01,10,000) | REF out=(load=0 unload=0000) st=(01,10,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 256000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] LONG_RESET_S0_WRIST_VERT         t=266000 req=0001 done=0000 | DUT out=(load=0 unload=1111) st=(01,11,001) | REF out=(load=0 unload=0001) st=(01,11,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 266000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] LONG_RESET_S0_JOINTA_RIGHT       t=276000 req=0001 done=0000 | DUT out=(load=0 unload=1000) st=(01,00,000) | REF out=(load=0 unload=0001) st=(01,00,001)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 276000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] LONG_RESET_S0_RELEASE_CLAW       t=286000 req=0001 done=0000 | DUT out=(load=1 unload=1100) st=(01,01,001) | REF out=(load=0 unload=0001) st=(01,00,100)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 286000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] LONG_RESET_S0_DONE               t=296000 req=0001 done=0001 | DUT out=(load=0 unload=1000) st=(00,10,000) | REF out=(load=0 unload=0001) st=(00,00,110)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 296000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] LONG_RESET_S0_JOINTA_LEFT        t=306000 req=0000 done=0000 | DUT out=(load=0 unload=1011) st=(00,11,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 306000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] LONG_RESET_BACK_IDLE             t=316000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 316000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] RESET                            t=326000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 326000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] RESET                            t=336000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 336000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+
+========== VALID ONE-HOT REQUEST ENCODINGS ==========
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 466<sls!&*()_+>time: 340000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] RESET                            t=356000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 356000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] RESET                            t=366000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 366000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] VALID_ONEHOT_S0                  t=386000 req=0001 done=0000 | DUT out=(load=1 unload=1100) st=(01,01,001) | REF out=(load=1 unload=0000) st=(01,01,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 386000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] RESET                            t=396000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 396000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] RESET                            t=406000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 406000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] VALID_ONEHOT_S1                  t=426000 req=0010 done=0000 | DUT out=(load=1 unload=1100) st=(01,01,001) | REF out=(load=1 unload=0000) st=(01,01,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 426000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] RESET                            t=436000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 436000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] RESET                            t=446000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 446000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] VALID_ONEHOT_S2                  t=466000 req=0100 done=0000 | DUT out=(load=1 unload=1100) st=(10,01,001) | REF out=(load=1 unload=0000) st=(10,01,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 466000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] RESET                            t=476000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 476000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] RESET                            t=486000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 486000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] VALID_ONEHOT_S3                  t=506000 req=1000 done=0000 | DUT out=(load=1 unload=1100) st=(10,01,001) | REF out=(load=1 unload=0000) st=(10,01,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 506000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+
+========== OUT-OF-SPEC REQUEST ENCODINGS ==========
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 478<sls!&*()_+>time: 506000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] RESET                            t=516000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 516000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] RESET                            t=526000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 526000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] NO_REQUEST_STAYS_IDLE            t=546000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 546000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] RESET                            t=556000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 556000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] RESET                            t=566000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 566000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] MULTIPLE_REQ_IGNORED             t=586000 req=0011 done=0000 | DUT out=(load=1 unload=1100) st=(01,01,001) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 586000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] MULTIPLE_REQ_BACK_IDLE           t=596000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(01,10,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 596000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] RESET                            t=606000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 606000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] RESET                            t=616000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 616000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] MULTIPLE_REQ_IGNORED             t=636000 req=0101 done=0000 | DUT out=(load=1 unload=1100) st=(01,01,001) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 636000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] MULTIPLE_REQ_BACK_IDLE           t=646000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(01,10,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 646000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] RESET                            t=656000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 656000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] RESET                            t=666000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 666000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] MULTIPLE_REQ_IGNORED             t=686000 req=0110 done=0000 | DUT out=(load=1 unload=1100) st=(01,01,001) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 686000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] MULTIPLE_REQ_BACK_IDLE           t=696000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(01,10,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 696000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] RESET                            t=706000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 706000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] RESET                            t=716000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 716000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] MULTIPLE_REQ_IGNORED             t=736000 req=0111 done=0000 | DUT out=(load=1 unload=1100) st=(01,01,001) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 736000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] MULTIPLE_REQ_BACK_IDLE           t=746000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(01,10,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 746000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] RESET                            t=756000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 756000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] RESET                            t=766000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 766000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] MULTIPLE_REQ_IGNORED             t=786000 req=1001 done=0000 | DUT out=(load=1 unload=1100) st=(01,01,001) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 786000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] MULTIPLE_REQ_BACK_IDLE           t=796000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(01,10,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 796000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] RESET                            t=806000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 806000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] RESET                            t=816000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 816000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] MULTIPLE_REQ_IGNORED             t=836000 req=1010 done=0000 | DUT out=(load=1 unload=1100) st=(01,01,001) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 836000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] MULTIPLE_REQ_BACK_IDLE           t=846000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(01,10,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 846000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] RESET                            t=856000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 856000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] RESET                            t=866000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 866000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] MULTIPLE_REQ_IGNORED             t=886000 req=1011 done=0000 | DUT out=(load=1 unload=1100) st=(01,01,001) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 886000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] MULTIPLE_REQ_BACK_IDLE           t=896000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(01,10,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 896000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] RESET                            t=906000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 906000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] RESET                            t=916000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 916000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] MULTIPLE_REQ_IGNORED             t=936000 req=1100 done=0000 | DUT out=(load=1 unload=1100) st=(10,01,001) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 936000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] MULTIPLE_REQ_BACK_IDLE           t=946000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(10,10,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 946000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] RESET                            t=956000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 956000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] RESET                            t=966000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 966000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] MULTIPLE_REQ_IGNORED             t=986000 req=1101 done=0000 | DUT out=(load=1 unload=1100) st=(01,01,001) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 986000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] MULTIPLE_REQ_BACK_IDLE           t=996000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(01,10,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 996000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] RESET                            t=1006000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 1006000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] RESET                            t=1016000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 1016000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] MULTIPLE_REQ_IGNORED             t=1036000 req=1110 done=0000 | DUT out=(load=1 unload=1100) st=(01,01,001) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 1036000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] MULTIPLE_REQ_BACK_IDLE           t=1046000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(01,10,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 1046000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] RESET                            t=1056000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 1056000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] RESET                            t=1066000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 1066000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] MULTIPLE_REQ_IGNORED             t=1086000 req=1111 done=0000 | DUT out=(load=1 unload=1100) st=(01,01,001) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 1086000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] MULTIPLE_REQ_BACK_IDLE           t=1096000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(01,10,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 1096000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+
+========== OUT-OF-SPEC DONE WITHOUT REQUEST ==========
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 495<sls!&*()_+>time: 1096000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] RESET                            t=1106000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 1106000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] RESET                            t=1116000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 1116000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] DONE_WITHOUT_REQ_S0              t=1136000 req=0000 done=0001 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 1136000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] DONE_WITHOUT_REQ_S0_CLEAR        t=1146000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 1146000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] RESET                            t=1156000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 1156000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] RESET                            t=1166000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 1166000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] DONE_WITHOUT_REQ_S1              t=1186000 req=0000 done=0010 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 1186000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] DONE_WITHOUT_REQ_S1_CLEAR        t=1196000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 1196000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] RESET                            t=1206000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 1206000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] RESET                            t=1216000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 1216000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] DONE_WITHOUT_REQ_S2              t=1236000 req=0000 done=0100 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 1236000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] DONE_WITHOUT_REQ_S2_CLEAR        t=1246000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 1246000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] RESET                            t=1256000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 1256000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] RESET                            t=1266000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 1266000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] DONE_WITHOUT_REQ_S3              t=1286000 req=0000 done=1000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 1286000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] DONE_WITHOUT_REQ_S3_CLEAR        t=1296000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 1296000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+
+========== DIRECTED FSM TRANSITIONS ==========
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 595<sls!&*()_+>time: 1296000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] RESET                            t=1306000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 1306000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] RESET                            t=1316000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 1316000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+
+========== S0_HELD_REQ ==========
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 521<sls!&*()_+>time: 1320000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] S0_HELD_REQ_LOAD_START           t=1336000 req=0001 done=0000 | DUT out=(load=1 unload=1100) st=(01,01,001) | REF out=(load=1 unload=0000) st=(01,01,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 1336000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] S0_HELD_REQ_LOAD_ITEM            t=1346000 req=0001 done=0000 | DUT out=(load=0 unload=1000) st=(01,10,000) | REF out=(load=0 unload=0000) st=(01,10,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 1346000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] S0_HELD_REQ_WRIST_VERT           t=1356000 req=0001 done=0000 | DUT out=(load=0 unload=1111) st=(01,11,001) | REF out=(load=0 unload=0001) st=(01,11,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 1356000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] S0_HELD_REQ_JOINTA_RIGHT         t=1366000 req=0001 done=0000 | DUT out=(load=0 unload=1000) st=(01,00,000) | REF out=(load=0 unload=0001) st=(01,00,001)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 1366000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] S0_HELD_REQ_RELEASE_CLAW         t=1376000 req=0001 done=0000 | DUT out=(load=1 unload=1100) st=(01,01,001) | REF out=(load=0 unload=0001) st=(01,00,100)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 1376000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] S0_HELD_REQ_DONE                 t=1386000 req=0001 done=0001 | DUT out=(load=0 unload=1000) st=(00,10,000) | REF out=(load=0 unload=0001) st=(00,00,110)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 1386000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] S0_HELD_REQ_JOINTA_LEFT          t=1396000 req=0000 done=0000 | DUT out=(load=0 unload=1011) st=(00,11,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 1396000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] S0_HELD_REQ_BACK_IDLE            t=1406000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 1406000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] RESET                            t=1416000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 1416000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] RESET                            t=1426000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 1426000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+
+========== S1_HELD_REQ ==========
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 521<sls!&*()_+>time: 1430000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] S1_HELD_REQ_LOAD_START           t=1446000 req=0010 done=0000 | DUT out=(load=1 unload=1100) st=(01,01,001) | REF out=(load=1 unload=0000) st=(01,01,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 1446000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] S1_HELD_REQ_LOAD_ITEM            t=1456000 req=0010 done=0000 | DUT out=(load=0 unload=1000) st=(01,10,010) | REF out=(load=0 unload=0000) st=(01,10,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 1456000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] S1_HELD_REQ_WRIST_VERT           t=1466000 req=0010 done=0000 | DUT out=(load=0 unload=1011) st=(01,11,000) | REF out=(load=0 unload=0010) st=(01,11,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 1466000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] S1_HELD_REQ_JOINTA_RIGHT         t=1476000 req=0010 done=0000 | DUT out=(load=0 unload=1100) st=(01,00,001) | REF out=(load=0 unload=0010) st=(01,00,001)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 1476000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] S1_HELD_REQ_JOINTC_DOWN          t=1486000 req=0010 done=0000 | DUT out=(load=1 unload=1000) st=(01,01,010) | REF out=(load=0 unload=0010) st=(01,00,010)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 1486000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] S1_HELD_REQ_RELEASE_CLAW         t=1496000 req=0010 done=0000 | DUT out=(load=0 unload=1000) st=(01,10,000) | REF out=(load=0 unload=0010) st=(01,00,100)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 1496000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] S1_HELD_REQ_JOINTC_UP            t=1506000 req=0010 done=0000 | DUT out=(load=0 unload=1111) st=(01,11,001) | REF out=(load=0 unload=0010) st=(01,00,011)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 1506000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] S1_HELD_REQ_DONE                 t=1516000 req=0010 done=0010 | DUT out=(load=0 unload=1000) st=(00,00,010) | REF out=(load=0 unload=0010) st=(00,00,110)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 1516000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] S1_HELD_REQ_JOINTA_LEFT          t=1526000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 1526000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] S1_HELD_REQ_BACK_IDLE            t=1536000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 1536000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] RESET                            t=1546000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 1546000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] RESET                            t=1556000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 1556000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+
+========== S2_HELD_REQ ==========
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 521<sls!&*()_+>time: 1560000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] S2_HELD_REQ_LOAD_START           t=1576000 req=0100 done=0000 | DUT out=(load=1 unload=1100) st=(10,01,001) | REF out=(load=1 unload=0000) st=(10,01,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 1576000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] S2_HELD_REQ_LOAD_ITEM            t=1586000 req=0100 done=0000 | DUT out=(load=0 unload=1000) st=(10,10,000) | REF out=(load=0 unload=0000) st=(10,10,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 1586000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] S2_HELD_REQ_WRIST_VERT           t=1596000 req=0100 done=0000 | DUT out=(load=0 unload=1111) st=(10,11,001) | REF out=(load=0 unload=0100) st=(10,11,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 1596000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] S2_HELD_REQ_JOINTA_RIGHT         t=1606000 req=0100 done=0000 | DUT out=(load=0 unload=1000) st=(10,00,000) | REF out=(load=0 unload=0100) st=(10,00,001)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 1606000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] S2_HELD_REQ_RELEASE_CLAW         t=1616000 req=0100 done=0000 | DUT out=(load=1 unload=1100) st=(10,01,001) | REF out=(load=0 unload=0100) st=(10,00,100)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 1616000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] S2_HELD_REQ_DONE                 t=1626000 req=0100 done=0100 | DUT out=(load=0 unload=1000) st=(00,10,000) | REF out=(load=0 unload=0100) st=(00,00,110)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 1626000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] S2_HELD_REQ_JOINTA_LEFT          t=1636000 req=0000 done=0000 | DUT out=(load=0 unload=1011) st=(00,11,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 1636000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] S2_HELD_REQ_BACK_IDLE            t=1646000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 1646000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] RESET                            t=1656000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 1656000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] RESET                            t=1666000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 1666000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+
+========== S3_HELD_REQ ==========
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 521<sls!&*()_+>time: 1670000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] S3_HELD_REQ_LOAD_START           t=1686000 req=1000 done=0000 | DUT out=(load=1 unload=1100) st=(10,01,001) | REF out=(load=1 unload=0000) st=(10,01,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 1686000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] S3_HELD_REQ_LOAD_ITEM            t=1696000 req=1000 done=0000 | DUT out=(load=0 unload=1000) st=(10,10,010) | REF out=(load=0 unload=0000) st=(10,10,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 1696000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] S3_HELD_REQ_WRIST_VERT           t=1706000 req=1000 done=0000 | DUT out=(load=0 unload=1011) st=(10,11,000) | REF out=(load=0 unload=1000) st=(10,11,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 1706000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] S3_HELD_REQ_JOINTA_RIGHT         t=1716000 req=1000 done=0000 | DUT out=(load=0 unload=1100) st=(10,00,001) | REF out=(load=0 unload=1000) st=(10,00,001)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 1716000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] S3_HELD_REQ_JOINTC_DOWN          t=1726000 req=1000 done=0000 | DUT out=(load=1 unload=1000) st=(10,01,010) | REF out=(load=0 unload=1000) st=(10,00,010)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 1726000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] S3_HELD_REQ_RELEASE_CLAW         t=1736000 req=1000 done=0000 | DUT out=(load=0 unload=1000) st=(10,10,000) | REF out=(load=0 unload=1000) st=(10,00,100)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 1736000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] S3_HELD_REQ_JOINTC_UP            t=1746000 req=1000 done=0000 | DUT out=(load=0 unload=1111) st=(10,11,001) | REF out=(load=0 unload=1000) st=(10,00,011)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 1746000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] S3_HELD_REQ_DONE                 t=1756000 req=1000 done=1000 | DUT out=(load=0 unload=1000) st=(00,00,010) | REF out=(load=0 unload=1000) st=(00,00,110)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 1756000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] S3_HELD_REQ_JOINTA_LEFT          t=1766000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 1766000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] S3_HELD_REQ_BACK_IDLE            t=1776000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 1776000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] RESET                            t=1786000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 1786000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] RESET                            t=1796000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 1796000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+
+========== S0_PULSE_REQ ==========
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 521<sls!&*()_+>time: 1800000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] S0_PULSE_REQ_LOAD_START          t=1816000 req=0001 done=0000 | DUT out=(load=1 unload=1100) st=(01,01,001) | REF out=(load=1 unload=0000) st=(01,01,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 1816000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] S0_PULSE_REQ_LOAD_ITEM           t=1826000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(01,10,000) | REF out=(load=0 unload=0000) st=(01,10,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 1826000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] S0_PULSE_REQ_WRIST_VERT          t=1836000 req=0000 done=0000 | DUT out=(load=0 unload=1011) st=(01,11,000) | REF out=(load=0 unload=0001) st=(01,11,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 1836000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] S0_PULSE_REQ_JOINTA_RIGHT        t=1846000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(01,00,000) | REF out=(load=0 unload=0001) st=(01,00,001)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 1846000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] S0_PULSE_REQ_RELEASE_CLAW        t=1856000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(01,00,000) | REF out=(load=0 unload=0001) st=(01,00,100)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 1856000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] S0_PULSE_REQ_DONE                t=1866000 req=0000 done=0001 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0001) st=(00,00,110)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 1866000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] S0_PULSE_REQ_JOINTA_LEFT         t=1876000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 1876000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] S0_PULSE_REQ_BACK_IDLE           t=1886000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 1886000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] RESET                            t=1896000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 1896000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] RESET                            t=1906000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 1906000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+
+========== S1_PULSE_REQ ==========
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 521<sls!&*()_+>time: 1910000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] S1_PULSE_REQ_LOAD_START          t=1926000 req=0010 done=0000 | DUT out=(load=1 unload=1100) st=(01,01,001) | REF out=(load=1 unload=0000) st=(01,01,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 1926000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] S1_PULSE_REQ_LOAD_ITEM           t=1936000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(01,10,000) | REF out=(load=0 unload=0000) st=(01,10,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 1936000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] S1_PULSE_REQ_WRIST_VERT          t=1946000 req=0000 done=0000 | DUT out=(load=0 unload=1011) st=(01,11,000) | REF out=(load=0 unload=0010) st=(01,11,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 1946000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] S1_PULSE_REQ_JOINTA_RIGHT        t=1956000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(01,00,000) | REF out=(load=0 unload=0010) st=(01,00,001)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 1956000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] S1_PULSE_REQ_JOINTC_DOWN         t=1966000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(01,00,000) | REF out=(load=0 unload=0010) st=(01,00,010)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 1966000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] S1_PULSE_REQ_RELEASE_CLAW        t=1976000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(01,00,000) | REF out=(load=0 unload=0010) st=(01,00,100)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 1976000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] S1_PULSE_REQ_JOINTC_UP           t=1986000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(01,00,000) | REF out=(load=0 unload=0010) st=(01,00,011)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 1986000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] S1_PULSE_REQ_DONE                t=1996000 req=0000 done=0010 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0010) st=(00,00,110)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 1996000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] S1_PULSE_REQ_JOINTA_LEFT         t=2006000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 2006000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] S1_PULSE_REQ_BACK_IDLE           t=2016000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 2016000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] RESET                            t=2026000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 2026000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] RESET                            t=2036000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 2036000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+
+========== S2_PULSE_REQ ==========
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 521<sls!&*()_+>time: 2040000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] S2_PULSE_REQ_LOAD_START          t=2056000 req=0100 done=0000 | DUT out=(load=1 unload=1100) st=(10,01,001) | REF out=(load=1 unload=0000) st=(10,01,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 2056000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] S2_PULSE_REQ_LOAD_ITEM           t=2066000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(10,10,000) | REF out=(load=0 unload=0000) st=(10,10,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 2066000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] S2_PULSE_REQ_WRIST_VERT          t=2076000 req=0000 done=0000 | DUT out=(load=0 unload=1011) st=(10,11,000) | REF out=(load=0 unload=0100) st=(10,11,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 2076000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] S2_PULSE_REQ_JOINTA_RIGHT        t=2086000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(10,00,000) | REF out=(load=0 unload=0100) st=(10,00,001)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 2086000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] S2_PULSE_REQ_RELEASE_CLAW        t=2096000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(10,00,000) | REF out=(load=0 unload=0100) st=(10,00,100)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 2096000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] S2_PULSE_REQ_DONE                t=2106000 req=0000 done=0100 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0100) st=(00,00,110)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 2106000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] S2_PULSE_REQ_JOINTA_LEFT         t=2116000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 2116000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] S2_PULSE_REQ_BACK_IDLE           t=2126000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 2126000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] RESET                            t=2136000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 2136000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] RESET                            t=2146000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 2146000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+
+========== S3_PULSE_REQ ==========
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 521<sls!&*()_+>time: 2150000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] S3_PULSE_REQ_LOAD_START          t=2166000 req=1000 done=0000 | DUT out=(load=1 unload=1100) st=(10,01,001) | REF out=(load=1 unload=0000) st=(10,01,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 2166000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] S3_PULSE_REQ_LOAD_ITEM           t=2176000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(10,10,000) | REF out=(load=0 unload=0000) st=(10,10,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 2176000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] S3_PULSE_REQ_WRIST_VERT          t=2186000 req=0000 done=0000 | DUT out=(load=0 unload=1011) st=(10,11,000) | REF out=(load=0 unload=1000) st=(10,11,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 2186000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] S3_PULSE_REQ_JOINTA_RIGHT        t=2196000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(10,00,000) | REF out=(load=0 unload=1000) st=(10,00,001)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 2196000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] S3_PULSE_REQ_JOINTC_DOWN         t=2206000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(10,00,000) | REF out=(load=0 unload=1000) st=(10,00,010)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 2206000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] S3_PULSE_REQ_RELEASE_CLAW        t=2216000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(10,00,000) | REF out=(load=0 unload=1000) st=(10,00,100)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 2216000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] S3_PULSE_REQ_JOINTC_UP           t=2226000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(10,00,000) | REF out=(load=0 unload=1000) st=(10,00,011)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 2226000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] S3_PULSE_REQ_DONE                t=2236000 req=0000 done=1000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=1000) st=(00,00,110)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 2236000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] S3_PULSE_REQ_JOINTA_LEFT         t=2246000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 2246000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] S3_PULSE_REQ_BACK_IDLE           t=2256000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 2256000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] RESET                            t=2266000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 2266000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] RESET                            t=2276000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 2276000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+
+========== WRONG DONE DURING S0 SERVICE ==========
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 560<sls!&*()_+>time: 2280000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] WRONG_DONE_LOAD_START            t=2296000 req=0001 done=0000 | DUT out=(load=1 unload=1100) st=(01,01,001) | REF out=(load=1 unload=0000) st=(01,01,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 2296000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] WRONG_DONE_LOAD_ITEM             t=2306000 req=0001 done=0000 | DUT out=(load=0 unload=1000) st=(01,10,000) | REF out=(load=0 unload=0000) st=(01,10,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 2306000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] WRONG_DONE_WRIST_VERT            t=2316000 req=0001 done=0000 | DUT out=(load=0 unload=1111) st=(01,11,001) | REF out=(load=0 unload=0001) st=(01,11,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 2316000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] WRONG_DONE_JOINTA_RIGHT          t=2326000 req=0001 done=0000 | DUT out=(load=0 unload=1000) st=(01,00,000) | REF out=(load=0 unload=0001) st=(01,00,001)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 2326000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] WRONG_DONE_IGNORED               t=2336000 req=0001 done=0010 | DUT out=(load=1 unload=1100) st=(00,01,001) | REF out=(load=0 unload=0001) st=(01,00,100)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 2336000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] WRONG_DONE_STILL_WAITING         t=2346000 req=0001 done=0000 | DUT out=(load=0 unload=1000) st=(01,10,000) | REF out=(load=0 unload=0001) st=(01,00,100)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 2346000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] RIGHT_DONE_ACCEPTED              t=2356000 req=0001 done=0001 | DUT out=(load=0 unload=1111) st=(00,11,001) | REF out=(load=0 unload=0001) st=(00,00,110)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 2356000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] RESET                            t=2366000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 2366000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] RESET                            t=2376000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 2376000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+
+========== WRONG DONE DURING S1 SERVICE ==========
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 560<sls!&*()_+>time: 2380000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] WRONG_DONE_LOAD_START            t=2396000 req=0010 done=0000 | DUT out=(load=1 unload=1100) st=(01,01,001) | REF out=(load=1 unload=0000) st=(01,01,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 2396000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] WRONG_DONE_LOAD_ITEM             t=2406000 req=0010 done=0000 | DUT out=(load=0 unload=1000) st=(01,10,010) | REF out=(load=0 unload=0000) st=(01,10,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 2406000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] WRONG_DONE_WRIST_VERT            t=2416000 req=0010 done=0000 | DUT out=(load=0 unload=1011) st=(01,11,000) | REF out=(load=0 unload=0010) st=(01,11,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 2416000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] WRONG_DONE_JOINTA_RIGHT          t=2426000 req=0010 done=0000 | DUT out=(load=0 unload=1100) st=(01,00,001) | REF out=(load=0 unload=0010) st=(01,00,001)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 2426000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] WRONG_DONE_JOINTC_DOWN           t=2436000 req=0010 done=0000 | DUT out=(load=1 unload=1000) st=(01,01,010) | REF out=(load=0 unload=0010) st=(01,00,010)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 2436000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] WRONG_DONE_IGNORED               t=2446000 req=0010 done=0100 | DUT out=(load=0 unload=1000) st=(00,10,000) | REF out=(load=0 unload=0010) st=(01,00,100)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 2446000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] WRONG_DONE_STILL_WAITING         t=2456000 req=0010 done=0000 | DUT out=(load=0 unload=1111) st=(01,11,001) | REF out=(load=0 unload=0010) st=(01,00,011)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 2456000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] WRONG_DONE_JOINTC_UP             t=2466000 req=0010 done=0000 | DUT out=(load=0 unload=1000) st=(01,00,010) | REF out=(load=0 unload=0010) st=(01,00,011)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 2466000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] RIGHT_DONE_ACCEPTED              t=2476000 req=0010 done=0010 | DUT out=(load=1 unload=1000) st=(00,01,000) | REF out=(load=0 unload=0010) st=(00,00,110)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 2476000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] RESET                            t=2486000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 2486000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] RESET                            t=2496000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 2496000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+
+========== WRONG DONE DURING S2 SERVICE ==========
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 560<sls!&*()_+>time: 2500000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] WRONG_DONE_LOAD_START            t=2516000 req=0100 done=0000 | DUT out=(load=1 unload=1100) st=(10,01,001) | REF out=(load=1 unload=0000) st=(10,01,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 2516000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] WRONG_DONE_LOAD_ITEM             t=2526000 req=0100 done=0000 | DUT out=(load=0 unload=1000) st=(10,10,000) | REF out=(load=0 unload=0000) st=(10,10,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 2526000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] WRONG_DONE_WRIST_VERT            t=2536000 req=0100 done=0000 | DUT out=(load=0 unload=1111) st=(10,11,001) | REF out=(load=0 unload=0100) st=(10,11,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 2536000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] WRONG_DONE_JOINTA_RIGHT          t=2546000 req=0100 done=0000 | DUT out=(load=0 unload=1000) st=(10,00,000) | REF out=(load=0 unload=0100) st=(10,00,001)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 2546000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] WRONG_DONE_IGNORED               t=2556000 req=0100 done=1000 | DUT out=(load=1 unload=1100) st=(00,01,001) | REF out=(load=0 unload=0100) st=(10,00,100)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 2556000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] WRONG_DONE_STILL_WAITING         t=2566000 req=0100 done=0000 | DUT out=(load=0 unload=1000) st=(10,10,000) | REF out=(load=0 unload=0100) st=(10,00,100)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 2566000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] RIGHT_DONE_ACCEPTED              t=2576000 req=0100 done=0100 | DUT out=(load=0 unload=1111) st=(00,11,001) | REF out=(load=0 unload=0100) st=(00,00,110)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 2576000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] RESET                            t=2586000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 2586000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] RESET                            t=2596000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 2596000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+
+========== WRONG DONE DURING S3 SERVICE ==========
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 560<sls!&*()_+>time: 2600000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] WRONG_DONE_LOAD_START            t=2616000 req=1000 done=0000 | DUT out=(load=1 unload=1100) st=(10,01,001) | REF out=(load=1 unload=0000) st=(10,01,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 2616000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] WRONG_DONE_LOAD_ITEM             t=2626000 req=1000 done=0000 | DUT out=(load=0 unload=1000) st=(10,10,010) | REF out=(load=0 unload=0000) st=(10,10,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 2626000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] WRONG_DONE_WRIST_VERT            t=2636000 req=1000 done=0000 | DUT out=(load=0 unload=1011) st=(10,11,000) | REF out=(load=0 unload=1000) st=(10,11,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 2636000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] WRONG_DONE_JOINTA_RIGHT          t=2646000 req=1000 done=0000 | DUT out=(load=0 unload=1100) st=(10,00,001) | REF out=(load=0 unload=1000) st=(10,00,001)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 2646000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] WRONG_DONE_JOINTC_DOWN           t=2656000 req=1000 done=0000 | DUT out=(load=1 unload=1000) st=(10,01,010) | REF out=(load=0 unload=1000) st=(10,00,010)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 2656000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] WRONG_DONE_IGNORED               t=2666000 req=1000 done=0001 | DUT out=(load=0 unload=1000) st=(00,10,000) | REF out=(load=0 unload=1000) st=(10,00,100)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 2666000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] WRONG_DONE_STILL_WAITING         t=2676000 req=1000 done=0000 | DUT out=(load=0 unload=1111) st=(10,11,001) | REF out=(load=0 unload=1000) st=(10,00,011)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 2676000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] WRONG_DONE_JOINTC_UP             t=2686000 req=1000 done=0000 | DUT out=(load=0 unload=1000) st=(10,00,010) | REF out=(load=0 unload=1000) st=(10,00,011)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 2686000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] RIGHT_DONE_ACCEPTED              t=2696000 req=1000 done=1000 | DUT out=(load=1 unload=1000) st=(00,01,000) | REF out=(load=0 unload=1000) st=(00,00,110)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 2696000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+
+========== OUT-OF-SPEC REQUEST CHANGES DURING OPERATION ==========
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 581<sls!&*()_+>time: 2696000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] RESET                            t=2706000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 2706000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] RESET                            t=2716000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 2716000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] REQ_CHANGE_S0_START              t=2736000 req=0001 done=0000 | DUT out=(load=1 unload=1100) st=(01,01,001) | REF out=(load=1 unload=0000) st=(01,01,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 2736000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] REQ_CHANGE_TO_S1_IGNORED         t=2746000 req=0010 done=0000 | DUT out=(load=0 unload=1000) st=(01,10,010) | REF out=(load=0 unload=0000) st=(01,10,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 2746000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] REQ_CHANGE_TO_S2_IGNORED         t=2756000 req=0100 done=0000 | DUT out=(load=0 unload=1011) st=(01,11,000) | REF out=(load=0 unload=0001) st=(01,11,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 2756000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] REQ_CHANGE_TO_S3_IGNORED         t=2766000 req=1000 done=0000 | DUT out=(load=0 unload=1100) st=(01,00,001) | REF out=(load=0 unload=0001) st=(01,00,001)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 2766000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] REQ_CHANGE_RELEASE_REQ           t=2776000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(01,00,000) | REF out=(load=0 unload=0001) st=(01,00,100)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 2776000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] REQ_CHANGE_S0_DONE               t=2786000 req=0000 done=0001 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0001) st=(00,00,110)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 2786000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] REQ_CHANGE_BACK_IDLE             t=2796000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 341<sls!&*()_+>time: 2796000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+
+========== STATE ENCODING COVERAGE ==========
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 605<sls!&*()_+>time: 2796000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+main_state[0]=1 load_state[0]=1
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 607<sls!&*()_+>time: 2796000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+main_state[1]=1 load_state[1]=1
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 607<sls!&*()_+>time: 2796000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+main_state[2]=1 load_state[2]=1
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 607<sls!&*()_+>time: 2796000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+main_state[3]=0 load_state[3]=1
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 607<sls!&*()_+>time: 2796000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+unload_state[0]=1
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 611<sls!&*()_+>time: 2796000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+unload_state[1]=1
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 611<sls!&*()_+>time: 2796000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+unload_state[2]=1
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 611<sls!&*()_+>time: 2796000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+unload_state[3]=0
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 611<sls!&*()_+>time: 2796000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+unload_state[4]=0
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 611<sls!&*()_+>time: 2796000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+unload_state[5]=0
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 611<sls!&*()_+>time: 2796000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+unload_state[6]=0
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 611<sls!&*()_+>time: 2796000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+unload_state[7]=0
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 611<sls!&*()_+>time: 2796000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+
+========== STATE ENCODING CHECKS ==========
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 613<sls!&*()_+>time: 2796000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[PASS] MAIN_STATE_ENCODING_0       observed
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 618<sls!&*()_+>time: 2796000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[PASS] MAIN_STATE_ENCODING_1       observed
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 618<sls!&*()_+>time: 2796000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[PASS] MAIN_STATE_ENCODING_2       observed
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 618<sls!&*()_+>time: 2796000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[PASS] LOAD_STATE_ENCODING_0       observed
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 629<sls!&*()_+>time: 2796000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[PASS] LOAD_STATE_ENCODING_1       observed
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 629<sls!&*()_+>time: 2796000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[PASS] LOAD_STATE_ENCODING_2       observed
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 629<sls!&*()_+>time: 2796000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[PASS] LOAD_STATE_ENCODING_3       observed
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 629<sls!&*()_+>time: 2796000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[PASS] UNLOAD_STATE_ENCODING_0     observed
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 643<sls!&*()_+>time: 2796000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[PASS] UNLOAD_STATE_ENCODING_1     observed
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 643<sls!&*()_+>time: 2796000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[PASS] UNLOAD_STATE_ENCODING_2     observed
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 643<sls!&*()_+>time: 2796000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] UNLOAD_STATE_ENCODING_3     not observed
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 647<sls!&*()_+>time: 2796000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] UNLOAD_STATE_ENCODING_4     not observed
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 647<sls!&*()_+>time: 2796000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+[FAIL] UNLOAD_STATE_ENCODING_6     not observed
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 647<sls!&*()_+>time: 2796000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+
+================ SUMMARY ================
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 682<sls!&*()_+>time: 2796000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+PASS: 12
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 683<sls!&*()_+>time: 2796000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+FAIL: 248
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 684<sls!&*()_+>time: 2796000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+<slp!&*()_+>
+=========================================
+
+<slb!&*()_+>---<sls!&*()_+>loc: -1<sls!&*()_+>src: tb/robot_model_tb.sv<sls!&*()_+>line: 685<sls!&*()_+>time: 2796000 ps<sls!&*()_+>length: 0<sls!&*()_+>...<sls!&*()_+><sle!&*()_+>
+$finish called from file "tb/robot_model_tb.sv", line 688.
+$finish at simulation time              2846000
+Simulation complete, time is 2846000 ps.
+robot_model_tb.sv, 688 :         $finish;
+
+ucli% synEnv::hasFataled
+0
+ucli% ucliCore::getToolPID
+4023466
+ucli% save::getUserdefinedProcs
+::stateVerdiChangeCB ::LoadFSDBDumpCmd
+ucli% if {[catch {ucliCore::setFocus tool}]} {}
+
+ucli% fsdbDumpflush 
+*Verdi* : Flush all FSDB Files at 2,846,000 ps.
+
+ucli% senv
+activeDomain: Verilog
+activeFile: tb/robot_model_tb.sv
+activeFrame: 
+activeLine: 688
+activeScope: robot_model_tb
+activeThread: 
+endCol: 0
+file: tb/robot_model_tb.sv
+frame: 
+fsdbFilename: 
+hasTB: 0
+inputFilename: 
+keyFilename: ucli.key
+line: 688
+logFilename: /home/pedro.macedo/CI-EXPERT-UVM/workspace/labs/s6/prj/robot/verdiLog/sim.log
+macroIndex: -1
+macroOffset: -1
+pid: 4023466
+scope: robot_model_tb
+startCol: 0
+state: stopped
+thread: 
+time: 2846000
+timePrecision: 1 ps
+vcdFilename: 
+vpdFilename:
+ucli% synUtils::resolveSourceFilename tb/robot_model_tb.sv
+tb/robot_model_tb.sv
+ucli% puts $::ucliCore::cbug_active
+0
+
+ucli% if {[catch {ucliCore::setFocus tool}]} {}
+
+ucli% checkpoint -list -all
+There are no checkpoints present.
+ucli% if {[catch {ucliCore::setFocus tool}]} {}
+
+ucli% stop
+No stop points are set
+ucli% if {[catch {ucliCore::setFocus tool}]} {}
+
+ucli% fsdbDumpvars 0 "robot_model_tb.dut.next_station\[1:0\]"  +all +trace_process
+*Verdi* ERROR: The #2 argument "robot_model_tb.dut.next_station[1:0]" is invalid
+*Verdi* ERROR: Failed to dump because the specified instance or option is not correct
+*Verdi* ERROR: Syntax - fsdbDumpvars [depth] [instance] [option]*
+
+ucli% fsdbDumpflush 
+*Verdi* : Flush all FSDB Files at 2,846,000 ps.
+
+ucli% fsdbDumpvars 0 "robot_model_tb.dut.station\[1:0\]"  +all +trace_process
+*Verdi* ERROR: The #2 argument "robot_model_tb.dut.station[1:0]" is invalid
+*Verdi* ERROR: Failed to dump because the specified instance or option is not correct
+*Verdi* ERROR: Syntax - fsdbDumpvars [depth] [instance] [option]*
+
+ucli% fsdbDumpflush 
+*Verdi* : Flush all FSDB Files at 2,846,000 ps.
+
+ucli% fsdbDumpvars 0 "robot_model_tb.dut.unload_cstate"  +all +trace_process
+*Verdi* : Dumping the signal (robot_model_tb.dut.unload_cstate).
+
+ucli% fsdbDumpflush 
+*Verdi* : Flush all FSDB Files at 2,846,000 ps.
+
+ucli% fsdbDumpvars 0 "robot_model_tb.dut.unload_nstate"  +all +trace_process
+*Verdi* : Dumping the signal (robot_model_tb.dut.unload_nstate).
+
+ucli% fsdbDumpflush 
+*Verdi* : Flush all FSDB Files at 2,846,000 ps.
+
+ucli% if {[catch {ucliCore::setFocus tool}]} {}
+
+ucli% 
