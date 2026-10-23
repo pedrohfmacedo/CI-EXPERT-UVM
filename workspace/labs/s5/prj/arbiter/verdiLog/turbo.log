@@ -1,0 +1,4 @@
+Command Line: /Tools/synopsys/verdi/X-2025.06-SP2/platform/LINUXAMD64/bin/Novas -play cmd/arbiterfsm.cmd
+uname(Linux microeletronica 4.18.0-477.27.1.el8_8.x86_64 #1 SMP Thu Aug 31 10:29:22 EDT 2023 x86_64)
+KdbImportParallelMixAllLib time 0.003215 0.000830 0.003042 delta 30720000 30720000 total 1290625024 1290625024
+au time 8469.576856 13.722218 6.662295 delta 255594496 255594496 total 1335545856 1335545856

@@ -1,0 +1,58 @@
+simSetSimulator "-vcssv" -exec "./simv" -args " " -uvmDebug on
+debImport "-i" "-simflow" "-dbdir" "./simv.daidir"
+srcTBInvokeSim
+verdiSetActWin -dock widgetDock_<Member>
+verdiSetActWin -dock widgetDock_MTB_SOURCE_TAB_1
+wvCreateWindow
+verdiSetActWin -win $_nWave3
+srcHBDrag -win $_nTrace1
+verdiSetActWin -dock widgetDock_<Inst._Tree>
+wvDumpScope "tb_mux8x1.dut"
+wvSetPosition -win $_nWave3 {("dut" 0)}
+wvRenameGroup -win $_nWave3 {G1} {dut}
+wvAddSignal -win $_nWave3 "/tb_mux8x1/dut/clk" "/tb_mux8x1/dut/rstn" \
+           "/tb_mux8x1/dut/en" "/tb_mux8x1/dut/din\[7:0\]" \
+           "/tb_mux8x1/dut/sel\[2:0\]" "/tb_mux8x1/dut/dout"
+wvSetPosition -win $_nWave3 {("dut" 0)}
+wvSetPosition -win $_nWave3 {("dut" 6)}
+wvSetPosition -win $_nWave3 {("dut" 6)}
+srcTBRunSim
+wvZoomOut -win $_nWave3
+wvZoomOut -win $_nWave3
+wvScrollDown -win $_nWave3 0
+verdiDockWidgetMaximize -dock windowDock_nWave_3
+verdiSetActWin -win $_nWave3
+wvZoomIn -win $_nWave3
+wvZoomIn -win $_nWave3
+wvZoomIn -win $_nWave3
+wvZoomOut -win $_nWave3
+wvZoomOut -win $_nWave3
+wvZoomOut -win $_nWave3
+wvZoomOut -win $_nWave3
+wvZoomOut -win $_nWave3
+wvZoomOut -win $_nWave3
+wvZoomOut -win $_nWave3
+wvZoomIn -win $_nWave3
+wvZoomOut -win $_nWave3
+wvSetCursor -win $_nWave3 5135.752156 -snap {("dut" 1)}
+wvSelectSignal -win $_nWave3 {( "dut" 1 )} 
+wvSelectSignal -win $_nWave3 {( "dut" 1 )} 
+wvSelectSignal -win $_nWave3 {( "dut" 3 )} 
+wvSetCursor -win $_nWave3 24035.320088 -snap {("dut" 0)}
+wvSetCursor -win $_nWave3 25678.760778 -snap {("dut" 1)}
+srcActiveTrace "tb_mux8x1.dut.clk" -TraceByDConWave -TraceTime 25000 -TraceValue \
+           1 -win $_nTrace1
+verdiSetActWin -dock widgetDock_MTB_SOURCE_TAB_1
+wvScrollDown -win $_nWave3 0
+wvSetCursor -win $_nWave3 4519.461897 -snap {("dut" 0)}
+verdiSetActWin -win $_nWave3
+wvZoom -win $_nWave3 410.860172 3081.451293
+wvZoomOut -win $_nWave3
+wvZoomOut -win $_nWave3
+wvZoomOut -win $_nWave3
+wvZoomOut -win $_nWave3
+wvZoomOut -win $_nWave3
+wvZoomOut -win $_nWave3
+wvZoomOut -win $_nWave3
+nsMsgSwitchTab -tab general
+debExit

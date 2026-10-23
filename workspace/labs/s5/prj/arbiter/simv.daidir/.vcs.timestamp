@@ -1,0 +1,123 @@
+0
+37
++itf+/Tools/synopsys/vcs/X-2025.06-SP2/linux64/lib/vcsdp_lite.tab
++vcsd1
++vpi
+-Mamsrun=
+-Masflags=
+-Mcc=gcc
+-Mcfl= -pipe -fPIC -O -I/Tools/synopsys/vcs/X-2025.06-SP2/include
+-Mcplusplus=g++
+-Mcrt0=
+-Mcrtn=
+-Mcsrc=
+-Mexternalobj=
+-Mldflags= -rdynamic
+-Mobjects= /Tools/synopsys/vcs/X-2025.06-SP2/linux64/lib/libvirsim.so /Tools/synopsys/vcs/X-2025.06-SP2/linux64/lib/liberrorinf.so /Tools/synopsys/vcs/X-2025.06-SP2/linux64/lib/libsnpsmalloc.so /Tools/synopsys/vcs/X-2025.06-SP2/linux64/lib/libvfs.so
+-Mout=simv
+-Msaverestoreobj=/Tools/synopsys/vcs/X-2025.06-SP2/linux64/lib/vcs_save_restore_new.o
+-Msyslibs=/Tools/synopsys/verdi/X-2025.06-SP2/share/PLI/VCS/LINUX64/pli.a -ldl
+-Mvcsaceobjs=
+-Mxcflags= -pipe -fPIC -I/Tools/synopsys/vcs/X-2025.06-SP2/include
+-Mxllcflags=
+-P
+-Xhdlxmropt
+-Xufe=2steps
+-debug_access+all
+-fsdb
+-full64
+-gen_obj
+-kdb
+-l
+-picarchive
+-sverilog
+-timescale=1ns/1ps
+/Tools/synopsys/vcs/X-2025.06-SP2/linux64/bin/vcs1fe
+./vcs_logger.log
+/Tools/synopsys/verdi/X-2025.06-SP2/share/PLI/VCS/LINUX64/verdi.tab
+rtl/arbiter.v
+tb/tb_arbiter.sv
+68
+which_declare=declare -f
+XSESSION_EXEC=xfce4-session
+XDG_SESSION_ID=406
+XDG_RUNTIME_DIR=/run/user/1007
+XDG_DATA_DIRS=/home/pedro.macedo/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share:/usr/share
+XAUTHORITY=/home/pedro.macedo/.Xauthority
+X2GO_SESSION=pedro.macedo-1526-1778712806_stDXFCE_dp32
+X2GO_AGENT_PID=419192
+VTE_VERSION=5204
+VMR_MODE_FLAG=64
+VERDI_HOME=/Tools/synopsys/verdi/X-2025.06-SP2
+VCS_TARGET_ARCH=amd64
+VCS_PYTHON3=/Tools/synopsys/vcs/X-2025.06-SP2/linux64/bin/Python-3.6.1/bin/python3
+VCS_PATHMAP_PRELOAD_DONE=1
+VCS_MX_HOME_INTERNAL=1
+VCS_MODE_FLAG=64
+VCS_LOG_FILE=./vcs_logger.log
+VCS_INTERNAL_CONVERTEDLIBS=
+VCS_HOME=/Tools/synopsys/vcs/X-2025.06-SP2
+VCS_EXEC_DONE=1
+VCS_DEPTH=0
+VCS_ARG_ADDED_FOR_TMP=1
+VCS_ARCH=linux64
+UVM_HOME=/Tools/synopsys/vcs/X-2025.06-SP2/etc/uvm
+UNAME=/bin/uname
+TOOL_HOME=/Tools/synopsys/vcs/X-2025.06-SP2/linux64
+SYN_HOMEDIR=/Tools/synopsys/syn/X-2025.06-SP4
+SYNOPSYS=/Tools/synopsys
+STARTUP=/usr/bin/env LD_LIBRARY_PATH= xfce4-session
+STARRC_HOMEDIR=/Tools/synopsys/starrc/X-2025.06-SP2
+SSH_CONNECTION=177.37.145.217 52957 192.168.13.66 22
+SSH_CLIENT=177.37.145.217 52957 22
+SSH_AUTH_SOCK=/tmp/ssh-q9hRGxMZZABw/agent.419628
+SSH_ASKPASS=/usr/libexec/openssh/gnome-ssh-askpass
+SSH_AGENT_PID=419771
+SNPS_VERDI_INTERNAL_LP_XML_NEW_FLOW=1
+SNPS_VCS_VHDL_WRAPPER_KDB=1
+SNPS_VCS_PYTHON3=/Tools/synopsys/vcs/X-2025.06-SP2/linux64/bin/Python-3.6.1/bin/python3
+SNPS_VCS_CLANG_PATH=/Tools/synopsys/vcs/X-2025.06-SP2/linux64/clang
+SNPS_INTERNAL_VCS_LINUX_OS=linux
+SESSION_MANAGER=local/unix:@/tmp/.ICE-unix/419628,unix/unix:/tmp/.ICE-unix/419628
+SELINUX_USE_CURRENT_RANGE=
+SELINUX_ROLE_REQUESTED=
+SELINUX_LEVEL_REQUESTED=
+SCRNAME=vcs
+SCRIPT_NAME=vcs
+QT_GRAPHICSSYSTEM=native
+PULSE_CLIENTCONFIG=/home/pedro.macedo/.x2go/C-pedro.macedo-1526-1778712806_stDXFCE_dp32/.pulse-client.conf
+PRIMETIME_HOMEDIR=/Tools/synopsys/prime/X-2025.06-SP2
+PANEL_GDK_CORE_DEVICE_EVENTS=0
+OVA_UUM=0
+MFLAGS=
+MAKE_TERMOUT=/dev/pts/7
+MAKE_TERMERR=/dev/pts/7
+MAKELEVEL=1
+MAKEFLAGS=
+LESSOPEN=||/usr/bin/lesspipe.sh %s
+LC_HOME=/Tools/synopsys/lc/X-2025.06-SP2
+LC_ALL=C
+ICVALIDATOR_HOME=/Tools/synopsys/icvalidator/X-2025.06-SP2
+ICC2_HOME=/Tools/synopsys/icc2/X-2025.06-SP2
+HISTCONTROL=ignoredups
+FUSION_HOMEDIR=/Tools/synopsys/fusioncompiler/X-2025.06-SP2
+FM_HOME=/Tools/synopsys/fm/X-2025.06-SP4
+DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-Scl0so9FDH,guid=53594e6eec27f7b094a7bee56a0500ed
+CUSTOM_HOMEDIR=/Tools/synopsys/customcompiler/X-2025.06-4
+COLORTERM=truecolor
+BASH_FUNC_which%%=() {  ( alias;_ eval ${which_declare} ) | /usr/bin/which --tty-only --read-alias --read-functions --show-tilde --show-dot $@_}
+0
+0
+5
+1764591403 /Tools/synopsys/vcs/X-2025.06-SP2/linux64/packages/snps_msv_nettype_pkg/AN.DB
+1778723245 tb/tb_arbiter.sv
+1778671679 rtl/arbiter.v
+1764232856 /Tools/synopsys/verdi/X-2025.06-SP2/share/PLI/VCS/LINUX64/verdi.tab
+1764575419 /Tools/synopsys/vcs/X-2025.06-SP2/linux64/lib/vcsdp_lite.tab
+4
+1764579420 /Tools/synopsys/vcs/X-2025.06-SP2/linux64/lib/libvirsim.so
+1764576997 /Tools/synopsys/vcs/X-2025.06-SP2/linux64/lib/liberrorinf.so
+1764576990 /Tools/synopsys/vcs/X-2025.06-SP2/linux64/lib/libsnpsmalloc.so
+1764576977 /Tools/synopsys/vcs/X-2025.06-SP2/linux64/lib/libvfs.so
+1778723698 simv.daidir
+-1 partitionlib

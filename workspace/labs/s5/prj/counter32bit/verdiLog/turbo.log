@@ -1,0 +1,4 @@
+Command Line: /Tools/synopsys/verdi/X-2025.06-SP2/platform/LINUXAMD64/bin/Novas -i -simflow -simBin ./simv -simOpt  
+uname(Linux microeletronica 4.18.0-477.27.1.el8_8.x86_64 #1 SMP Thu Aug 31 10:29:22 EDT 2023 x86_64)
+KdbImportParallelMixAllLib time 0.002474 0.001845 0.000983 delta 12800000 12800000 total 1261920256 1261920256
+au time 42.032508 5.953606 0.429856 delta 240422912 240422912 total 1320366080 1320366080
