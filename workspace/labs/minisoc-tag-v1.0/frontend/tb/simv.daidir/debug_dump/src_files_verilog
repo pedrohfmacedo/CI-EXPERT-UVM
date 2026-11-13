@@ -1,0 +1,8 @@
+/home/pedro.macedo/CI-EXPERT-UVM/workspace/labs/minisoc-tag-v1.0/frontend/rtl/minisoc_aes/minisoc_aes_dp.sv
+/home/pedro.macedo/CI-EXPERT-UVM/workspace/labs/minisoc-tag-v1.0/frontend/rtl/minisoc_aes/minisoc_aes_key_exp.sv
+/home/pedro.macedo/CI-EXPERT-UVM/workspace/labs/minisoc-tag-v1.0/frontend/rtl/minisoc_aes/minisoc_aes_top.sv
+/home/pedro.macedo/CI-EXPERT-UVM/workspace/labs/minisoc-tag-v1.0/frontend/rtl/minisoc_mem/minisoc_memory.sv
+/home/pedro.macedo/CI-EXPERT-UVM/workspace/labs/minisoc-tag-v1.0/frontend/rtl/minisoc_pll/minisoc_pll_mock.sv
+/home/pedro.macedo/CI-EXPERT-UVM/workspace/labs/minisoc-tag-v1.0/frontend/rtl/minisoc_spi/minisoc_spi.sv
+/home/pedro.macedo/CI-EXPERT-UVM/workspace/labs/minisoc-tag-v1.0/frontend/rtl/minisoc_top.sv
+/home/pedro.macedo/CI-EXPERT-UVM/workspace/labs/minisoc-tag-v1.0/frontend/tb/minisoc_top_tb.sv

@@ -1,0 +1,1486 @@
+Invoking simulator...
+
+work/./simv -sml=verdi +UVM_VERDI_TRACE=UVM_AWARE +fsdb+gate=off -ucli2Proc -ucli
+*Verdi* Loading libsscore_vcs202506.so
+
+FSDB Dumper for VCS, Release Verdi_X-2025.06-SP2, Linux x86_64/64bit, 11/27/2025
+(C) 1996 - 2025 by Synopsys, Inc.
+
+*Verdi* : Create FSDB file '/home/pedro.macedo/CI-EXPERT-UVM/workspace/labs/s6/prj/robot/inter.fsdb'
+
+*Verdi* : Flush all FSDB Files at 0 ps.
+
+*Verdi* : Enable RPC Server(4023466)
+
+Info: [VCS_SAVE_RESTORE_INFO] ASLR (Address Space Layout Randomization) is detected on the machine. To enable $save functionality, ASLR will be switched off and simv re-executed.
+Please use '-no_save' simv switch to avoid re-execution or '-suppress=ASLR_DETECTED_INFO' to suppress this message.
+Chronologic VCS simulator copyright 1991-2025
+Contains Synopsys proprietary information.
+Compiler version X-2025.06-SP2_Full64; Runtime version X-2025.06-SP2_Full64;  Jun  2 21:34 2026
+Information: Term was not able to be set up using xterm-256color. Using "xterm" by default instead. (CLE-10)
+Verdi>verdiSetActWin -dock widgetDock_<Member>
+1
+Verdi>verdiWindowResize -win 1f8c03d0 313 41 900 700
+1
+Verdi>verdiSetActWin -dock widgetDock_MTB_SOURCE_TAB_1
+1
+Verdi>wvCreateWindow
+25da95d0
+Verdi>verdiSetActWin -win 25da95d0
+1
+Verdi>srcHBDrag -win 1f8c03d0
+1
+Verdi>verdiSetActWin -dock widgetDock_<Inst._Tree>
+1
+Verdi>fsdbDumpvars 1 "robot_model_tb.dut"  +all +trace_process;fsdbDumpflush 
+
+*Verdi* : Begin traversing the scope (robot_model_tb.dut), layer (1).
+*Verdi* : Enable +trace_process and +all dumping.
+*Verdi* : End of traversing.
+*Verdi* : Flush all FSDB Files at 0 ps.
+
+Verdi>wvSetPosition -win 25da95d0 ("dut" 0)
+0
+Verdi>wvRenameGroup -win 25da95d0 G1 dut
+1
+Verdi>wvAddSignal -win 25da95d0 /robot_model_tb/dut/clock /robot_model_tb/dut/reset_n /robot_model_tb/dut/s0_req /robot_model_tb/dut/s1_req /robot_model_tb/dut/s2_req /robot_model_tb/dut/s3_req /robot_model_tb/dut/s0_unloadstart /robot_model_tb/dut/s1_unloadstart /robot_model_tb/dut/s2_unloadstart /robot_model_tb/dut/s3_unloadstart /robot_model_tb/dut/s0_unload_done /robot_model_tb/dut/s1_unload_done /robot_model_tb/dut/s2_unload_done /robot_model_tb/dut/s3_unload_done /robot_model_tb/dut/load_start
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut" 0)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut" 15)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut" 15)
+1
+Verdi>run
+
+========================================
+        ROBOT SELF-CHECKING TB
+========================================
+
+Signal table:
++------------------+-------------------------------------------------------------+
+| Column           | Signals                                                     |
++------------------+-------------------------------------------------------------+
+| req[3:0]         | s3_req s2_req s1_req s0_req                                 |
+| done[3:0]        | s3_unload_done s2_unload_done s1_unload_done s0_unload_done |
+| unload[3:0]      | s3_unloadstart s2_unloadstart s1_unloadstart s0_unloadstart |
+| main/load/unload | dut.curr_state dut.load_cstate dut.unload_cstate            |
++------------------+-------------------------------------------------------------+
+Main FSM: WAIT_REQ=00, S0/S1=01, S2/S3=10
+Load FSM: IDLE=00, WRIST_HOR=01, LOAD_ITEM=10, WRIST_VERT=11
+Unload FSM: IDLE=000, JOINTA_RIGHT=001, JOINTC_DOWN=010,
+            JOINTC_UP=011, RELEASE_CLAW=100, JOINTA_LEFT=110
+
+[PASS] MAIN_STATE_WIDTH              t=0 width=2
+[PASS] LOAD_STATE_WIDTH              t=0 width=2
+[FAIL] UNLOAD_STATE_WIDTH            t=0 width=2 expected=3
+
+========== LONG RESET ACTIVE/INACTIVE OBSERVATION ==========
+*Verdi* WARNING: Env/runtime option has specified fsdbfile name as "/home/pedro.macedo/CI-EXPERT-UVM/workspace/labs/s6/prj/robot/inter.fsdb". Fsdbfile name in task "robot_model.fsdb" is ignored.
+*Verdi* : Begin traversing the scope (robot_model_tb), layer (0).
+*Verdi* : End of traversing.
+[FAIL] LONG_RESET_ACTIVE_LOW            t=16000 req=1010 done=1111 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+[FAIL] LONG_RESET_ACTIVE_LOW            t=26000 req=1010 done=1111 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+[FAIL] LONG_RESET_ACTIVE_LOW            t=36000 req=1010 done=1111 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+[FAIL] LONG_RESET_ACTIVE_LOW            t=46000 req=1010 done=1111 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+[FAIL] LONG_RESET_ACTIVE_LOW            t=56000 req=1010 done=1111 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+[FAIL] LONG_RESET_ACTIVE_LOW            t=66000 req=1010 done=1111 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+[FAIL] LONG_RESET_ACTIVE_LOW            t=76000 req=1010 done=1111 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+[FAIL] LONG_RESET_ACTIVE_LOW            t=86000 req=1010 done=1111 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+[FAIL] LONG_RESET_ACTIVE_LOW            t=96000 req=1010 done=1111 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+[FAIL] LONG_RESET_ACTIVE_LOW            t=106000 req=1010 done=1111 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+[FAIL] LONG_RESET_ACTIVE_LOW            t=116000 req=1010 done=1111 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+[FAIL] LONG_RESET_ACTIVE_LOW            t=126000 req=1010 done=1111 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+[FAIL] LONG_RESET_INACTIVE_IDLE         t=146000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+[FAIL] LONG_RESET_INACTIVE_IDLE         t=156000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+[FAIL] LONG_RESET_INACTIVE_IDLE         t=166000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+[FAIL] LONG_RESET_INACTIVE_IDLE         t=176000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+[FAIL] LONG_RESET_INACTIVE_IDLE         t=186000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+[FAIL] LONG_RESET_INACTIVE_IDLE         t=196000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+[FAIL] LONG_RESET_INACTIVE_IDLE         t=206000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+[FAIL] LONG_RESET_INACTIVE_IDLE         t=216000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+[FAIL] LONG_RESET_INACTIVE_IDLE         t=226000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+[FAIL] LONG_RESET_INACTIVE_IDLE         t=236000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+[FAIL] LONG_RESET_S0_LOAD_START         t=246000 req=0001 done=0000 | DUT out=(load=1 unload=1100) st=(01,01,001) | REF out=(load=1 unload=0000) st=(01,01,000)
+[FAIL] LONG_RESET_S0_LOAD_ITEM          t=256000 req=0001 done=0000 | DUT out=(load=0 unload=1000) st=(01,10,000) | REF out=(load=0 unload=0000) st=(01,10,000)
+[FAIL] LONG_RESET_S0_WRIST_VERT         t=266000 req=0001 done=0000 | DUT out=(load=0 unload=1111) st=(01,11,001) | REF out=(load=0 unload=0001) st=(01,11,000)
+[FAIL] LONG_RESET_S0_JOINTA_RIGHT       t=276000 req=0001 done=0000 | DUT out=(load=0 unload=1000) st=(01,00,000) | REF out=(load=0 unload=0001) st=(01,00,001)
+[FAIL] LONG_RESET_S0_RELEASE_CLAW       t=286000 req=0001 done=0000 | DUT out=(load=1 unload=1100) st=(01,01,001) | REF out=(load=0 unload=0001) st=(01,00,100)
+[FAIL] LONG_RESET_S0_DONE               t=296000 req=0001 done=0001 | DUT out=(load=0 unload=1000) st=(00,10,000) | REF out=(load=0 unload=0001) st=(00,00,110)
+[FAIL] LONG_RESET_S0_JOINTA_LEFT        t=306000 req=0000 done=0000 | DUT out=(load=0 unload=1011) st=(00,11,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+[FAIL] LONG_RESET_BACK_IDLE             t=316000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+[FAIL] RESET                            t=326000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+[FAIL] RESET                            t=336000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+
+========== VALID ONE-HOT REQUEST ENCODINGS ==========
+[FAIL] RESET                            t=356000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+[FAIL] RESET                            t=366000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+[FAIL] VALID_ONEHOT_S0                  t=386000 req=0001 done=0000 | DUT out=(load=1 unload=1100) st=(01,01,001) | REF out=(load=1 unload=0000) st=(01,01,000)
+[FAIL] RESET                            t=396000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+[FAIL] RESET                            t=406000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+[FAIL] VALID_ONEHOT_S1                  t=426000 req=0010 done=0000 | DUT out=(load=1 unload=1100) st=(01,01,001) | REF out=(load=1 unload=0000) st=(01,01,000)
+[FAIL] RESET                            t=436000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+[FAIL] RESET                            t=446000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+[FAIL] VALID_ONEHOT_S2                  t=466000 req=0100 done=0000 | DUT out=(load=1 unload=1100) st=(10,01,001) | REF out=(load=1 unload=0000) st=(10,01,000)
+[FAIL] RESET                            t=476000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+[FAIL] RESET                            t=486000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+[FAIL] VALID_ONEHOT_S3                  t=506000 req=1000 done=0000 | DUT out=(load=1 unload=1100) st=(10,01,001) | REF out=(load=1 unload=0000) st=(10,01,000)
+
+========== OUT-OF-SPEC REQUEST ENCODINGS ==========
+[FAIL] RESET                            t=516000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+[FAIL] RESET                            t=526000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+[FAIL] NO_REQUEST_STAYS_IDLE            t=546000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+[FAIL] RESET                            t=556000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+[FAIL] RESET                            t=566000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+[FAIL] MULTIPLE_REQ_IGNORED             t=586000 req=0011 done=0000 | DUT out=(load=1 unload=1100) st=(01,01,001) | REF out=(load=0 unload=0000) st=(00,00,000)
+[FAIL] MULTIPLE_REQ_BACK_IDLE           t=596000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(01,10,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+[FAIL] RESET                            t=606000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+[FAIL] RESET                            t=616000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+[FAIL] MULTIPLE_REQ_IGNORED             t=636000 req=0101 done=0000 | DUT out=(load=1 unload=1100) st=(01,01,001) | REF out=(load=0 unload=0000) st=(00,00,000)
+[FAIL] MULTIPLE_REQ_BACK_IDLE           t=646000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(01,10,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+[FAIL] RESET                            t=656000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+[FAIL] RESET                            t=666000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+[FAIL] MULTIPLE_REQ_IGNORED             t=686000 req=0110 done=0000 | DUT out=(load=1 unload=1100) st=(01,01,001) | REF out=(load=0 unload=0000) st=(00,00,000)
+[FAIL] MULTIPLE_REQ_BACK_IDLE           t=696000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(01,10,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+[FAIL] RESET                            t=706000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+[FAIL] RESET                            t=716000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+[FAIL] MULTIPLE_REQ_IGNORED             t=736000 req=0111 done=0000 | DUT out=(load=1 unload=1100) st=(01,01,001) | REF out=(load=0 unload=0000) st=(00,00,000)
+[FAIL] MULTIPLE_REQ_BACK_IDLE           t=746000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(01,10,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+[FAIL] RESET                            t=756000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+[FAIL] RESET                            t=766000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+[FAIL] MULTIPLE_REQ_IGNORED             t=786000 req=1001 done=0000 | DUT out=(load=1 unload=1100) st=(01,01,001) | REF out=(load=0 unload=0000) st=(00,00,000)
+[FAIL] MULTIPLE_REQ_BACK_IDLE           t=796000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(01,10,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+[FAIL] RESET                            t=806000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+[FAIL] RESET                            t=816000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+[FAIL] MULTIPLE_REQ_IGNORED             t=836000 req=1010 done=0000 | DUT out=(load=1 unload=1100) st=(01,01,001) | REF out=(load=0 unload=0000) st=(00,00,000)
+[FAIL] MULTIPLE_REQ_BACK_IDLE           t=846000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(01,10,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+[FAIL] RESET                            t=856000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+[FAIL] RESET                            t=866000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+[FAIL] MULTIPLE_REQ_IGNORED             t=886000 req=1011 done=0000 | DUT out=(load=1 unload=1100) st=(01,01,001) | REF out=(load=0 unload=0000) st=(00,00,000)
+[FAIL] MULTIPLE_REQ_BACK_IDLE           t=896000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(01,10,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+[FAIL] RESET                            t=906000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+[FAIL] RESET                            t=916000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+[FAIL] MULTIPLE_REQ_IGNORED             t=936000 req=1100 done=0000 | DUT out=(load=1 unload=1100) st=(10,01,001) | REF out=(load=0 unload=0000) st=(00,00,000)
+[FAIL] MULTIPLE_REQ_BACK_IDLE           t=946000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(10,10,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+[FAIL] RESET                            t=956000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+[FAIL] RESET                            t=966000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+[FAIL] MULTIPLE_REQ_IGNORED             t=986000 req=1101 done=0000 | DUT out=(load=1 unload=1100) st=(01,01,001) | REF out=(load=0 unload=0000) st=(00,00,000)
+[FAIL] MULTIPLE_REQ_BACK_IDLE           t=996000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(01,10,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+[FAIL] RESET                            t=1006000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+[FAIL] RESET                            t=1016000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+[FAIL] MULTIPLE_REQ_IGNORED             t=1036000 req=1110 done=0000 | DUT out=(load=1 unload=1100) st=(01,01,001) | REF out=(load=0 unload=0000) st=(00,00,000)
+[FAIL] MULTIPLE_REQ_BACK_IDLE           t=1046000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(01,10,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+[FAIL] RESET                            t=1056000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+[FAIL] RESET                            t=1066000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+[FAIL] MULTIPLE_REQ_IGNORED             t=1086000 req=1111 done=0000 | DUT out=(load=1 unload=1100) st=(01,01,001) | REF out=(load=0 unload=0000) st=(00,00,000)
+[FAIL] MULTIPLE_REQ_BACK_IDLE           t=1096000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(01,10,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+
+========== OUT-OF-SPEC DONE WITHOUT REQUEST ==========
+[FAIL] RESET                            t=1106000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+[FAIL] RESET                            t=1116000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+[FAIL] DONE_WITHOUT_REQ_S0              t=1136000 req=0000 done=0001 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+[FAIL] DONE_WITHOUT_REQ_S0_CLEAR        t=1146000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+[FAIL] RESET                            t=1156000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+[FAIL] RESET                            t=1166000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+[FAIL] DONE_WITHOUT_REQ_S1              t=1186000 req=0000 done=0010 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+[FAIL] DONE_WITHOUT_REQ_S1_CLEAR        t=1196000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+[FAIL] RESET                            t=1206000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+[FAIL] RESET                            t=1216000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+[FAIL] DONE_WITHOUT_REQ_S2              t=1236000 req=0000 done=0100 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+[FAIL] DONE_WITHOUT_REQ_S2_CLEAR        t=1246000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+[FAIL] RESET                            t=1256000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+[FAIL] RESET                            t=1266000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+[FAIL] DONE_WITHOUT_REQ_S3              t=1286000 req=0000 done=1000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+[FAIL] DONE_WITHOUT_REQ_S3_CLEAR        t=1296000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+
+========== DIRECTED FSM TRANSITIONS ==========
+[FAIL] RESET                            t=1306000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+[FAIL] RESET                            t=1316000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+
+========== S0_HELD_REQ ==========
+[FAIL] S0_HELD_REQ_LOAD_START           t=1336000 req=0001 done=0000 | DUT out=(load=1 unload=1100) st=(01,01,001) | REF out=(load=1 unload=0000) st=(01,01,000)
+[FAIL] S0_HELD_REQ_LOAD_ITEM            t=1346000 req=0001 done=0000 | DUT out=(load=0 unload=1000) st=(01,10,000) | REF out=(load=0 unload=0000) st=(01,10,000)
+[FAIL] S0_HELD_REQ_WRIST_VERT           t=1356000 req=0001 done=0000 | DUT out=(load=0 unload=1111) st=(01,11,001) | REF out=(load=0 unload=0001) st=(01,11,000)
+[FAIL] S0_HELD_REQ_JOINTA_RIGHT         t=1366000 req=0001 done=0000 | DUT out=(load=0 unload=1000) st=(01,00,000) | REF out=(load=0 unload=0001) st=(01,00,001)
+[FAIL] S0_HELD_REQ_RELEASE_CLAW         t=1376000 req=0001 done=0000 | DUT out=(load=1 unload=1100) st=(01,01,001) | REF out=(load=0 unload=0001) st=(01,00,100)
+[FAIL] S0_HELD_REQ_DONE                 t=1386000 req=0001 done=0001 | DUT out=(load=0 unload=1000) st=(00,10,000) | REF out=(load=0 unload=0001) st=(00,00,110)
+[FAIL] S0_HELD_REQ_JOINTA_LEFT          t=1396000 req=0000 done=0000 | DUT out=(load=0 unload=1011) st=(00,11,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+[FAIL] S0_HELD_REQ_BACK_IDLE            t=1406000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+[FAIL] RESET                            t=1416000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+[FAIL] RESET                            t=1426000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+
+========== S1_HELD_REQ ==========
+[FAIL] S1_HELD_REQ_LOAD_START           t=1446000 req=0010 done=0000 | DUT out=(load=1 unload=1100) st=(01,01,001) | REF out=(load=1 unload=0000) st=(01,01,000)
+[FAIL] S1_HELD_REQ_LOAD_ITEM            t=1456000 req=0010 done=0000 | DUT out=(load=0 unload=1000) st=(01,10,010) | REF out=(load=0 unload=0000) st=(01,10,000)
+[FAIL] S1_HELD_REQ_WRIST_VERT           t=1466000 req=0010 done=0000 | DUT out=(load=0 unload=1011) st=(01,11,000) | REF out=(load=0 unload=0010) st=(01,11,000)
+[FAIL] S1_HELD_REQ_JOINTA_RIGHT         t=1476000 req=0010 done=0000 | DUT out=(load=0 unload=1100) st=(01,00,001) | REF out=(load=0 unload=0010) st=(01,00,001)
+[FAIL] S1_HELD_REQ_JOINTC_DOWN          t=1486000 req=0010 done=0000 | DUT out=(load=1 unload=1000) st=(01,01,010) | REF out=(load=0 unload=0010) st=(01,00,010)
+[FAIL] S1_HELD_REQ_RELEASE_CLAW         t=1496000 req=0010 done=0000 | DUT out=(load=0 unload=1000) st=(01,10,000) | REF out=(load=0 unload=0010) st=(01,00,100)
+[FAIL] S1_HELD_REQ_JOINTC_UP            t=1506000 req=0010 done=0000 | DUT out=(load=0 unload=1111) st=(01,11,001) | REF out=(load=0 unload=0010) st=(01,00,011)
+[FAIL] S1_HELD_REQ_DONE                 t=1516000 req=0010 done=0010 | DUT out=(load=0 unload=1000) st=(00,00,010) | REF out=(load=0 unload=0010) st=(00,00,110)
+[FAIL] S1_HELD_REQ_JOINTA_LEFT          t=1526000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+[FAIL] S1_HELD_REQ_BACK_IDLE            t=1536000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+[FAIL] RESET                            t=1546000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+[FAIL] RESET                            t=1556000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+
+========== S2_HELD_REQ ==========
+[FAIL] S2_HELD_REQ_LOAD_START           t=1576000 req=0100 done=0000 | DUT out=(load=1 unload=1100) st=(10,01,001) | REF out=(load=1 unload=0000) st=(10,01,000)
+[FAIL] S2_HELD_REQ_LOAD_ITEM            t=1586000 req=0100 done=0000 | DUT out=(load=0 unload=1000) st=(10,10,000) | REF out=(load=0 unload=0000) st=(10,10,000)
+[FAIL] S2_HELD_REQ_WRIST_VERT           t=1596000 req=0100 done=0000 | DUT out=(load=0 unload=1111) st=(10,11,001) | REF out=(load=0 unload=0100) st=(10,11,000)
+[FAIL] S2_HELD_REQ_JOINTA_RIGHT         t=1606000 req=0100 done=0000 | DUT out=(load=0 unload=1000) st=(10,00,000) | REF out=(load=0 unload=0100) st=(10,00,001)
+[FAIL] S2_HELD_REQ_RELEASE_CLAW         t=1616000 req=0100 done=0000 | DUT out=(load=1 unload=1100) st=(10,01,001) | REF out=(load=0 unload=0100) st=(10,00,100)
+[FAIL] S2_HELD_REQ_DONE                 t=1626000 req=0100 done=0100 | DUT out=(load=0 unload=1000) st=(00,10,000) | REF out=(load=0 unload=0100) st=(00,00,110)
+[FAIL] S2_HELD_REQ_JOINTA_LEFT          t=1636000 req=0000 done=0000 | DUT out=(load=0 unload=1011) st=(00,11,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+[FAIL] S2_HELD_REQ_BACK_IDLE            t=1646000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+[FAIL] RESET                            t=1656000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+[FAIL] RESET                            t=1666000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+
+========== S3_HELD_REQ ==========
+[FAIL] S3_HELD_REQ_LOAD_START           t=1686000 req=1000 done=0000 | DUT out=(load=1 unload=1100) st=(10,01,001) | REF out=(load=1 unload=0000) st=(10,01,000)
+[FAIL] S3_HELD_REQ_LOAD_ITEM            t=1696000 req=1000 done=0000 | DUT out=(load=0 unload=1000) st=(10,10,010) | REF out=(load=0 unload=0000) st=(10,10,000)
+[FAIL] S3_HELD_REQ_WRIST_VERT           t=1706000 req=1000 done=0000 | DUT out=(load=0 unload=1011) st=(10,11,000) | REF out=(load=0 unload=1000) st=(10,11,000)
+[FAIL] S3_HELD_REQ_JOINTA_RIGHT         t=1716000 req=1000 done=0000 | DUT out=(load=0 unload=1100) st=(10,00,001) | REF out=(load=0 unload=1000) st=(10,00,001)
+[FAIL] S3_HELD_REQ_JOINTC_DOWN          t=1726000 req=1000 done=0000 | DUT out=(load=1 unload=1000) st=(10,01,010) | REF out=(load=0 unload=1000) st=(10,00,010)
+[FAIL] S3_HELD_REQ_RELEASE_CLAW         t=1736000 req=1000 done=0000 | DUT out=(load=0 unload=1000) st=(10,10,000) | REF out=(load=0 unload=1000) st=(10,00,100)
+[FAIL] S3_HELD_REQ_JOINTC_UP            t=1746000 req=1000 done=0000 | DUT out=(load=0 unload=1111) st=(10,11,001) | REF out=(load=0 unload=1000) st=(10,00,011)
+[FAIL] S3_HELD_REQ_DONE                 t=1756000 req=1000 done=1000 | DUT out=(load=0 unload=1000) st=(00,00,010) | REF out=(load=0 unload=1000) st=(00,00,110)
+[FAIL] S3_HELD_REQ_JOINTA_LEFT          t=1766000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+[FAIL] S3_HELD_REQ_BACK_IDLE            t=1776000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+[FAIL] RESET                            t=1786000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+[FAIL] RESET                            t=1796000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+
+========== S0_PULSE_REQ ==========
+[FAIL] S0_PULSE_REQ_LOAD_START          t=1816000 req=0001 done=0000 | DUT out=(load=1 unload=1100) st=(01,01,001) | REF out=(load=1 unload=0000) st=(01,01,000)
+[FAIL] S0_PULSE_REQ_LOAD_ITEM           t=1826000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(01,10,000) | REF out=(load=0 unload=0000) st=(01,10,000)
+[FAIL] S0_PULSE_REQ_WRIST_VERT          t=1836000 req=0000 done=0000 | DUT out=(load=0 unload=1011) st=(01,11,000) | REF out=(load=0 unload=0001) st=(01,11,000)
+[FAIL] S0_PULSE_REQ_JOINTA_RIGHT        t=1846000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(01,00,000) | REF out=(load=0 unload=0001) st=(01,00,001)
+[FAIL] S0_PULSE_REQ_RELEASE_CLAW        t=1856000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(01,00,000) | REF out=(load=0 unload=0001) st=(01,00,100)
+[FAIL] S0_PULSE_REQ_DONE                t=1866000 req=0000 done=0001 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0001) st=(00,00,110)
+[FAIL] S0_PULSE_REQ_JOINTA_LEFT         t=1876000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+[FAIL] S0_PULSE_REQ_BACK_IDLE           t=1886000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+[FAIL] RESET                            t=1896000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+[FAIL] RESET                            t=1906000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+
+========== S1_PULSE_REQ ==========
+[FAIL] S1_PULSE_REQ_LOAD_START          t=1926000 req=0010 done=0000 | DUT out=(load=1 unload=1100) st=(01,01,001) | REF out=(load=1 unload=0000) st=(01,01,000)
+[FAIL] S1_PULSE_REQ_LOAD_ITEM           t=1936000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(01,10,000) | REF out=(load=0 unload=0000) st=(01,10,000)
+[FAIL] S1_PULSE_REQ_WRIST_VERT          t=1946000 req=0000 done=0000 | DUT out=(load=0 unload=1011) st=(01,11,000) | REF out=(load=0 unload=0010) st=(01,11,000)
+[FAIL] S1_PULSE_REQ_JOINTA_RIGHT        t=1956000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(01,00,000) | REF out=(load=0 unload=0010) st=(01,00,001)
+[FAIL] S1_PULSE_REQ_JOINTC_DOWN         t=1966000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(01,00,000) | REF out=(load=0 unload=0010) st=(01,00,010)
+[FAIL] S1_PULSE_REQ_RELEASE_CLAW        t=1976000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(01,00,000) | REF out=(load=0 unload=0010) st=(01,00,100)
+[FAIL] S1_PULSE_REQ_JOINTC_UP           t=1986000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(01,00,000) | REF out=(load=0 unload=0010) st=(01,00,011)
+[FAIL] S1_PULSE_REQ_DONE                t=1996000 req=0000 done=0010 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0010) st=(00,00,110)
+[FAIL] S1_PULSE_REQ_JOINTA_LEFT         t=2006000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+[FAIL] S1_PULSE_REQ_BACK_IDLE           t=2016000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+[FAIL] RESET                            t=2026000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+[FAIL] RESET                            t=2036000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+
+========== S2_PULSE_REQ ==========
+[FAIL] S2_PULSE_REQ_LOAD_START          t=2056000 req=0100 done=0000 | DUT out=(load=1 unload=1100) st=(10,01,001) | REF out=(load=1 unload=0000) st=(10,01,000)
+[FAIL] S2_PULSE_REQ_LOAD_ITEM           t=2066000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(10,10,000) | REF out=(load=0 unload=0000) st=(10,10,000)
+[FAIL] S2_PULSE_REQ_WRIST_VERT          t=2076000 req=0000 done=0000 | DUT out=(load=0 unload=1011) st=(10,11,000) | REF out=(load=0 unload=0100) st=(10,11,000)
+[FAIL] S2_PULSE_REQ_JOINTA_RIGHT        t=2086000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(10,00,000) | REF out=(load=0 unload=0100) st=(10,00,001)
+[FAIL] S2_PULSE_REQ_RELEASE_CLAW        t=2096000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(10,00,000) | REF out=(load=0 unload=0100) st=(10,00,100)
+[FAIL] S2_PULSE_REQ_DONE                t=2106000 req=0000 done=0100 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0100) st=(00,00,110)
+[FAIL] S2_PULSE_REQ_JOINTA_LEFT         t=2116000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+[FAIL] S2_PULSE_REQ_BACK_IDLE           t=2126000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+[FAIL] RESET                            t=2136000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+[FAIL] RESET                            t=2146000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+
+========== S3_PULSE_REQ ==========
+[FAIL] S3_PULSE_REQ_LOAD_START          t=2166000 req=1000 done=0000 | DUT out=(load=1 unload=1100) st=(10,01,001) | REF out=(load=1 unload=0000) st=(10,01,000)
+[FAIL] S3_PULSE_REQ_LOAD_ITEM           t=2176000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(10,10,000) | REF out=(load=0 unload=0000) st=(10,10,000)
+[FAIL] S3_PULSE_REQ_WRIST_VERT          t=2186000 req=0000 done=0000 | DUT out=(load=0 unload=1011) st=(10,11,000) | REF out=(load=0 unload=1000) st=(10,11,000)
+[FAIL] S3_PULSE_REQ_JOINTA_RIGHT        t=2196000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(10,00,000) | REF out=(load=0 unload=1000) st=(10,00,001)
+[FAIL] S3_PULSE_REQ_JOINTC_DOWN         t=2206000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(10,00,000) | REF out=(load=0 unload=1000) st=(10,00,010)
+[FAIL] S3_PULSE_REQ_RELEASE_CLAW        t=2216000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(10,00,000) | REF out=(load=0 unload=1000) st=(10,00,100)
+[FAIL] S3_PULSE_REQ_JOINTC_UP           t=2226000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(10,00,000) | REF out=(load=0 unload=1000) st=(10,00,011)
+[FAIL] S3_PULSE_REQ_DONE                t=2236000 req=0000 done=1000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=1000) st=(00,00,110)
+[FAIL] S3_PULSE_REQ_JOINTA_LEFT         t=2246000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+[FAIL] S3_PULSE_REQ_BACK_IDLE           t=2256000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+[FAIL] RESET                            t=2266000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+[FAIL] RESET                            t=2276000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+
+========== WRONG DONE DURING S0 SERVICE ==========
+[FAIL] WRONG_DONE_LOAD_START            t=2296000 req=0001 done=0000 | DUT out=(load=1 unload=1100) st=(01,01,001) | REF out=(load=1 unload=0000) st=(01,01,000)
+[FAIL] WRONG_DONE_LOAD_ITEM             t=2306000 req=0001 done=0000 | DUT out=(load=0 unload=1000) st=(01,10,000) | REF out=(load=0 unload=0000) st=(01,10,000)
+[FAIL] WRONG_DONE_WRIST_VERT            t=2316000 req=0001 done=0000 | DUT out=(load=0 unload=1111) st=(01,11,001) | REF out=(load=0 unload=0001) st=(01,11,000)
+[FAIL] WRONG_DONE_JOINTA_RIGHT          t=2326000 req=0001 done=0000 | DUT out=(load=0 unload=1000) st=(01,00,000) | REF out=(load=0 unload=0001) st=(01,00,001)
+[FAIL] WRONG_DONE_IGNORED               t=2336000 req=0001 done=0010 | DUT out=(load=1 unload=1100) st=(00,01,001) | REF out=(load=0 unload=0001) st=(01,00,100)
+[FAIL] WRONG_DONE_STILL_WAITING         t=2346000 req=0001 done=0000 | DUT out=(load=0 unload=1000) st=(01,10,000) | REF out=(load=0 unload=0001) st=(01,00,100)
+[FAIL] RIGHT_DONE_ACCEPTED              t=2356000 req=0001 done=0001 | DUT out=(load=0 unload=1111) st=(00,11,001) | REF out=(load=0 unload=0001) st=(00,00,110)
+[FAIL] RESET                            t=2366000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+[FAIL] RESET                            t=2376000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+
+========== WRONG DONE DURING S1 SERVICE ==========
+[FAIL] WRONG_DONE_LOAD_START            t=2396000 req=0010 done=0000 | DUT out=(load=1 unload=1100) st=(01,01,001) | REF out=(load=1 unload=0000) st=(01,01,000)
+[FAIL] WRONG_DONE_LOAD_ITEM             t=2406000 req=0010 done=0000 | DUT out=(load=0 unload=1000) st=(01,10,010) | REF out=(load=0 unload=0000) st=(01,10,000)
+[FAIL] WRONG_DONE_WRIST_VERT            t=2416000 req=0010 done=0000 | DUT out=(load=0 unload=1011) st=(01,11,000) | REF out=(load=0 unload=0010) st=(01,11,000)
+[FAIL] WRONG_DONE_JOINTA_RIGHT          t=2426000 req=0010 done=0000 | DUT out=(load=0 unload=1100) st=(01,00,001) | REF out=(load=0 unload=0010) st=(01,00,001)
+[FAIL] WRONG_DONE_JOINTC_DOWN           t=2436000 req=0010 done=0000 | DUT out=(load=1 unload=1000) st=(01,01,010) | REF out=(load=0 unload=0010) st=(01,00,010)
+[FAIL] WRONG_DONE_IGNORED               t=2446000 req=0010 done=0100 | DUT out=(load=0 unload=1000) st=(00,10,000) | REF out=(load=0 unload=0010) st=(01,00,100)
+[FAIL] WRONG_DONE_STILL_WAITING         t=2456000 req=0010 done=0000 | DUT out=(load=0 unload=1111) st=(01,11,001) | REF out=(load=0 unload=0010) st=(01,00,011)
+[FAIL] WRONG_DONE_JOINTC_UP             t=2466000 req=0010 done=0000 | DUT out=(load=0 unload=1000) st=(01,00,010) | REF out=(load=0 unload=0010) st=(01,00,011)
+[FAIL] RIGHT_DONE_ACCEPTED              t=2476000 req=0010 done=0010 | DUT out=(load=1 unload=1000) st=(00,01,000) | REF out=(load=0 unload=0010) st=(00,00,110)
+[FAIL] RESET                            t=2486000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+[FAIL] RESET                            t=2496000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+
+========== WRONG DONE DURING S2 SERVICE ==========
+[FAIL] WRONG_DONE_LOAD_START            t=2516000 req=0100 done=0000 | DUT out=(load=1 unload=1100) st=(10,01,001) | REF out=(load=1 unload=0000) st=(10,01,000)
+[FAIL] WRONG_DONE_LOAD_ITEM             t=2526000 req=0100 done=0000 | DUT out=(load=0 unload=1000) st=(10,10,000) | REF out=(load=0 unload=0000) st=(10,10,000)
+[FAIL] WRONG_DONE_WRIST_VERT            t=2536000 req=0100 done=0000 | DUT out=(load=0 unload=1111) st=(10,11,001) | REF out=(load=0 unload=0100) st=(10,11,000)
+[FAIL] WRONG_DONE_JOINTA_RIGHT          t=2546000 req=0100 done=0000 | DUT out=(load=0 unload=1000) st=(10,00,000) | REF out=(load=0 unload=0100) st=(10,00,001)
+[FAIL] WRONG_DONE_IGNORED               t=2556000 req=0100 done=1000 | DUT out=(load=1 unload=1100) st=(00,01,001) | REF out=(load=0 unload=0100) st=(10,00,100)
+[FAIL] WRONG_DONE_STILL_WAITING         t=2566000 req=0100 done=0000 | DUT out=(load=0 unload=1000) st=(10,10,000) | REF out=(load=0 unload=0100) st=(10,00,100)
+[FAIL] RIGHT_DONE_ACCEPTED              t=2576000 req=0100 done=0100 | DUT out=(load=0 unload=1111) st=(00,11,001) | REF out=(load=0 unload=0100) st=(00,00,110)
+[FAIL] RESET                            t=2586000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+[FAIL] RESET                            t=2596000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+
+========== WRONG DONE DURING S3 SERVICE ==========
+[FAIL] WRONG_DONE_LOAD_START            t=2616000 req=1000 done=0000 | DUT out=(load=1 unload=1100) st=(10,01,001) | REF out=(load=1 unload=0000) st=(10,01,000)
+[FAIL] WRONG_DONE_LOAD_ITEM             t=2626000 req=1000 done=0000 | DUT out=(load=0 unload=1000) st=(10,10,010) | REF out=(load=0 unload=0000) st=(10,10,000)
+[FAIL] WRONG_DONE_WRIST_VERT            t=2636000 req=1000 done=0000 | DUT out=(load=0 unload=1011) st=(10,11,000) | REF out=(load=0 unload=1000) st=(10,11,000)
+[FAIL] WRONG_DONE_JOINTA_RIGHT          t=2646000 req=1000 done=0000 | DUT out=(load=0 unload=1100) st=(10,00,001) | REF out=(load=0 unload=1000) st=(10,00,001)
+[FAIL] WRONG_DONE_JOINTC_DOWN           t=2656000 req=1000 done=0000 | DUT out=(load=1 unload=1000) st=(10,01,010) | REF out=(load=0 unload=1000) st=(10,00,010)
+[FAIL] WRONG_DONE_IGNORED               t=2666000 req=1000 done=0001 | DUT out=(load=0 unload=1000) st=(00,10,000) | REF out=(load=0 unload=1000) st=(10,00,100)
+[FAIL] WRONG_DONE_STILL_WAITING         t=2676000 req=1000 done=0000 | DUT out=(load=0 unload=1111) st=(10,11,001) | REF out=(load=0 unload=1000) st=(10,00,011)
+[FAIL] WRONG_DONE_JOINTC_UP             t=2686000 req=1000 done=0000 | DUT out=(load=0 unload=1000) st=(10,00,010) | REF out=(load=0 unload=1000) st=(10,00,011)
+[FAIL] RIGHT_DONE_ACCEPTED              t=2696000 req=1000 done=1000 | DUT out=(load=1 unload=1000) st=(00,01,000) | REF out=(load=0 unload=1000) st=(00,00,110)
+
+========== OUT-OF-SPEC REQUEST CHANGES DURING OPERATION ==========
+[FAIL] RESET                            t=2706000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+[FAIL] RESET                            t=2716000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+[FAIL] REQ_CHANGE_S0_START              t=2736000 req=0001 done=0000 | DUT out=(load=1 unload=1100) st=(01,01,001) | REF out=(load=1 unload=0000) st=(01,01,000)
+[FAIL] REQ_CHANGE_TO_S1_IGNORED         t=2746000 req=0010 done=0000 | DUT out=(load=0 unload=1000) st=(01,10,010) | REF out=(load=0 unload=0000) st=(01,10,000)
+[FAIL] REQ_CHANGE_TO_S2_IGNORED         t=2756000 req=0100 done=0000 | DUT out=(load=0 unload=1011) st=(01,11,000) | REF out=(load=0 unload=0001) st=(01,11,000)
+[FAIL] REQ_CHANGE_TO_S3_IGNORED         t=2766000 req=1000 done=0000 | DUT out=(load=0 unload=1100) st=(01,00,001) | REF out=(load=0 unload=0001) st=(01,00,001)
+[FAIL] REQ_CHANGE_RELEASE_REQ           t=2776000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(01,00,000) | REF out=(load=0 unload=0001) st=(01,00,100)
+[FAIL] REQ_CHANGE_S0_DONE               t=2786000 req=0000 done=0001 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0001) st=(00,00,110)
+[FAIL] REQ_CHANGE_BACK_IDLE             t=2796000 req=0000 done=0000 | DUT out=(load=0 unload=1000) st=(00,00,000) | REF out=(load=0 unload=0000) st=(00,00,000)
+
+========== STATE ENCODING COVERAGE ==========
+main_state[0]=1 load_state[0]=1
+main_state[1]=1 load_state[1]=1
+main_state[2]=1 load_state[2]=1
+main_state[3]=0 load_state[3]=1
+unload_state[0]=1
+unload_state[1]=1
+unload_state[2]=1
+unload_state[3]=0
+unload_state[4]=0
+unload_state[5]=0
+unload_state[6]=0
+unload_state[7]=0
+
+========== STATE ENCODING CHECKS ==========
+[PASS] MAIN_STATE_ENCODING_0       observed
+[PASS] MAIN_STATE_ENCODING_1       observed
+[PASS] MAIN_STATE_ENCODING_2       observed
+[PASS] LOAD_STATE_ENCODING_0       observed
+[PASS] LOAD_STATE_ENCODING_1       observed
+[PASS] LOAD_STATE_ENCODING_2       observed
+[PASS] LOAD_STATE_ENCODING_3       observed
+[PASS] UNLOAD_STATE_ENCODING_0     observed
+[PASS] UNLOAD_STATE_ENCODING_1     observed
+[PASS] UNLOAD_STATE_ENCODING_2     observed
+[FAIL] UNLOAD_STATE_ENCODING_3     not observed
+[FAIL] UNLOAD_STATE_ENCODING_4     not observed
+[FAIL] UNLOAD_STATE_ENCODING_6     not observed
+
+================ SUMMARY ================
+PASS: 12
+FAIL: 248
+=========================================
+
+$finish called from file "tb/robot_model_tb.sv", line 688.
+$finish at simulation time              2846000
+Simulation complete, time is 2846000 ps.
+robot_model_tb.sv, 688 :         $finish;
+Verdi>wvZoomOut -win 25da95d0
+1
+Verdi>wvZoomOut -win 25da95d0
+1
+Verdi>wvZoomOut -win 25da95d0
+1
+Verdi>wvZoomOut -win 25da95d0
+1
+Verdi>wvZoomOut -win 25da95d0
+1
+Verdi>wvZoomOut -win 25da95d0
+1
+Verdi>wvZoomOut -win 25da95d0
+1
+Verdi>wvZoomOut -win 25da95d0
+1
+Verdi>wvZoomOut -win 25da95d0
+1
+Verdi>wvZoomOut -win 25da95d0
+1
+Verdi>wvZoomOut -win 25da95d0
+1
+Verdi>wvZoomOut -win 25da95d0
+1
+Verdi>wvZoomIn -win 25da95d0
+1
+Verdi>wvZoomIn -win 25da95d0
+1
+Verdi>verdiSetActWin -win 25da95d0
+1
+Verdi>wvZoomOut -win 25da95d0
+1
+Verdi>wvScrollDown -win 25da95d0 1
+1
+Verdi>wvScrollUp -win 25da95d0 8
+1
+Verdi>verdiDockWidgetHide -dock widgetDock_<Watch>
+1
+Verdi>srcTBSetHiddenView -view WatchView
+1
+Verdi>wvSelectSignal -win 25da95d0 ( "dut" 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 )
+15
+Verdi>wvSelectGroup -win 25da95d0 dut
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut" 0)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut" 0)
+1
+Verdi>wvAddSubGroup -win 25da95d0 dut-1
+1
+Verdi>wvSelectGroup -win 25da95d0 dut
+1
+Verdi>wvSelectGroup -win 25da95d0 dut/dut-1
+1
+Verdi>wvSelectGroup -win 25da95d0 dut/dut-1
+1
+Verdi>wvRenameGroup -win 25da95d0 dut/dut-1 Request
+1
+Verdi>wvSelectGroup -win 25da95d0 dut
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut" 0)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut" 0)
+1
+Verdi>wvAddSubGroup -win 25da95d0 dut-2
+1
+Verdi>wvRenameGroup -win 25da95d0 dut/dut-2 Unload Start
+1
+Verdi>wvSelectGroup -win 25da95d0 dut
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut" 0)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut" 0)
+1
+Verdi>wvAddSubGroup -win 25da95d0 dut-3
+1
+Verdi>wvRenameGroup -win 25da95d0 dut/dut-3 Unload Done
+1
+Verdi>wvSelectGroup -win 25da95d0 dut/Unload Done
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Done" 0)
+1
+Verdi>wvAddSubGroup -win 25da95d0 Unload Done-1
+1
+Verdi>wvRenameGroup -win 25da95d0 dut/Unload Done/Unload Done-1 FSM-States
+1
+Verdi>wvSelectGroup -win 25da95d0 dut/Request
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Start" 0)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Done/FSM-States" 0)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Done" 0)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut" 0)
+1
+Verdi>wvMoveSelected -win 25da95d0
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut" 0)
+1
+Verdi>wvSelectGroup -win 25da95d0 dut/Unload Start
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Done/FSM-States" 0)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Done" 0)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Request" 0)
+1
+Verdi>wvMoveSelected -win 25da95d0
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Request" 0)
+1
+Verdi>wvSelectSignal -win 25da95d0 ( "dut" 5 )
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut" 5)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Done/FSM-States" 0)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Done" 0)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Start" 0)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Request" 0)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut" 0)
+1
+Verdi>wvMoveSelected -win 25da95d0
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut" 0)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut" 1)
+1
+Verdi>wvSelectSignal -win 25da95d0 ( "dut" 6 )
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut" 6)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Done/FSM-States" 0)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Done" 0)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Start" 0)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Request" 0)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut" 1)
+1
+Verdi>wvMoveSelected -win 25da95d0
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut" 1)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut" 2)
+1
+Verdi>wvSelectSignal -win 25da95d0 ( "dut" 7 )
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Done/FSM-States" 0)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Done" 0)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Start" 0)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Request" 0)
+1
+Verdi>wvMoveSelected -win 25da95d0
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Request" 0)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Request" 1)
+1
+Verdi>wvSelectSignal -win 25da95d0 ( "dut" 8 )
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Done/FSM-States" 0)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Done" 0)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Start" 0)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Request" 1)
+1
+Verdi>wvMoveSelected -win 25da95d0
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Request" 1)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Request" 2)
+1
+Verdi>wvSelectSignal -win 25da95d0 ( "dut" 9 )
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Done/FSM-States" 0)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Done" 0)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Start" 0)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Request" 2)
+1
+Verdi>wvMoveSelected -win 25da95d0
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Request" 2)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Request" 3)
+1
+Verdi>wvScrollDown -win 25da95d0 5
+1
+Verdi>wvSelectSignal -win 25da95d0 ( "dut" 15 )
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut" 14)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut" 13)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut" 12)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut" 11)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut" 10)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Done/FSM-States" 0)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Done" 0)
+1
+Verdi>wvMoveSelected -win 25da95d0
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Done" 0)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Done" 1)
+1
+Verdi>wvSelectSignal -win 25da95d0 ( "dut" 16 )
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut" 15)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut" 14)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut" 13)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut" 12)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut" 11)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Done/FSM-States" 0)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Done" 1)
+1
+Verdi>wvMoveSelected -win 25da95d0
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Done" 1)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Done" 2)
+1
+Verdi>wvSelectSignal -win 25da95d0 ( "dut" 16 )
+1
+Verdi>wvSelectSignal -win 25da95d0 ( "dut" 17 )
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut" 16)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut" 15)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut" 14)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut" 13)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut" 12)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Done/FSM-States" 0)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Done" 2)
+1
+Verdi>wvMoveSelected -win 25da95d0
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Done" 2)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Done" 3)
+1
+Verdi>wvScrollDown -win 25da95d0 2
+1
+Verdi>wvSelectSignal -win 25da95d0 ( "dut" 18 )
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut" 17)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut" 16)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut" 15)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut" 14)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut" 13)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Done/FSM-States" 0)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Done" 3)
+1
+Verdi>wvMoveSelected -win 25da95d0
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Done" 3)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Done" 4)
+1
+Verdi>wvSelectSignal -win 25da95d0 ( "dut" 14 )
+1
+Verdi>wvSelectSignal -win 25da95d0 ( "dut" 15 )
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut" 14)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Done/FSM-States" 0)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Done" 4)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Done" 3)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Done" 2)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Done" 1)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Done" 0)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Start" 0)
+1
+Verdi>wvMoveSelected -win 25da95d0
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Start" 0)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Start" 1)
+1
+Verdi>wvSelectSignal -win 25da95d0 ( "dut" 16 )
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut" 15)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Done/FSM-States" 0)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Done" 4)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Done" 3)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Done" 2)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Done" 1)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Done" 0)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Start" 1)
+1
+Verdi>wvMoveSelected -win 25da95d0
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Start" 1)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Start" 2)
+1
+Verdi>wvSelectSignal -win 25da95d0 ( "dut" 17 )
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut" 16)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Done/FSM-States" 0)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Done" 4)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Done" 3)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Done" 2)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Done" 1)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Done" 0)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Start" 2)
+1
+Verdi>wvMoveSelected -win 25da95d0
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Start" 2)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Start" 3)
+1
+Verdi>wvSelectSignal -win 25da95d0 ( "dut" 17 )
+1
+Verdi>wvSelectSignal -win 25da95d0 ( "dut" 18 )
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Done/FSM-States" 0)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Done" 4)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Done" 3)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Done" 2)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Done" 1)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Done" 0)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Start" 3)
+1
+Verdi>wvMoveSelected -win 25da95d0
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Start" 3)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Start" 4)
+1
+Verdi>wvSelectSignal -win 25da95d0 ( "dut" 19 )
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut" 18)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Done/FSM-States" 0)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Done" 4)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Done" 3)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Done" 2)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Done" 1)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Done" 0)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Start" 4)
+1
+Verdi>wvMoveSelected -win 25da95d0
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Start" 4)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Start" 5)
+1
+Verdi>wvScrollUp -win 25da95d0 1
+1
+Verdi>wvScrollUp -win 25da95d0 1
+1
+Verdi>wvScrollUp -win 25da95d0 1
+1
+Verdi>wvScrollUp -win 25da95d0 1
+1
+Verdi>wvScrollUp -win 25da95d0 1
+1
+Verdi>wvScrollUp -win 25da95d0 1
+1
+Verdi>wvScrollUp -win 25da95d0 1
+1
+Verdi>wvScrollDown -win 25da95d0 0
+0
+Verdi>wvScrollDown -win 25da95d0 0
+0
+Verdi>wvScrollDown -win 25da95d0 3
+1
+Verdi>wvScrollDown -win 25da95d0 5
+1
+Verdi>wvSelectSignal -win 25da95d0 ( "dut" 19 )
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut" 19)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Done/FSM-States" 0)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Done" 4)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Done" 3)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Done" 2)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Done" 1)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Done" 0)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Start" 5)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Start" 4)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Start" 3)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Start" 2)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Start" 1)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Start" 0)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Request" 3)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Request" 2)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Request" 1)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Request" 0)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut" 2)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut" 1)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Request" 0)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Request" 1)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Request" 2)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Request" 3)
+1
+Verdi>wvMoveSelected -win 25da95d0
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Request" 3)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Request" 4)
+1
+Verdi>wvScrollDown -win 25da95d0 6
+1
+Verdi>wvScrollUp -win 25da95d0 1
+1
+Verdi>wvScrollUp -win 25da95d0 1
+1
+Verdi>wvScrollUp -win 25da95d0 1
+1
+Verdi>wvScrollUp -win 25da95d0 1
+1
+Verdi>wvScrollUp -win 25da95d0 1
+1
+Verdi>wvScrollDown -win 25da95d0 0
+0
+Verdi>wvScrollUp -win 25da95d0 1
+1
+Verdi>wvScrollUp -win 25da95d0 1
+1
+Verdi>wvScrollUp -win 25da95d0 1
+1
+Verdi>wvScrollDown -win 25da95d0 0
+0
+Verdi>wvScrollDown -win 25da95d0 0
+0
+Verdi>wvScrollDown -win 25da95d0 7
+1
+Verdi>wvScrollDown -win 25da95d0 1
+1
+Verdi>wvScrollDown -win 25da95d0 1
+0
+Verdi>wvScrollDown -win 25da95d0 0
+0
+Verdi>wvScrollDown -win 25da95d0 0
+0
+Verdi>wvSelectGroup -win 25da95d0 dut/Unload Done/FSM-States
+1
+Verdi>wvGetSignalOpen -win 25da95d0
+1
+Verdi>wvGetSignalSetScope -win 25da95d0 /robot_model_tb
+1
+Verdi>wvGetSignalSetScope -win 25da95d0 /robot_model_tb/dut
+1
+Verdi>wvGetSignalSetScope -win 25da95d0 /robot_model_tb
+1
+Verdi>wvGetSignalSetScope -win 25da95d0 /robot_model_tb/dut
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Request" 12)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Request" 12)
+1
+Verdi>wvAddSignal -win 25da95d0 -clear
+0
+Verdi>wvAddSignal -win 25da95d0 -group "dut"  {/robot_model_tb/dut/clock} -height 16  {/robot_model_tb/dut/reset_n} -height 16  
+1
+Verdi>fsdbDumpvars 0 "robot_model_tb.dut.next_station\[1:0\]"  +all +trace_process
+*Verdi* ERROR: The #2 argument "robot_model_tb.dut.next_station[1:0]" is invalid
+*Verdi* ERROR: Failed to dump because the specified instance or option is not correct
+*Verdi* ERROR: Syntax - fsdbDumpvars [depth] [instance] [option]*
+Verdi>fsdbDumpvars 0 "robot_model_tb.dut.station\[1:0\]"  +all +trace_process
+*Verdi* ERROR: The #2 argument "robot_model_tb.dut.station[1:0]" is invalid
+*Verdi* ERROR: Failed to dump because the specified instance or option is not correct
+*Verdi* ERROR: Syntax - fsdbDumpvars [depth] [instance] [option]*
+Verdi>fsdbDumpvars 0 "robot_model_tb.dut.unload_cstate"  +all +trace_process
+*Verdi* : Dumping the signal (robot_model_tb.dut.unload_cstate).
+Verdi>fsdbDumpvars 0 "robot_model_tb.dut.unload_nstate"  +all +trace_process
+*Verdi* : Dumping the signal (robot_model_tb.dut.unload_nstate).
+Verdi>wvAddSignal -win 25da95d0 -group "dut/Unload Start"  {/robot_model_tb/dut/s0_unloadstart} -height 16  {/robot_model_tb/dut/s1_unloadstart} -height 16  {/robot_model_tb/dut/s2_unloadstart} -height 16  {/robot_model_tb/dut/s3_unloadstart} -height 16  {/robot_model_tb/dut/load_start} -height 16  
+1
+Verdi>wvAddSignal -win 25da95d0 -group "dut/Unload Done"  {/robot_model_tb/dut/s0_unload_done} -height 16  {/robot_model_tb/dut/s1_unload_done} -height 16  {/robot_model_tb/dut/s2_unload_done} -height 16  {/robot_model_tb/dut/s3_unload_done} -height 16  
+1
+Verdi>wvAddSignal -win 25da95d0 -group "dut/Unload Done/FSM-States"  
+1
+Verdi>wvAddSignal -win 25da95d0 -group "G2"  
+1
+Verdi>wvSelectSignal -win 25da95d0 ( "dut/Request" 5 6 7 8 9 10 11 12 )
+7
+Verdi>wvSetPosition -win 25da95d0 ("dut/Request" 12)
+1
+Verdi>wvScrollUp -win 25da95d0 8
+1
+Verdi>wvScrollUp -win 25da95d0 2
+1
+Verdi>wvScrollDown -win 25da95d0 3
+1
+Verdi>wvScrollDown -win 25da95d0 2
+1
+Verdi>wvScrollDown -win 25da95d0 6
+1
+Verdi>wvScrollDown -win 25da95d0 0
+0
+Verdi>wvSelectGroup -win 25da95d0 dut/Unload Done/FSM-States
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Done" 4)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Done" 3)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Done" 2)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Done" 1)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Done" 0)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Start" 5)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Start" 4)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Start" 3)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Start" 2)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Start" 1)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Start" 0)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Request" 12)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Request" 11)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Request" 10)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Request" 9)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Request" 8)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Request" 7)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Request" 6)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Request" 5)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Request" 4)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Request" 3)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Request" 2)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Request" 1)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Request" 0)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut" 2)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut" 1)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut" 0)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Request" 0)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Request" 2)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Request" 3)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Request" 4)
+1
+Verdi>wvMoveSelected -win 25da95d0
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Request" 4)
+1
+Verdi>wvScrollDown -win 25da95d0 7
+1
+Verdi>wvScrollUp -win 25da95d0 4
+1
+Verdi>wvScrollDown -win 25da95d0 8
+1
+Verdi>wvScrollUp -win 25da95d0 1
+1
+Verdi>wvScrollDown -win 25da95d0 0
+0
+Verdi>wvScrollUp -win 25da95d0 1
+1
+Verdi>wvScrollUp -win 25da95d0 1
+1
+Verdi>wvScrollUp -win 25da95d0 1
+1
+Verdi>wvScrollUp -win 25da95d0 1
+1
+Verdi>wvScrollUp -win 25da95d0 1
+1
+Verdi>wvScrollUp -win 25da95d0 1
+1
+Verdi>schCreateWindow -delim . -win 1f8c03d0 -scope robot_model_tb
+29954700
+Verdi>verdiSetActWin -win 29954700
+1
+Verdi>schSelect -win 29954700 -inst dut
+1
+Verdi>schPushViewIn -win 29954700
+1 robot_model_tb.dut
+Verdi>wvScrollUp -win 25da95d0 1
+1
+Verdi>wvScrollUp -win 25da95d0 1
+1
+Verdi>wvScrollUp -win 25da95d0 1
+1
+Verdi>wvScrollUp -win 25da95d0 1
+1
+Verdi>verdiSetActWin -win 25da95d0
+1
+Verdi>wvScrollUp -win 25da95d0 1
+1
+Verdi>wvScrollUp -win 25da95d0 1
+1
+Verdi>wvScrollUp -win 25da95d0 1
+1
+Verdi>wvScrollUp -win 25da95d0 1
+1
+Verdi>wvScrollUp -win 25da95d0 1
+1
+Verdi>wvScrollDown -win 25da95d0 0
+0
+Verdi>wvScrollDown -win 25da95d0 0
+0
+Verdi>wvScrollDown -win 25da95d0 0
+0
+Verdi>wvScrollDown -win 25da95d0 0
+0
+Verdi>wvScrollDown -win 25da95d0 0
+0
+Verdi>wvScrollDown -win 25da95d0 0
+0
+Verdi>wvScrollDown -win 25da95d0 0
+0
+Verdi>wvScrollDown -win 25da95d0 0
+0
+Verdi>wvScrollDown -win 25da95d0 0
+0
+Verdi>wvScrollDown -win 25da95d0 16
+1
+Verdi>verdiDockWidgetHide -dock widgetDock_<Member>
+1
+Verdi>srcTBSetHiddenView -view MemberView
+1
+Verdi>verdiDockWidgetHide -dock widgetDock_<Local>
+1
+Verdi>srcTBSetHiddenView -view LocalView
+1
+Verdi>verdiSetActWin -dock widgetDock_<Stack>
+1
+Verdi>verdiSetActWin -win 25da95d0
+1
+Verdi>verdiSetActWin -dock widgetDock_<Stack>
+1
+Verdi>verdiSetActWin -win 25da95d0
+1
+Verdi>wvScrollUp -win 25da95d0 14
+1
+Verdi>wvScrollDown -win 25da95d0 3
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Request/FSM-States" 0)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Request" 6)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Request" 7)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Request" 8)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Request" 9)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Request" 10)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Request" 11)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Request" 12)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Request" 13)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Start" 0)
+1
+Verdi>wvMoveSelected -win 25da95d0
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Start/FSM-States" 0)
+1
+Verdi>wvSelectGroup -win 25da95d0 dut/Unload Start
+1
+Verdi>wvSelectGroup -win 25da95d0 dut/Unload Start/FSM-States
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Start" 0)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Request" 12)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Request" 11)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Request" 10)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Request" 9)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Request" 8)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Request" 7)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Request" 6)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Request" 5)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Request" 4)
+1
+Verdi>wvMoveSelected -win 25da95d0
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Request" 4)
+1
+Verdi>wvSelectGroup -win 25da95d0 dut/Request/FSM-States
+1
+Verdi>wvSelectSignal -win 25da95d0 ( "dut/Request" 7 )
+1
+Verdi>wvSelectSignal -win 25da95d0 ( "dut/Request" 6 7 )
+2
+Verdi>wvSelectGroup -win 25da95d0 dut/Request/FSM-States
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Request/FSM-States" 0)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Request" 6)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Request" 7)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Request" 8)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Request" 9)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Request" 10)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Request" 11)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Request" 12)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Request" 13)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Start" 0)
+1
+Verdi>wvMoveSelected -win 25da95d0
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Start/FSM-States" 0)
+1
+Verdi>wvScrollDown -win 25da95d0 10
+1
+Verdi>wvSelectGroup -win 25da95d0 dut/Unload Start/FSM-States
+1
+Verdi>wvScrollDown -win 25da95d0 1
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Start" 2)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Start" 3)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Start" 5)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Start" 6)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Done" 0)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Done" 1)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Done" 2)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Done" 3)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Done" 4)
+1
+Verdi>wvSetPosition -win 25da95d0 ("G2" 0)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Done" 4)
+1
+Verdi>wvMoveSelected -win 25da95d0
+1
+Verdi>wvSetPosition -win 25da95d0 ("FSM-States" 0)
+1
+Verdi>wvSelectGroup -win 25da95d0 G2
+1
+Verdi>wvScrollUp -win 25da95d0 12
+1
+Verdi>wvSelectSignal -win 25da95d0 ( "dut/Request" 5 )
+1
+Verdi>wvSelectSignal -win 25da95d0 ( "dut/Request" 5 6 )
+2
+Verdi>wvSelectSignal -win 25da95d0 ( "dut/Request" 5 6 7 )
+3
+Verdi>wvSelectSignal -win 25da95d0 ( "dut/Request" 5 6 7 8 )
+4
+Verdi>wvSelectSignal -win 25da95d0 ( "dut/Request" 5 6 7 8 9 )
+4
+Verdi>wvSelectSignal -win 25da95d0 ( "dut/Request" 5 6 7 8 9 10 )
+5
+Verdi>wvSelectSignal -win 25da95d0 ( "dut/Request" 5 6 7 8 9 10 11 )
+6
+Verdi>wvSelectSignal -win 25da95d0 ( "dut/Request" 5 6 7 8 9 10 11 12 )
+7
+Verdi>wvSetPosition -win 25da95d0 ("dut/Request" 6)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Request" 7)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Request" 8)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Request" 9)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Request" 10)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Request" 11)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Request" 12)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Start" 0)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Start" 1)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Start" 2)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Start" 3)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Start" 4)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Start" 5)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Done" 0)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Done" 1)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Done" 2)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Done" 3)
+1
+Verdi>wvSetPosition -win 25da95d0 ("dut/Unload Done" 4)
+1
+Verdi>wvSetPosition -win 25da95d0 ("FSM-States" 0)
+1
+Verdi>wvSetPosition -win 25da95d0 ("G2" 0)
+1
+Verdi>wvSetPosition -win 25da95d0 ("FSM-States" 0)
+1
+Verdi>wvMoveSelected -win 25da95d0
+1
+Verdi>wvSetPosition -win 25da95d0 ("FSM-States" 8)
+1
+Verdi>wvScrollUp -win 25da95d0 14
+1
+Verdi>wvScrollDown -win 25da95d0 3
+1
+Verdi>wvSelectSignal -win 25da95d0 ( "dut/Unload Start" 5 )
+1
+Verdi>wvScrollUp -win 25da95d0 2
+1
+Verdi>wvScrollDown -win 25da95d0 6
+1
+Verdi>wvScrollUp -win 25da95d0 4
+1
+Verdi>wvScrollDown -win 25da95d0 4
+1
+Verdi>wvScrollDown -win 25da95d0 7
+1
+Verdi>wvSelectSignal -win 25da95d0 ( "FSM-States" 5 )
+1
+Verdi>wvSetPosition -win 25da95d0 ("FSM-States" 3)
+1
+Verdi>wvSetPosition -win 25da95d0 ("FSM-States" 2)
+1
+Verdi>wvSetPosition -win 25da95d0 ("FSM-States" 1)
+1
+Verdi>wvMoveSelected -win 25da95d0
+1
+Verdi>wvSetPosition -win 25da95d0 ("FSM-States" 1)
+1
+Verdi>wvSetPosition -win 25da95d0 ("FSM-States" 2)
+1
+Verdi>wvSelectSignal -win 25da95d0 ( "FSM-States" 6 )
+1
+Verdi>wvSetPosition -win 25da95d0 ("FSM-States" 5)
+1
+Verdi>wvSetPosition -win 25da95d0 ("FSM-States" 4)
+1
+Verdi>wvSetPosition -win 25da95d0 ("FSM-States" 3)
+1
+Verdi>wvSetPosition -win 25da95d0 ("FSM-States" 2)
+1
+Verdi>wvMoveSelected -win 25da95d0
+1
+Verdi>wvSetPosition -win 25da95d0 ("FSM-States" 2)
+1
+Verdi>wvSetPosition -win 25da95d0 ("FSM-States" 3)
+1
+Verdi>wvSelectSignal -win 25da95d0 ( "FSM-States" 6 )
+1
+Verdi>wvSetPosition -win 25da95d0 ("FSM-States" 5)
+1
+Verdi>wvSetPosition -win 25da95d0 ("FSM-States" 4)
+1
+Verdi>wvSetPosition -win 25da95d0 ("FSM-States" 3)
+1
+Verdi>wvSetPosition -win 25da95d0 ("FSM-States" 2)
+1
+Verdi>wvSetPosition -win 25da95d0 ("FSM-States" 1)
+1
+Verdi>wvMoveSelected -win 25da95d0
+1
+Verdi>wvSetPosition -win 25da95d0 ("FSM-States" 1)
+1
+Verdi>wvSetPosition -win 25da95d0 ("FSM-States" 2)
+1
+Verdi>wvSelectSignal -win 25da95d0 ( "FSM-States" 1 )
+1
+Verdi>wvSelectSignal -win 25da95d0 ( "FSM-States" 2 )
+1
+Verdi>wvSelectSignal -win 25da95d0 ( "FSM-States" 3 )
+1
+Verdi>wvSelectSignal -win 25da95d0 ( "FSM-States" 4 )
+1
+Verdi>wvSetPosition -win 25da95d0 ("FSM-States" 3)
+1
+Verdi>wvSetPosition -win 25da95d0 ("FSM-States" 2)
+1
+Verdi>wvMoveSelected -win 25da95d0
+1
+Verdi>wvSetPosition -win 25da95d0 ("FSM-States" 2)
+1
+Verdi>wvSetPosition -win 25da95d0 ("FSM-States" 3)
+1
+Verdi>wvZoomIn -win 25da95d0
+1
+Verdi>wvZoomIn -win 25da95d0
+1
+Verdi>wvZoomIn -win 25da95d0
+1
+Verdi>wvZoomIn -win 25da95d0
+1
+Verdi>wvZoomIn -win 25da95d0
+1
+Verdi>wvZoomIn -win 25da95d0
+1
+Verdi>wvZoomOut -win 25da95d0
+1
+Verdi>wvZoomOut -win 25da95d0
+1
+Verdi>wvZoomOut -win 25da95d0
+1
+Verdi>wvZoomIn -win 25da95d0
+1
+Verdi>wvZoomOut -win 25da95d0
+1
+Verdi>wvZoomOut -win 25da95d0
+1
+Verdi>wvZoomOut -win 25da95d0
+1
+Verdi>wvScrollUp -win 25da95d0 11
+1
+Verdi>wvScrollUp -win 25da95d0 1
+1
+Verdi>wvScrollUp -win 25da95d0 1
+1
+Verdi>wvScrollDown -win 25da95d0 1
+1
+Verdi>wvScrollDown -win 25da95d0 1
+1
+Verdi>wvScrollDown -win 25da95d0 1
+1
+Verdi>wvScrollDown -win 25da95d0 1
+1
+Verdi>wvScrollDown -win 25da95d0 1
+1
+Verdi>wvScrollDown -win 25da95d0 1
+1
+Verdi>wvScrollDown -win 25da95d0 1
+1
+Verdi>wvScrollDown -win 25da95d0 1
+1
+Verdi>wvScrollUp -win 25da95d0 1
+1
+Verdi>wvScrollUp -win 25da95d0 1
+1
+Verdi>wvScrollUp -win 25da95d0 1
+1
+Verdi>wvScrollUp -win 25da95d0 1
+1
+Verdi>wvScrollUp -win 25da95d0 1
+1
+Verdi>wvScrollUp -win 25da95d0 1
+1
+Verdi>wvScrollUp -win 25da95d0 1
+1
+Verdi>wvScrollUp -win 25da95d0 1
+1
+Verdi>wvScrollUp -win 25da95d0 1
+1
+Verdi>wvScrollDown -win 25da95d0 0
+0
+Verdi>wvScrollDown -win 25da95d0 0
+0
+Verdi>wvScrollDown -win 25da95d0 0
+0
+Verdi>wvScrollDown -win 25da95d0 0
+0
+Verdi>wvScrollDown -win 25da95d0 0
+0
+Verdi>wvScrollDown -win 25da95d0 1
+1
+Verdi>wvScrollUp -win 25da95d0 1
+1
+Verdi>wvScrollDown -win 25da95d0 1
+1
+Verdi>wvScrollUp -win 25da95d0 1
+1

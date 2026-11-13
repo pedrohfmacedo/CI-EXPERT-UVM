@@ -1,0 +1,11 @@
+{"vcs1":{"timestamp_begin":1778536563.375137087, "rt":0.54, "ut":0.17, "st":0.13}}
+{"vcselab":{"timestamp_begin":1778536563.986779714, "rt":0.27, "ut":0.15, "st":0.05}}
+{"link":{"timestamp_begin":1778536564.303362926, "rt":0.17, "ut":0.08, "st":0.06}}
+{"SNPS_VCS_INTERNAL_ROOT_START_TIME": 1778536562.999438069}
+{"VCS_COMP_START_TIME": 1778536562.999438069}
+{"VCS_COMP_END_TIME": 1778536564.598720771}
+{"elabcom":{"timestamp_begin":1778536563.623267304,"rt":0.30, "ut":0.01, "st":0.03}}
+{"VCS_USER_OPTIONS": "-sverilog -full64 -l ./vcs_logger.log -kdb -debug_access+all -timescale=1ns/1ps rtl/decoder2x4.v tb/tb_decoder2x4.sv"}
+{"kdb": {"elabcom_name":"<Kdbresolver>", "log_dir":"simv.daidir/kdbresolverLog"}}
+{"vcs1": {"peak_mem": 503000}}
+{"vcselab": {"peak_mem": 249052}}

@@ -1,0 +1,2 @@
+rtl/updown_counter.v
+tb/tb_updown_counter.sv

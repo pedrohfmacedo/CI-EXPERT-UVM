@@ -1,0 +1,110 @@
+Invoking simulator...
+
+./simv -sml=verdi +UVM_VERDI_TRACE=UVM_AWARE +fsdb+gate=off -ucli2Proc -ucli
+*Verdi* Loading libsscore_vcs202506.so
+
+FSDB Dumper for VCS, Release Verdi_X-2025.06-SP2, Linux x86_64/64bit, 11/27/2025
+(C) 1996 - 2025 by Synopsys, Inc.
+
+*Verdi* : Create FSDB file '/home/pedro.macedo/CI-EXPERT-UVM/workspace/labs/s5/prj/arbiter/inter.fsdb'
+
+*Verdi* : Flush all FSDB Files at 0 ps.
+
+*Verdi* : Enable RPC Server(1273020)
+
+Info: [VCS_SAVE_RESTORE_INFO] ASLR (Address Space Layout Randomization) is detected on the machine. To enable $save functionality, ASLR will be switched off and simv re-executed.
+Please use '-no_save' simv switch to avoid re-execution or '-suppress=ASLR_DETECTED_INFO' to suppress this message.
+Chronologic VCS simulator copyright 1991-2025
+Contains Synopsys proprietary information.
+Compiler version X-2025.06-SP2_Full64; Runtime version X-2025.06-SP2_Full64;  May 14 15:35 2026
+Information: Term was not able to be set up using xterm-256color. Using "xterm" by default instead. (CLE-10)
+Verdi>verdiSetActWin -dock widgetDock_<Member>
+1
+Verdi>verdiSetActWin -dock widgetDock_MTB_SOURCE_TAB_1
+1
+Verdi>schCreateWindow -delim . -win 2042b390 -scope tb_arbiter
+264d8560
+Verdi>verdiSetActWin -win 264d8560
+1
+Verdi>schSelect -win 264d8560 -inst dut
+1
+Verdi>schPushViewIn -win 264d8560
+1 tb_arbiter.dut
+Verdi>schSelect -win 264d8560 -inst arbiter(@1):FSM0:56:97:FSM
+1
+Verdi>schPushViewIn -win 264d8560
+2 24407f60
+Verdi>fsmSetCurrentWindow -win 24407f60
+24407f60
+Verdi>verdiSetActWin -win 24407f60
+1
+Verdi>fsmResizeWindow 0 11 754 304 -win 24407f60
+1
+Verdi>fsmResizeWindow 0 11 754 313 -win 24407f60
+1
+Verdi>fsmResizeWindow 0 11 754 317 -win 24407f60
+1
+Verdi>fsmResizeWindow 0 11 754 327 -win 24407f60
+1
+Verdi>fsmResizeWindow 0 11 754 340 -win 24407f60
+1
+Verdi>fsmResizeWindow 0 11 754 352 -win 24407f60
+1
+Verdi>fsmResizeWindow 0 11 754 363 -win 24407f60
+1
+Verdi>fsmResizeWindow 0 11 754 373 -win 24407f60
+1
+Verdi>fsmResizeWindow 0 11 754 391 -win 24407f60
+1
+Verdi>fsmResizeWindow 0 11 754 404 -win 24407f60
+1
+Verdi>fsmResizeWindow 0 11 754 411 -win 24407f60
+1
+Verdi>fsmResizeWindow 0 11 754 421 -win 24407f60
+1
+Verdi>fsmResizeWindow 0 11 754 430 -win 24407f60
+1
+Verdi>fsmResizeWindow 0 11 754 434 -win 24407f60
+1
+Verdi>fsmSetOptions -stateAction 1 -win 24407f60
+1
+Verdi>fsmSetOptions -largeFont 1 -win 24407f60
+1
+Verdi>fsmSetOptions -transCondition 1 -win 24407f60
+1
+Verdi>fsmSetOptions -transAction 1 -win 24407f60
+1
+Verdi>fsmSetOptions -annot 1 -win 24407f60
+1
+Verdi>fsmGetMachineProperty -win 24407f60
+
+-machine
+	Synchronous
+-clock
+	Name: clk
+	Polarity: Rising
+-io
+	I : clk
+	O : client1_req_d
+	O : client2_req_d
+	O : curr_state[1:0]
+	O : next_state[1:0]
+	O : o_grant1
+	O : o_grant2
+	O : priority_sel
+	O : reset_n
+-state
+	Current State Signal: curr_state
+	Next State Signal: next_state
+	Initial State: IDLE
+
+	CLINET1 = 2'b01
+	CLINET2 = 2'b10
+	IDLE = 2'b00
+	Others = Others
+
+           V C S   S i m u l a t i o n   R e p o r t 
+Time: 0 ps
+CPU Time:      0.060 seconds;       Data structure size:   0.0Mb
+Thu May 14 17:56:38 2026
+debExit
