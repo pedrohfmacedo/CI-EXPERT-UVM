@@ -1,0 +1,44 @@
+Invoking simulator...
+
+./simv -sml=verdi +UVM_VERDI_TRACE=UVM_AWARE +fsdb+gate=off -ucli2Proc -ucli
+debImport "-i" "-simflow" "-dbdir" "./simv.daidir"
+*Verdi* Loading libsscore_vcs202506.so
+
+FSDB Dumper for VCS, Release Verdi_X-2025.06-SP2, Linux x86_64/64bit, 11/27/2025
+(C) 1996 - 2025 by Synopsys, Inc.
+*Verdi* : Create FSDB file '/home/pedro.macedo/CI-EXPERT-UVM/workspace/labs/s5/prj/counter32bit/inter.fsdb'
+*Verdi* : Flush all FSDB Files at 0 ps.
+
+*Verdi* : Enable RPC Server(588483)
+
+srcTBInvokeSim
+Chronologic VCS simulator copyright 1991-2025
+Contains Synopsys proprietary information.
+Compiler version X-2025.06-SP2_Full64; Runtime version X-2025.06-SP2_Full64;  May 13 23:31 2026
+Information: Term was not able to be set up using xterm-256color. Using "xterm" by default instead. (CLE-10)
+Verdi>fsdbDumpvars 1 "counter_overflow_tb.dut"  +all +trace_process;fsdbDumpflush 
+
+*Verdi* : Begin traversing the scope (counter_overflow_tb.dut), layer (1).
+*Verdi* : Enable +trace_process and +all dumping.
+*Verdi* : End of traversing.
+*Verdi* : Flush all FSDB Files at 0 ps.
+
+Verdi>run
+*Verdi* WARNING: Env/runtime option has specified fsdbfile name as "/home/pedro.macedo/CI-EXPERT-UVM/workspace/labs/s5/prj/counter32bit/inter.fsdb". Fsdbfile name in task "counter32bit.fsdb" is ignored.
+*Verdi* : Begin traversing the scope (counter_overflow_tb), layer (0).
+*Verdi* : End of traversing.
+
+============= SUMMARY =============
+PASS = 201
+FAIL = 0
+===================================
+
+$finish called from file "tb/tb_counter32bit.sv", line 147.
+$finish at simulation time              2026000
+Simulation complete, time is 2026000 ps.
+tb_counter32bit.sv, 147 :         $finish;
+           V C S   S i m u l a t i o n   R e p o r t 
+Time: 2026000 ps
+CPU Time:      0.070 seconds;       Data structure size:   0.0Mb
+Wed May 13 23:31:47 2026
+debExit

@@ -1,0 +1,6 @@
+  CREATE_STREAM @0 {NAME:seqa T:Transactions SCOPE:uvm_test_top.env.agent_a.sqr STREAM:793}
+  CREATE_STREAM @0 {NAME:seqa T:Transactions SCOPE:uvm_test_top.env.agent_a.sqr STREAM:793}
+  CREATE_STREAM @0 {NAME:seqa T:Transactions SCOPE:uvm_test_top.env.agent_a.sqr STREAM:793}
+  CREATE_STREAM @0 {NAME:seqa T:Transactions SCOPE:uvm_test_top.env.agent_a.sqr STREAM:793}
+  CREATE_STREAM @0 {NAME:seqa T:Transactions SCOPE:uvm_test_top.env.agent_a.sqr STREAM:793}
+  CREATE_STREAM @0 {NAME:seqa T:Transactions SCOPE:uvm_test_top.env.agent_a.sqr STREAM:793}

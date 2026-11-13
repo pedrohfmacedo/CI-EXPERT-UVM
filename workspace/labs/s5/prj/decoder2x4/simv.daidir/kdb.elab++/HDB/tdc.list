@@ -1,0 +1,2 @@
+rtl/decoder2x4.v
+tb/tb_decoder2x4.sv

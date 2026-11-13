@@ -1,0 +1,2 @@
+rtl/counter32bit.v
+tb/tb_counter32bit.sv

@@ -1,0 +1,8 @@
+Command exited with non-zero status 255
+{"vcs1":{"timestamp_begin":1778632165.017048017, "rt":0.10, "ut":0.05, "st":0.03}}
+{"SNPS_VCS_INTERNAL_ROOT_START_TIME": 1778632164.777858641}
+{"VCS_COMP_START_TIME": 1778632164.777858641}
+{"VCS_COMP_END_TIME": 1778632165.177625632}
+{"VCS_USER_OPTIONS": "rtl/counter32bit.v tb/tb_counter32bit.sv"}
+{"kdb": {"elabcom_name":"<Elabcom>", "log_dir":"simv.daidir/elabcomLog"}}
+{"vcs1": {"peak_mem": 313952}}

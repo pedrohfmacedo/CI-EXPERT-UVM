@@ -1,0 +1,8 @@
+Command Line: /Tools/synopsys/verdi/X-2025.06-SP2/platform/LINUXAMD64/bin/Novas -play cmd/robot_modelwave_rtl_correct.cmd
+uname(Linux microeletronica 4.18.0-477.27.1.el8_8.x86_64 #1 SMP Thu Aug 31 10:29:22 EDT 2023 x86_64)
+KdbImportParallelMixAllLib time 0.012214 0.001830 0.002151 delta 30654464 30654464 total 1277919232 1277919232
+type= DS_SCOPE element= 1 field= 1
+VERILOG robot_model_tb
+-----
+second field= DebussyLib
+third field= robot_model_tb

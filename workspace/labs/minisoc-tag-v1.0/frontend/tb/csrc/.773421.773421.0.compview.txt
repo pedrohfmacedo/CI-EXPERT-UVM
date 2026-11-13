@@ -1,0 +1,11 @@
+{"vcs1":{"timestamp_begin":1792630007.925020619, "rt":0.83, "ut":0.49, "st":0.14}}
+{"vcselab":{"timestamp_begin":1792630008.814599956, "rt":0.27, "ut":0.16, "st":0.04}}
+{"link":{"timestamp_begin":1792630009.126143440, "rt":0.14, "ut":0.08, "st":0.04}}
+{"SNPS_VCS_INTERNAL_ROOT_START_TIME": 1792630007.498250213}
+{"VCS_COMP_START_TIME": 1792630007.498250213}
+{"VCS_COMP_END_TIME": 1792630009.378795903}
+{"elabcom":{"timestamp_begin":1792630008.351664604,"rt":0.19, "ut":0.02, "st":0.03}}
+{"VCS_USER_OPTIONS": "-full64 -sverilog -l ./vcs_logger.log -kdb -debug_access+all +ntb_random_seed=random -timescale=1ns/1ps ../rtl/minisoc_aes/minisoc_aes_key_exp.sv ../rtl/minisoc_aes/minisoc_aes_dp.sv ../rtl/minisoc_aes/minisoc_aes_top.sv ../rtl/minisoc_mem/minisoc_memory.sv ../rtl/minisoc_pll/minisoc_pll_mock.sv ../rtl/minisoc_spi/minisoc_spi.sv ../rtl/minisoc_top.sv ./minisoc_top_tb.sv"}
+{"kdb": {"elabcom_name":"<Kdbresolver>", "log_dir":"simv.daidir/kdbresolverLog"}}
+{"vcs1": {"peak_mem": 508848}}
+{"vcselab": {"peak_mem": 265484}}

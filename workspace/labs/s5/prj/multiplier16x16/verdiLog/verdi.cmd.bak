@@ -1,0 +1,37 @@
+simSetSimulator "-vcssv" -exec "./simv" -args " " -uvmDebug on
+debImport "-i" "-simflow" "-dbdir" "./simv.daidir"
+srcTBInvokeSim
+verdiSetActWin -dock widgetDock_<Member>
+verdiWindowResize -win $_Verdi_1 "0" "27" "1536" "790"
+verdiWindowResize -win $_Verdi_1 "0" "27" "1536" "790"
+verdiSetActWin -dock widgetDock_MTB_SOURCE_TAB_1
+wvCreateWindow
+verdiSetActWin -win $_nWave3
+srcHBDrag -win $_nTrace1
+verdiSetActWin -dock widgetDock_<Inst._Tree>
+wvDumpScope "multiplier_tb.dut"
+wvSetPosition -win $_nWave3 {("dut" 0)}
+wvRenameGroup -win $_nWave3 {G1} {dut}
+wvAddSignal -win $_nWave3 "/multiplier_tb/dut/clk" "/multiplier_tb/dut/reset_n" \
+           "/multiplier_tb/dut/en" "/multiplier_tb/dut/op_a\[15:0\]" \
+           "/multiplier_tb/dut/op_b\[15:0\]" \
+           "/multiplier_tb/dut/multi_out\[31:0\]"
+wvSetPosition -win $_nWave3 {("dut" 0)}
+wvSetPosition -win $_nWave3 {("dut" 6)}
+wvSetPosition -win $_nWave3 {("dut" 6)}
+srcTBRunSim
+wvZoomOut -win $_nWave3
+wvZoomOut -win $_nWave3
+wvZoomOut -win $_nWave3
+wvZoomOut -win $_nWave3
+wvZoomOut -win $_nWave3
+wvZoomOut -win $_nWave3
+wvZoomOut -win $_nWave3
+wvZoomOut -win $_nWave3
+wvZoomOut -win $_nWave3
+verdiSetActWin -win $_nWave3
+wvZoomIn -win $_nWave3
+wvZoomIn -win $_nWave3
+verdiSetActWin -dock widgetDock_<Watch>
+verdiSetActWin -win $_nWave3
+debExit
