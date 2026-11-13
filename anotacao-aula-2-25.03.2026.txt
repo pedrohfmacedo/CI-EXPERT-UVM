@@ -1,0 +1,15 @@
+porta - interface de um módulo.
+semicondutor - inrínseco. (TECNOLOGIA MOSFET)
+cdc - clock domain 
+metaestabilidade 
+rocket
+sequencial x combinancional (memoria)
+sincrona x assincrona
+recovery time, removal time.
+sdf_annotate -> 
+verificação -> 
+dta -> dinamic timeng analysis 
+slew x skew.
+jitter -> varia a skew -> design,
+jitter é a variação 
+skew - diferença espacial.

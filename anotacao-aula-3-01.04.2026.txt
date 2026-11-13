@@ -1,0 +1,32 @@
+anotações 
+verialtor x 
+
+cycle_accurate COCOTB, verilator x event driven architeture (EDA) - Icarus, EDA, VCS, ModelSIm, Xceium 
+GTK_WAVE, KICAD, FERDI, 
+SOMA = N+1
+MULT = 2^N
+DVIISAO = N
+
+UM EVENTO É UMA AÇÃO NO TEMPO ZERO.
+
+ACONTECEU AQUELE EVENTO -> VC ANALISA O BLOCO.
+
+ATRIBUIÇÃO NÃO BLOQUEANTE, BLOQUEANTE.
+
+interfaces são portas.
+dentro é net.
+budget
+
+gpio 
+alto impedancia 
+
+RAIZ 
+	agente
+	sequence
+	
+vip
+
+reuso
+
+
+
